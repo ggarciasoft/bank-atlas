@@ -8,6 +8,8 @@ Per-bank extraction files live here as `input/banks/<bank_id>.json`. The
 - Follow the schema in `docs/08-data-schema.md`. Every amount needs a `currency` and a
   `confidence` (`high|medium|low`); mask all identifiers to `****1234`.
 - Real bank files are git-ignored for privacy; only `example-bank.json` is committed.
+- Demo amounts in `input/banks/` are kept small for screenshots and local testing:
+  **DOP &lt; RD$10,000**, **USD &lt; US$100** (proportions preserved when scaling).
 - Scaffold a new one with: `npm run new-bank -- "Bank Name"`.
 
 Minimal shape:

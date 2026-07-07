@@ -1,6 +1,6 @@
 snapshot_date,bank_id,bank_name,loan_name,loan_id_masked,currency,remaining_balance,monthly_payment,next_due_date,confidence,needs_review
-2026-07-07,apap,APAP,HIPOTECARIO ADQUISICION VIVIENDA,****7836,DOP,2666478.24,36943.28,2026-07-22,medium,true
-2026-07-07,bhd,BHD,CREDICLICK,****2977,DOP,763866.28,26229.08,2026-07-24,high,false
-2026-07-07,bpd,Banco Popular Dominicano,Prestamo,****7664,DOP,1421767.16,39087.31,2026-07-08,high,false
-2026-07-07,example-bank,Example Bank,Vehicle Loan,****9012,DOP,750000,28000,2026-07-30,medium,false
+2026-07-07,apap,APAP,HIPOTECARIO ADQUISICION VIVIENDA,****7836,DOP,9999.99,138.55,2026-07-22,medium,true
+2026-07-07,bhd,BHD,CREDICLICK,****2977,DOP,9999.99,343.37,2026-07-24,high,false
+2026-07-07,bpd,Banco Popular Dominicano,Prestamo,****7664,DOP,9999.99,274.92,2026-07-08,high,false
+2026-07-07,example-bank,Example Bank,Vehicle Loan,****9012,DOP,9999.99,373.33,2026-07-30,medium,false
 2026-07-07,promerica,Promerica,Préstamos,****7629,DOP,0,,,low,true

@@ -1,6 +1,6 @@
 # Financial Snapshot
 
-Generated at: 2026-07-07T16:14:07-04:00
+Generated at: 2026-07-07T17:20:15-04:00
 Snapshot date: 2026-07-07
 Partial: yes
 
@@ -15,9 +15,9 @@ Partial: yes
 
 ## Executive summary
 
-- Net cash available: DOP 645,483.51, USD 4,639.19
-- Total credit card debt: DOP 211,826.99, USD 2,424.07
-- Total loan debt: DOP 5,602,111.68
+- Net cash available: DOP 4,201.08, USD 162.53
+- Total credit card debt: DOP 3,878.36, USD 116.39
+- Total loan debt: DOP 39,999.96
 - Upcoming payments: 13
 - Data needing review: 7
 
@@ -25,264 +25,264 @@ Partial: yes
 
 | Bank | Account | Currency | Available | Current | Confidence |
 |---|---|---:|---:|---:|---|
-| APAP | AHORRO DEBITO CLASICO ****6097 | DOP | 2,582.20 | 2,582.20 | high |
-| APAP | AHORRO DIGITAL PLUS ****4862 | DOP | 458,274.32 | 458,274.32 | high |
-| BHD | CTAAHORROS ****0015 | DOP | 3,801.91 | 3,801.91 | high |
-| BHD | Cuenta Adalia ****0023 | DOP | 4,026.02 | 4,026.02 | high |
-| Banco Popular Dominicano | Ahorros o Corriente ****7483 | DOP | 43,236.34 | 43,236.34 | high |
-| BSC | Cuenta de Ahorro ****2841 | DOP | 4,802.40 | 4,802.40 | high |
-| BSC | Cuenta de Ahorro ****5474 | USD | 1,080.54 | 1,080.54 | high |
-| Example Bank | Cuenta de Ahorro ****1234 | DOP | 125,000.50 | 125,000.50 | high |
-| Example Bank | USD Checking ****9911 | USD | 2,450.75 | 2,450.75 | high |
-| Promerica | Cuenta De Ahorros Rd$ - Credito Al Instante ****8321 | DOP | 3,759.82 | 3,759.82 | high |
-| Promerica | Cuenta de Ahorro ****6074 | USD | 1,107.90 | 1,107.90 | high |
+| APAP | AHORRO DEBITO CLASICO ****6097 | DOP | 9.68 | 9.68 | high |
+| APAP | AHORRO DIGITAL PLUS ****4862 | DOP | 1,718.65 | 1,718.65 | high |
+| BHD | CTAAHORROS ****0015 | DOP | 49.77 | 49.77 | high |
+| BHD | Cuenta Adalia ****0023 | DOP | 52.71 | 52.71 | high |
+| Banco Popular Dominicano | Ahorros o Corriente ****7483 | DOP | 304.10 | 304.10 | high |
+| BSC | Cuenta de Ahorro ****2841 | DOP | 158.49 | 158.49 | high |
+| BSC | Cuenta de Ahorro ****5474 | USD | 20.86 | 20.86 | high |
+| Example Bank | Cuenta de Ahorro ****1234 | DOP | 1,666.67 | 1,666.67 | high |
+| Example Bank | USD Checking ****9911 | USD | 99.99 | 99.99 | high |
+| Promerica | Cuenta De Ahorros Rd$ - Credito Al Instante ****8321 | DOP | 241.01 | 241.01 | high |
+| Promerica | Cuenta de Ahorro ****6074 | USD | 41.68 | 41.68 | high |
 
 ## Credit cards
 
 | Bank | Card | Currency | Current Balance | Minimum Payment | Due Date | Available Credit | Confidence |
 |---|---|---:|---:|---:|---|---:|---|
-| APAP | VISA FAMILIAR APAP (DOP) ****7962 | DOP | 24,875.06 | 0.00 | 2026-07-11 | 297,424.84 | high |
-| APAP | VISA FAMILIAR APAP (USD) ****7962 | USD | 0.00 | 0.00 | 2026-07-11 | 5,067.12 | high |
-| BHD | VISA PREMIA BHD (DOP) ****5528 | DOP | 37,803.54 | 0.00 | 2026-07-02 | 15,512.00 | high |
-| BHD | VISA PREMIA BHD (USD) ****5528 | USD | 120.27 | 0.00 | 2026-07-02 | 173.24 | high |
-| Banco Popular Dominicano | Tarjeta de Credito Local DOP ****8685 | DOP | 57,114.89 | 1,530.68 | 2026-07-29 | 79,644.71 | high |
-| Banco Popular Dominicano | Tarjeta de Credito Local USD ****8685 | USD | 2,268.75 | 63.05 | 2026-07-29 | 1,481.25 | high |
-| BSC | Tarjeta de Crédito (Pesos) ****0210 | DOP | 23,361.33 | 0.00 | 2026-07-16 | 45,388.67 | high |
-| BSC | Tarjeta de Crédito (Dólares) ****0210 | USD | 35.05 | 0.00 | 2026-07-16 | 1,100.95 | high |
-| Example Bank | Visa Platinum ****5678 | DOP | 45,000.00 | 3,500.00 | 2026-07-20 | 155,000.00 | high |
-| Promerica | Tarjeta de Crédito RD$ ****5288 | DOP | 23,672.17 | 0.00 | 2026-07-16 | 117,708.42 | high |
-| Promerica | Tarjeta de Crédito US$ ****5288 | USD | 0.00 | 0.00 | 2026-07-16 | 2,007.04 | high |
+| APAP | VISA FAMILIAR APAP (DOP) ****7962 | DOP | 93.29 | 0.00 | 2026-07-11 | 1,115.42 | high |
+| APAP | VISA FAMILIAR APAP (USD) ****7962 | USD | 0.00 | 0.00 | 2026-07-11 | 99.99 | high |
+| BHD | VISA PREMIA BHD (DOP) ****5528 | DOP | 494.90 | 0.00 | 2026-07-02 | 203.07 | high |
+| BHD | VISA PREMIA BHD (USD) ****5528 | USD | 40.09 | 0.00 | 2026-07-02 | 57.74 | high |
+| Banco Popular Dominicano | Tarjeta de Credito Local DOP ****8685 | DOP | 401.72 | 10.77 | 2026-07-29 | 560.18 | high |
+| Banco Popular Dominicano | Tarjeta de Credito Local USD ****8685 | USD | 75.62 | 2.10 | 2026-07-29 | 49.37 | high |
+| BSC | Tarjeta de Crédito (Pesos) ****0210 | DOP | 771.00 | 0.00 | 2026-07-16 | 1,497.97 | high |
+| BSC | Tarjeta de Crédito (Dólares) ****0210 | USD | 0.68 | 0.00 | 2026-07-16 | 21.25 | high |
+| Example Bank | Visa Platinum ****5678 | DOP | 600.00 | 46.67 | 2026-07-20 | 2,066.66 | high |
+| Promerica | Tarjeta de Crédito RD$ ****5288 | DOP | 1,517.45 | 0.00 | 2026-07-16 | 7,545.40 | high |
+| Promerica | Tarjeta de Crédito US$ ****5288 | USD | 0.00 | 0.00 | 2026-07-16 | 75.50 | high |
 
 ## Loans
 
 | Bank | Loan | Currency | Remaining Balance | Monthly Payment | Next Due Date | Confidence |
 |---|---|---:|---:|---:|---|---|
-| APAP | HIPOTECARIO ADQUISICION VIVIENDA ****7836 | DOP | 2,666,478.24 | 36,943.28 | 2026-07-22 | medium |
-| BHD | CREDICLICK ****2977 | DOP | 763,866.28 | 26,229.08 | 2026-07-24 | high |
-| Banco Popular Dominicano | Prestamo ****7664 | DOP | 1,421,767.16 | 39,087.31 | 2026-07-08 | high |
-| Example Bank | Vehicle Loan ****9012 | DOP | 750,000.00 | 28,000.00 | 2026-07-30 | medium |
+| APAP | HIPOTECARIO ADQUISICION VIVIENDA ****7836 | DOP | 9,999.99 | 138.55 | 2026-07-22 | medium |
+| BHD | CREDICLICK ****2977 | DOP | 9,999.99 | 343.37 | 2026-07-24 | high |
+| Banco Popular Dominicano | Prestamo ****7664 | DOP | 9,999.99 | 274.92 | 2026-07-08 | high |
+| Example Bank | Vehicle Loan ****9012 | DOP | 9,999.99 | 373.33 | 2026-07-30 | medium |
 | Promerica | Préstamos ****7629 | DOP | 0.00 |  |  | low |
 
 ## Upcoming payments
 
 | Date | Bank | Type | Description | Currency | Amount |
 |---|---|---|---|---:|---:|
-| 2026-07-08 | Banco Popular Dominicano | loan | Prestamo monthly payment | DOP | 39,087.31 |
+| 2026-07-08 | Banco Popular Dominicano | loan | Prestamo monthly payment | DOP | 274.92 |
 | 2026-07-11 | APAP | credit_card | VISA FAMILIAR APAP (DOP) minimum payment | DOP | 0.00 |
 | 2026-07-11 | APAP | credit_card | VISA FAMILIAR APAP (USD) minimum payment | USD | 0.00 |
 | 2026-07-16 | BSC | credit_card | Tarjeta de Crédito (Pesos) minimum payment | DOP | 0.00 |
 | 2026-07-16 | BSC | credit_card | Tarjeta de Crédito (Dólares) minimum payment | USD | 0.00 |
 | 2026-07-16 | Promerica | credit_card | Tarjeta de Crédito RD$ minimum payment | DOP | 0.00 |
 | 2026-07-16 | Promerica | credit_card | Tarjeta de Crédito US$ minimum payment | USD | 0.00 |
-| 2026-07-20 | Example Bank | credit_card | Visa Platinum minimum payment | DOP | 3,500.00 |
-| 2026-07-22 | APAP | loan | HIPOTECARIO ADQUISICION VIVIENDA monthly payment | DOP | 36,943.28 |
-| 2026-07-24 | BHD | loan | CREDICLICK monthly payment | DOP | 26,229.08 |
-| 2026-07-29 | Banco Popular Dominicano | credit_card | Tarjeta de Credito Local DOP minimum payment | DOP | 1,530.68 |
-| 2026-07-29 | Banco Popular Dominicano | credit_card | Tarjeta de Credito Local USD minimum payment | USD | 63.05 |
-| 2026-07-30 | Example Bank | loan | Vehicle Loan monthly payment | DOP | 28,000.00 |
+| 2026-07-20 | Example Bank | credit_card | Visa Platinum minimum payment | DOP | 46.67 |
+| 2026-07-22 | APAP | loan | HIPOTECARIO ADQUISICION VIVIENDA monthly payment | DOP | 138.55 |
+| 2026-07-24 | BHD | loan | CREDICLICK monthly payment | DOP | 343.37 |
+| 2026-07-29 | Banco Popular Dominicano | credit_card | Tarjeta de Credito Local DOP minimum payment | DOP | 10.77 |
+| 2026-07-29 | Banco Popular Dominicano | credit_card | Tarjeta de Credito Local USD minimum payment | USD | 2.10 |
+| 2026-07-30 | Example Bank | loan | Vehicle Loan monthly payment | DOP | 373.33 |
 
 ## Recent large or unusual movements
 
 | Date | Bank | Account | Description | Currency | Amount | Reason |
 |---|---|---|---|---:|---:|---|
-| 2026-07-07 | Banco Popular Dominicano | ****7483 | MBANKING APP: Transf via ACH | DOP | 20,000.00 | flagged as large or noteworthy movement |
-| 2026-07-06 | BSC | ****2841 | Por Transferencia Ach | DOP | 20,000.00 | flagged as large or noteworthy movement |
-| 2026-07-06 | BSC | ****2841 | Transferencia Recibida | DOP | 20,000.00 | flagged as large or noteworthy movement |
-| 2026-07-06 | BSC | ****2841 | Por Transferencia Ach | DOP | 4,776.00 | flagged as large or noteworthy movement |
-| 2026-07-06 | BSC | ****2841 | Transferencia Recibida | DOP | 4,776.00 | flagged as large or noteworthy movement |
-| 2026-07-06 | BSC | ****5474 | Debito Por Transferencia | USD | 341.88 | flagged as large or noteworthy movement |
-| 2026-07-06 | BSC | ****5474 | Debito Por Transferencia | USD | 81.64 | flagged as large or noteworthy movement |
-| 2026-07-05 | Promerica | ****5288 | HUMANO SEG ECOM APP | DOP | 16,247.17 | flagged as large or noteworthy movement |
-| 2026-07-04 | BHD | ****5528 | CLARO PAGO 8098951186 | DOP | 11,365.72 | flagged as large or noteworthy movement |
-| 2026-07-03 | APAP | ****4862 | PAGO BM T.CREDITO APAP | DOP | 63,409.91 | flagged as large or noteworthy movement |
-| 2026-07-03 | APAP | ****4862 | DR IMP TRANSFERENCIA FONDOS | DOP | 126.82 | flagged as large or noteworthy movement |
-| 2026-07-03 | APAP | ****4862 | TRANSFERENCIA ACH | DOP | 295,000.00 | flagged as large or noteworthy movement |
-| 2026-07-03 | BHD | ****0015 | PAGO DE TC ****5528 | DOP | 36,065.73 | flagged as large or noteworthy movement |
-| 2026-07-03 | BHD | ****0015 | Imp. transferencia o cheque | DOP | 52.45 | flagged as large or noteworthy movement |
-| 2026-07-03 | BHD | ****0015 | Imp. transferencia o cheque | DOP | 72.13 | flagged as large or noteworthy movement |
-| 2026-07-03 | BHD | ****0015 | T24 DB Pago Presta. Activa RD | DOP | 26,229.08 | flagged as large or noteworthy movement |
-| 2026-07-03 | Banco Popular Dominicano | ****7483 | PAGO IMPUESTO 0.15 DGII 2 TRANS | DOP | 24.00 | flagged as large or noteworthy movement |
-| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | DOP | 295,000.00 | flagged as large or noteworthy movement |
-| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | DOP | 65,000.00 | flagged as large or noteworthy movement |
-| 2026-07-03 | BSC | ****2841 | Transferencia Recibida | DOP | 303,000.00 | flagged as large or noteworthy movement |
-| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | DOP | 10,800.00 | flagged as large or noteworthy movement |
-| 2026-07-03 | BSC | ****5474 | Pago De Tarjeta Por Internet Banking | USD | 600.26 | flagged as large or noteworthy movement |
-| 2026-07-03 | BSC | ****5474 | Debito Por Transferencia | USD | 5,179.49 | flagged as large or noteworthy movement |
-| 2026-07-03 | BSC | ****5474 | Transferencia Recibida de: DEEL, INC. | USD | 275.71 | flagged as large or noteworthy movement |
-| 2026-07-03 | BSC | ****5474 | Comision Por Transferencia Lbtr | USD | 5.00 | flagged as large or noteworthy movement |
-| 2026-07-03 | BSC | ****5474 | Debito Por Transferencia | USD | 63.03 | flagged as large or noteworthy movement |
-| 2026-07-03 | BSC | ****0210 | PAGO POR BANCANET | DOP | 35,114.92 | flagged as large or noteworthy movement |
-| 2026-07-03 | Example Bank | ****1234 | INTERES TARJETA | DOP | 1,200.00 | flagged as large or noteworthy movement |
-| 2026-07-01 | Banco Popular Dominicano | ****8685 | PAYPAL *BOOKING PARTNE | USD | 362.72 | flagged as large or noteworthy movement |
-| 2026-07-01 | Banco Popular Dominicano | ****7483 | MB a ****4091 Llanira | DOP | 15,000.00 | flagged as large or noteworthy movement |
-| 2026-06-30 | Banco Popular Dominicano | ****8685 | VFS MISION HOLANDA | DOP | 20,514.00 | flagged as large or noteworthy movement |
-| 2026-06-30 | BSC | ****2841 | Impuesto Sobre Intereses | DOP | 1.11 | flagged as large or noteworthy movement |
-| 2026-06-30 | BSC | ****2841 | Capitalizacion De Intereses | DOP | 11.09 | flagged as large or noteworthy movement |
-| 2026-06-29 | BSC | ****2841 | Cargo Por Cartas Consulares | DOP | 200.00 | flagged as large or noteworthy movement |
-| 2026-06-28 | Banco Popular Dominicano | ****8685 | SUN ON THE BAY BEACH | DOP | 7,552.00 | flagged as large or noteworthy movement |
-| 2026-06-27 | BHD | ****5528 | JUMBO MEGACENTRO | DOP | 8,227.50 | flagged as large or noteworthy movement |
-| 2026-06-27 | Banco Popular Dominicano | ****8685 | SAVA SALINAS | DOP | 5,700.00 | flagged as large or noteworthy movement |
-| 2026-06-26 | BHD | ****5528 | UBER*EATS | DOP | 1,166.00 | flagged as large or noteworthy movement |
-| 2026-06-26 | BHD | ****5528 | UBER*EATS | DOP | 412.63 | flagged as large or noteworthy movement |
-| 2026-06-26 | Banco Popular Dominicano | ****7483 | PAGO IMPUESTO 0.15 DGII 1 TRANS | DOP | 15.43 | flagged as large or noteworthy movement |
-| 2026-06-24 | Promerica | ****8321 | TRANSF PROPIA PROMERICA ONLINE | DOP | 26,000.00 | flagged as large or noteworthy movement |
-| 2026-06-24 | Promerica | ****8321 | TRANSF ACH PROMERICA ONLINE A TC BANCO SANTA CRUZ | DOP | 25,511.64 | flagged as large or noteworthy movement |
-| 2026-06-23 | Banco Popular Dominicano | ****8685 | AFP*The Law Office of | USD | 650.00 | flagged as large or noteworthy movement |
-| 2026-06-20 | Banco Popular Dominicano | ****8685 | UNITRIPS | USD | 591.07 | flagged as large or noteworthy movement |
-| 2026-06-19 | Banco Popular Dominicano | ****8685 | GOOGLE *ROBLOX | USD | 34.99 | flagged as large or noteworthy movement |
-| 2026-06-18 | BHD | ****0023 | TRANSFERENCIA RECIBIDA DE MARTINEZ SANTA | DOP | 2,500.00 | flagged as large or noteworthy movement |
-| 2026-06-16 | Banco Popular Dominicano | ****8685 | The Childrens Place | USD | 190.65 | flagged as large or noteworthy movement |
-| 2026-06-16 | Banco Popular Dominicano | ****8685 | The Childrens Place | USD | 280.67 | flagged as large or noteworthy movement |
-| 2026-06-11 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | DOP | 44,200.00 | flagged as large or noteworthy movement |
-| 2026-06-11 | Promerica | ****8321 | CR LBTR: CH BANCO SANTA CRUZ | DOP | 118,037.51 | flagged as large or noteworthy movement |
-| 2026-06-11 | Promerica | ****8321 | PAGO TARJETAS DE CRÉDITO | DOP | 118,037.51 | flagged as large or noteworthy movement |
-| 2026-06-11 | Promerica | ****8321 | IMPUESTO 0.15% | DOP | 177.06 | flagged as large or noteworthy movement |
-| 2026-06-08 | Banco Popular Dominicano | ****7483 | AUT PAGO ****7664 - seguro deuda ****7483 | DOP | 76.39 | flagged as large or noteworthy movement |
-| 2026-06-08 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | DOP | 40,000.00 | flagged as large or noteworthy movement |
-| 2026-06-08 | Banco Popular Dominicano | ****7483 | AUT PAGO ****7664 - cuota prestamo ****7483 | DOP | 39,010.92 | flagged as large or noteworthy movement |
-| 2026-06-08 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | DOP | 13,432.00 | flagged as large or noteworthy movement |
-| 2026-06-07 | Banco Popular Dominicano | ****8685 | SWAROVSKI BLUE MALL | DOP | 5,884.40 | flagged as large or noteworthy movement |
-| 2026-06-07 | Banco Popular Dominicano | ****8685 | GOFNDME* AYUDEMOS A SO | USD | 105.00 | flagged as large or noteworthy movement |
-| 2026-06-06 | Banco Popular Dominicano | ****8685 | PAYPAL *NAMECHEAP | USD | 23.55 | flagged as large or noteworthy movement |
+| 2026-07-07 | Banco Popular Dominicano | ****7483 | MBANKING APP: Transf via ACH | DOP | 140.67 | flagged as large or noteworthy movement |
+| 2026-07-06 | BSC | ****2841 | Por Transferencia Ach | DOP | 660.07 | flagged as large or noteworthy movement |
+| 2026-07-06 | BSC | ****2841 | Transferencia Recibida | DOP | 660.07 | flagged as large or noteworthy movement |
+| 2026-07-06 | BSC | ****2841 | Por Transferencia Ach | DOP | 157.62 | flagged as large or noteworthy movement |
+| 2026-07-06 | BSC | ****2841 | Transferencia Recibida | DOP | 157.62 | flagged as large or noteworthy movement |
+| 2026-07-06 | BSC | ****5474 | Debito Por Transferencia | USD | 6.60 | flagged as large or noteworthy movement |
+| 2026-07-06 | BSC | ****5474 | Debito Por Transferencia | USD | 1.58 | flagged as large or noteworthy movement |
+| 2026-07-05 | Promerica | ****5288 | HUMANO SEG ECOM APP | DOP | 1,041.48 | flagged as large or noteworthy movement |
+| 2026-07-04 | BHD | ****5528 | CLARO PAGO 8098951186 | DOP | 148.79 | flagged as large or noteworthy movement |
+| 2026-07-03 | APAP | ****4862 | PAGO BM T.CREDITO APAP | DOP | 237.80 | flagged as large or noteworthy movement |
+| 2026-07-03 | APAP | ****4862 | DR IMP TRANSFERENCIA FONDOS | DOP | 0.48 | flagged as large or noteworthy movement |
+| 2026-07-03 | APAP | ****4862 | TRANSFERENCIA ACH | DOP | 1,106.33 | flagged as large or noteworthy movement |
+| 2026-07-03 | BHD | ****0015 | PAGO DE TC ****5528 | DOP | 472.15 | flagged as large or noteworthy movement |
+| 2026-07-03 | BHD | ****0015 | Imp. transferencia o cheque | DOP | 0.69 | flagged as large or noteworthy movement |
+| 2026-07-03 | BHD | ****0015 | Imp. transferencia o cheque | DOP | 0.94 | flagged as large or noteworthy movement |
+| 2026-07-03 | BHD | ****0015 | T24 DB Pago Presta. Activa RD | DOP | 343.37 | flagged as large or noteworthy movement |
+| 2026-07-03 | Banco Popular Dominicano | ****7483 | PAGO IMPUESTO 0.15 DGII 2 TRANS | DOP | 0.17 | flagged as large or noteworthy movement |
+| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | DOP | 9,735.96 | flagged as large or noteworthy movement |
+| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | DOP | 2,145.21 | flagged as large or noteworthy movement |
+| 2026-07-03 | BSC | ****2841 | Transferencia Recibida | DOP | 9,999.99 | flagged as large or noteworthy movement |
+| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | DOP | 356.44 | flagged as large or noteworthy movement |
+| 2026-07-03 | BSC | ****5474 | Pago De Tarjeta Por Internet Banking | USD | 11.59 | flagged as large or noteworthy movement |
+| 2026-07-03 | BSC | ****5474 | Debito Por Transferencia | USD | 99.99 | flagged as large or noteworthy movement |
+| 2026-07-03 | BSC | ****5474 | Transferencia Recibida de: DEEL, INC. | USD | 5.32 | flagged as large or noteworthy movement |
+| 2026-07-03 | BSC | ****5474 | Comision Por Transferencia Lbtr | USD | 0.10 | flagged as large or noteworthy movement |
+| 2026-07-03 | BSC | ****5474 | Debito Por Transferencia | USD | 1.22 | flagged as large or noteworthy movement |
+| 2026-07-03 | BSC | ****0210 | PAGO POR BANCANET | DOP | 1,158.91 | flagged as large or noteworthy movement |
+| 2026-07-03 | Example Bank | ****1234 | INTERES TARJETA | DOP | 16.00 | flagged as large or noteworthy movement |
+| 2026-07-01 | Banco Popular Dominicano | ****8685 | PAYPAL *BOOKING PARTNE | USD | 12.09 | flagged as large or noteworthy movement |
+| 2026-07-01 | Banco Popular Dominicano | ****7483 | MB a ****4091 Llanira | DOP | 105.50 | flagged as large or noteworthy movement |
+| 2026-06-30 | Banco Popular Dominicano | ****8685 | VFS MISION HOLANDA | DOP | 144.29 | flagged as large or noteworthy movement |
+| 2026-06-30 | BSC | ****2841 | Impuesto Sobre Intereses | DOP | 0.04 | flagged as large or noteworthy movement |
+| 2026-06-30 | BSC | ****2841 | Capitalizacion De Intereses | DOP | 0.37 | flagged as large or noteworthy movement |
+| 2026-06-29 | BSC | ****2841 | Cargo Por Cartas Consulares | DOP | 6.60 | flagged as large or noteworthy movement |
+| 2026-06-28 | Banco Popular Dominicano | ****8685 | SUN ON THE BAY BEACH | DOP | 53.12 | flagged as large or noteworthy movement |
+| 2026-06-27 | BHD | ****5528 | JUMBO MEGACENTRO | DOP | 107.71 | flagged as large or noteworthy movement |
+| 2026-06-27 | Banco Popular Dominicano | ****8685 | SAVA SALINAS | DOP | 40.09 | flagged as large or noteworthy movement |
+| 2026-06-26 | BHD | ****5528 | UBER*EATS | DOP | 15.26 | flagged as large or noteworthy movement |
+| 2026-06-26 | BHD | ****5528 | UBER*EATS | DOP | 5.40 | flagged as large or noteworthy movement |
+| 2026-06-26 | Banco Popular Dominicano | ****7483 | PAGO IMPUESTO 0.15 DGII 1 TRANS | DOP | 0.11 | flagged as large or noteworthy movement |
+| 2026-06-24 | Promerica | ****8321 | TRANSF PROPIA PROMERICA ONLINE | DOP | 1,666.66 | flagged as large or noteworthy movement |
+| 2026-06-24 | Promerica | ****8321 | TRANSF ACH PROMERICA ONLINE A TC BANCO SANTA CRUZ | DOP | 1,635.36 | flagged as large or noteworthy movement |
+| 2026-06-23 | Banco Popular Dominicano | ****8685 | AFP*The Law Office of | USD | 21.66 | flagged as large or noteworthy movement |
+| 2026-06-20 | Banco Popular Dominicano | ****8685 | UNITRIPS | USD | 19.70 | flagged as large or noteworthy movement |
+| 2026-06-19 | Banco Popular Dominicano | ****8685 | GOOGLE *ROBLOX | USD | 1.17 | flagged as large or noteworthy movement |
+| 2026-06-18 | BHD | ****0023 | TRANSFERENCIA RECIBIDA DE MARTINEZ SANTA | DOP | 32.73 | flagged as large or noteworthy movement |
+| 2026-06-16 | Banco Popular Dominicano | ****8685 | The Childrens Place | USD | 6.35 | flagged as large or noteworthy movement |
+| 2026-06-16 | Banco Popular Dominicano | ****8685 | The Childrens Place | USD | 9.35 | flagged as large or noteworthy movement |
+| 2026-06-11 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | DOP | 310.88 | flagged as large or noteworthy movement |
+| 2026-06-11 | Promerica | ****8321 | CR LBTR: CH BANCO SANTA CRUZ | DOP | 7,566.50 | flagged as large or noteworthy movement |
+| 2026-06-11 | Promerica | ****8321 | PAGO TARJETAS DE CRÉDITO | DOP | 7,566.50 | flagged as large or noteworthy movement |
+| 2026-06-11 | Promerica | ****8321 | IMPUESTO 0.15% | DOP | 11.35 | flagged as large or noteworthy movement |
+| 2026-06-08 | Banco Popular Dominicano | ****7483 | AUT PAGO ****7664 - seguro deuda ****7483 | DOP | 0.54 | flagged as large or noteworthy movement |
+| 2026-06-08 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | DOP | 281.34 | flagged as large or noteworthy movement |
+| 2026-06-08 | Banco Popular Dominicano | ****7483 | AUT PAGO ****7664 - cuota prestamo ****7483 | DOP | 274.38 | flagged as large or noteworthy movement |
+| 2026-06-08 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | DOP | 94.47 | flagged as large or noteworthy movement |
+| 2026-06-07 | Banco Popular Dominicano | ****8685 | SWAROVSKI BLUE MALL | DOP | 41.39 | flagged as large or noteworthy movement |
+| 2026-06-07 | Banco Popular Dominicano | ****8685 | GOFNDME* AYUDEMOS A SO | USD | 3.50 | flagged as large or noteworthy movement |
+| 2026-06-06 | Banco Popular Dominicano | ****8685 | PAYPAL *NAMECHEAP | USD | 0.78 | flagged as large or noteworthy movement |
 
 ## Recent transactions
 
 | Date | Bank | Account | Description | Direction | Currency | Amount | Category |
 |---|---|---|---|---|---:|---:|---|
-| 2026-07-07 | Banco Popular Dominicano | ****7483 | MBANKING APP: Transf via ACH | credit | DOP | 20,000.00 | transfer_in |
-| 2026-07-06 | APAP | ****7962 | CASHBACK FARMACIAS | credit | DOP | 80.73 | rewards |
-| 2026-07-06 | APAP | ****7962 | Redondeo TC FCIA MEDIC | debit | DOP | 9.00 | charity |
-| 2026-07-06 | BHD | ****5528 | AMAZON MARK* TR1GF9503 | debit | USD | 37.37 | shopping |
-| 2026-07-06 | BSC | ****2841 | Por Transferencia Ach | debit | DOP | 20,000.00 | transfer |
-| 2026-07-06 | BSC | ****2841 | Transferencia Recibida | credit | DOP | 20,000.00 | transfer |
-| 2026-07-06 | BSC | ****2841 | Imp. 2.0 Por 1000 S/Ley 30-26 | debit | DOP | 9.55 | fees |
-| 2026-07-06 | BSC | ****2841 | Por Transferencia Ach | debit | DOP | 4,776.00 | transfer |
-| 2026-07-06 | BSC | ****2841 | Transferencia Recibida | credit | DOP | 4,776.00 | transfer |
-| 2026-07-06 | BSC | ****5474 | Debito Por Transferencia | debit | USD | 341.88 | transfer |
-| 2026-07-06 | BSC | ****5474 | Debito Por Transferencia | debit | USD | 81.64 | transfer |
-| 2026-07-05 | BSC | ****0210 | AHORRO POR COMPRA | credit | DOP | 414.82 | rewards |
-| 2026-07-05 | BSC | ****0210 | AHORRO POR COMPRA | credit | USD | 0.15 | rewards |
-| 2026-07-05 | Example Bank | ****1234 | SUPERMERCADO NACIONAL | debit | DOP | 3,500.00 | groceries |
-| 2026-07-05 | Promerica | ****5288 | HUMANO SEG ECOM APP | debit | DOP | 16,247.17 | insurance |
-| 2026-07-04 | APAP | ****7962 | FCIA MEDICAR GBC CANCI SANTO DOMINGO DO | debit | DOP | 2,691.00 | pharmacy |
-| 2026-07-04 | BHD | ****5528 | CLARO PAGO 8098951186 | debit | DOP | 11,365.72 | utilities |
-| 2026-07-04 | Banco Popular Dominicano | ****7483 | MB a ****0021 Juan Santana | debit | DOP | 2,000.00 | transfer_out |
-| 2026-07-04 | BSC | ****0210 | AHORRO POR COMPRA | credit | DOP | 12.26 | rewards |
-| 2026-07-04 | BSC | ****0210 | AHORRO POR COMPRA | credit | DOP | 48.86 | rewards |
-| 2026-07-04 | BSC | ****0210 | BRAVOVA #8567355 | debit | DOP | 5,926.00 | shopping |
-| 2026-07-04 | BSC | ****0210 | ELEVENLABS.IO | debit | USD | 15.40 | cloud |
-| 2026-07-04 | Example Bank | ****1234 | NETFLIX SUBSCRIPTION | debit | DOP | 650.00 | streaming |
-| 2026-07-03 | APAP | ****7962 | 000 FT2618412MWY- PAGO IVR | credit | USD | 2,776.90 | payment |
-| 2026-07-03 | APAP | ****7962 | FT261842YGGL - PAGO TC APP MOVIL | credit | DOP | 63,409.91 | payment |
-| 2026-07-03 | APAP | ****4862 | PAGO BM T.CREDITO APAP | debit | DOP | 63,409.91 | payment |
-| 2026-07-03 | APAP | ****4862 | DR IMP TRANSFERENCIA FONDOS | debit | DOP | 126.82 | tax |
-| 2026-07-03 | APAP | ****4862 | TRANSFERENCIA ACH | credit | DOP | 295,000.00 | transfer |
-| 2026-07-03 | BHD | ****5528 | PAGO LBTR | credit | USD | 63.03 | payment |
-| 2026-07-03 | BHD | ****5528 | UBER*RIDES | debit | DOP | 118.00 | transport |
-| 2026-07-03 | BHD | ****5528 | PAGO DEBITO A CUENTA MBP | credit | DOP | 36,065.73 | payment |
-| 2026-07-03 | BHD | ****0015 | PAGO DE TC ****5528 | debit | DOP | 36,065.73 | payment |
-| 2026-07-03 | BHD | ****0015 | Imp. transferencia o cheque | debit | DOP | 52.45 | fee |
-| 2026-07-03 | BHD | ****0015 | Imp. transferencia o cheque | debit | DOP | 72.13 | fee |
-| 2026-07-03 | BHD | ****0015 | T24 DB Pago Presta. Activa RD | debit | DOP | 26,229.08 | loan_payment |
-| 2026-07-03 | BHD | ****0015 | MBANKING.APP Transf via ACH de Grego | credit | DOP | 65,000.00 | transfer |
-| 2026-07-03 | Banco Popular Dominicano | ****8685 | HOTEL ANSELMO | debit | DOP | 3,092.16 | hotel |
-| 2026-07-03 | Banco Popular Dominicano | ****8685 | COLMADO HNOS SANTANA V | debit | DOP | 305.00 | groceries |
-| 2026-07-03 | Banco Popular Dominicano | ****8685 | GOOGLE *ROBLOX | debit | USD | 4.99 | gaming_subscription |
-| 2026-07-03 | Banco Popular Dominicano | ****7483 | PAGO IMPUESTO 0.15 DGII 2 TRANS | debit | DOP | 24.00 | tax |
-| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | debit | DOP | 295,000.00 | transfer |
-| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | debit | DOP | 65,000.00 | transfer |
-| 2026-07-03 | BSC | ****2841 | Transferencia Recibida | credit | DOP | 303,000.00 | transfer |
-| 2026-07-03 | BSC | ****2841 | Imp. 2.0 Por 1000 S/Ley 30-26 | debit | DOP | 21.60 | fees |
-| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | debit | DOP | 10,800.00 | transfer |
-| 2026-07-03 | BSC | ****5474 | Imp. 2.0 Por 1000 S/Ley 30-26 | debit | USD | 1.20 | fees |
-| 2026-07-03 | BSC | ****5474 | Pago De Tarjeta Por Internet Banking | debit | USD | 600.26 | payment |
-| 2026-07-03 | BSC | ****5474 | Debito Por Transferencia | debit | USD | 5,179.49 | transfer |
-| 2026-07-03 | BSC | ****5474 | Transferencia Recibida de: DEEL, INC. | credit | USD | 275.71 | salary |
-| 2026-07-03 | BSC | ****5474 | Comision Por Transferencia Lbtr | debit | USD | 5.00 | fees |
-| 2026-07-03 | BSC | ****5474 | Imp. 2.0 Por 1000 S/Ley 30-26 | debit | USD | 0.13 | fees |
-| 2026-07-03 | BSC | ****5474 | Debito Por Transferencia | debit | USD | 63.03 | transfer |
-| 2026-07-03 | BSC | ****5474 | Imp. 2.0 Por 1000 S/Ley 30-26 | debit | USD | 0.06 | fees |
-| 2026-07-03 | BSC | ****5474 | Pago De Tarjeta Por Internet Banking | debit | USD | 30.69 | payment |
-| 2026-07-03 | BSC | ****0210 | CREDITO POR PAGO TOTAL | credit | DOP | 922.19 | payment |
-| 2026-07-03 | BSC | ****0210 | PAGO POR BANCANET | credit | DOP | 35,114.92 | payment |
-| 2026-07-03 | BSC | ****0210 | DLO*TEMU.COM | debit | DOP | 1,226.00 | shopping |
-| 2026-07-03 | BSC | ****0210 | DLO*TEMU.COM | debit | DOP | 4,886.00 | shopping |
-| 2026-07-03 | BSC | ****0210 | CREDITO POR PAGO TOTAL | credit | USD | 1.23 | payment |
-| 2026-07-03 | BSC | ****0210 | PAGO POR BANCANET | credit | USD | 30.69 | payment |
-| 2026-07-03 | Example Bank | ****1234 | INTERES TARJETA | debit | DOP | 1,200.00 | fees |
-| 2026-07-03 | Promerica | ****5288 | Pago Tarjetas de Crédito | credit | DOP | 120.00 | payment |
-| 2026-07-02 | BHD | ****5528 | UBER*RIDES | debit | DOP | 118.78 | transport |
-| 2026-07-02 | Example Bank | ****1234 | PAGO NOMINA | credit | DOP | 85,000.00 | salary |
-| 2026-07-02 | Promerica | ****5288 | NATIVA INVIVIENDA | debit | DOP | 3,376.00 | shopping |
-| 2026-07-01 | BHD | ****5528 | UBER RIDES-W*UBER RIDES-W | debit | DOP | 109.85 | transport |
-| 2026-07-01 | BHD | ****5528 | UBER RIDES-W*UBER RIDES-W | debit | DOP | 99.88 | transport |
-| 2026-07-01 | Banco Popular Dominicano | ****8685 | PAYPAL *BOOKING PARTNE | debit | USD | 362.72 | travel |
-| 2026-07-01 | Banco Popular Dominicano | ****8685 | GOOGLE *CLOUD FJF4QW | debit | USD | 0.06 | cloud |
-| 2026-07-01 | Banco Popular Dominicano | ****8685 | GOOGLE *CLOUD TW4RSK | debit | USD | 0.52 | cloud |
-| 2026-07-01 | Banco Popular Dominicano | ****7483 | MB a ****4091 Llanira | debit | DOP | 15,000.00 | transfer_out |
-| 2026-07-01 | Example Bank | ****9911 | AMAZON WEB SERVICES | debit | USD | 42.30 | cloud |
-| 2026-06-30 | BHD | ****5528 | UBER*RIDES | debit | DOP | 99.94 | transport |
-| 2026-06-30 | BHD | ****5528 | UBER*RIDES | debit | DOP | 26.90 | transport |
-| 2026-06-30 | BHD | ****0015 | Com. Bal Min CA | debit | DOP | 150.00 | fee |
-| 2026-06-30 | Banco Popular Dominicano | ****8685 | STEREN STO DGO | debit | DOP | 2,349.02 | electronics |
-| 2026-06-30 | Banco Popular Dominicano | ****8685 | VFS MISION HOLANDA | debit | DOP | 20,514.00 | visa_services |
-| 2026-06-30 | BSC | ****2841 | Impuesto Sobre Intereses | debit | DOP | 1.11 | fees |
-| 2026-06-30 | BSC | ****2841 | Capitalizacion De Intereses | credit | DOP | 11.09 | interest |
-| 2026-06-29 | BHD | ****5528 | UBER*RIDES | debit | DOP | 98.46 | transport |
-| 2026-06-29 | BHD | ****5528 | UBER*RIDES | debit | DOP | 113.63 | transport |
-| 2026-06-29 | Banco Popular Dominicano | ****8685 | MEDI EQUIPOS | debit | DOP | 2,500.00 | medical |
-| 2026-06-29 | Banco Popular Dominicano | ****8685 | GOOGLE *Crunchyroll An | debit | USD | 4.30 | streaming_subscription |
-| 2026-06-29 | BSC | ****2841 | Cargo Por Cartas Consulares | debit | DOP | 200.00 | fees |
-| 2026-06-28 | Banco Popular Dominicano | ****8685 | SUN ON THE BAY BEACH | debit | DOP | 7,552.00 | restaurant |
-| 2026-06-28 | Banco Popular Dominicano | ****7483 | MB a ****2302 MARTIRES MERCE | debit | DOP | 1,000.00 | transfer_out |
-| 2026-06-28 | Promerica | ****5288 | CREDIGAS NATIVA LA PELONA | debit | DOP | 3,949.00 | utilities |
-| 2026-06-27 | BHD | ****5528 | UBER*RIDES | debit | DOP | 62.69 | transport |
-| 2026-06-27 | BHD | ****5528 | UBER*RIDES | debit | DOP | 63.65 | transport |
-| 2026-06-27 | BHD | ****5528 | JUMBO MEGACENTRO | debit | DOP | 8,227.50 | groceries |
-| 2026-06-27 | Banco Popular Dominicano | ****8685 | SAVA SALINAS | debit | DOP | 5,700.00 | travel |
-| 2026-06-27 | Banco Popular Dominicano | ****8685 | CARDNET PAAJES-RS | debit | DOP | 1,000.00 | tolls |
-| 2026-06-27 | Promerica | ****5288 | Pago orange_recarga | debit | DOP | 100.00 | telecom |
-| 2026-06-26 | BHD | ****5528 | UBER RIDES-W*UBER RIDES-W | debit | DOP | 55.18 | transport |
-| 2026-06-26 | BHD | ****5528 | UBER*EATS | debit | DOP | 1,166.00 | dining |
-| 2026-06-26 | BHD | ****5528 | UBER*EATS | debit | DOP | 412.63 | dining |
-| 2026-06-26 | Banco Popular Dominicano | ****7483 | PAGO IMPUESTO 0.15 DGII 1 TRANS | debit | DOP | 15.43 | tax |
-| 2026-06-25 | Banco Popular Dominicano | ****8685 | Pago Via App | credit | DOP | 10,285.39 | payment |
-| 2026-06-25 | Banco Popular Dominicano | ****8685 | Pago via SPE | credit | USD | 322.19 | payment |
-| 2026-06-24 | BHD | ****5528 | Amazon Digit*1S04W6M93 | debit | USD | 0.99 | subscription |
-| 2026-06-24 | BHD | ****5528 | AMZN Digital*H858P7T43 | debit | USD | 14.99 | subscription |
-| 2026-06-24 | Banco Popular Dominicano | ****8685 | GOOGLE *ROBLOX | debit | USD | 0.99 | gaming |
-| 2026-06-24 | Promerica | ****8321 | TRANSF PROPIA PROMERICA ONLINE | credit | DOP | 26,000.00 | transfer |
-| 2026-06-24 | Promerica | ****8321 | TRANSF ACH PROMERICA ONLINE A TC BANCO SANTA CRUZ | debit | DOP | 25,511.64 | transfer |
-| 2026-06-23 | Banco Popular Dominicano | ****8685 | AFP*The Law Office of | debit | USD | 650.00 | legal |
-| 2026-06-20 | Banco Popular Dominicano | ****8685 | REGISTRO INMOBILIARIO | debit | DOP | 1,000.00 | government |
-| 2026-06-20 | Banco Popular Dominicano | ****8685 | DGII CERTIFICACIONES-W | debit | DOP | 300.00 | government |
-| 2026-06-20 | Banco Popular Dominicano | ****8685 | UNITRIPS | debit | USD | 591.07 | travel |
-| 2026-06-19 | Banco Popular Dominicano | ****8685 | GOOGLE *ROBLOX | debit | USD | 34.99 | gaming_subscription |
-| 2026-06-18 | BHD | ****0023 | TRANSFERENCIA RECIBIDA DE MARTINEZ SANTA | credit | DOP | 2,500.00 | transfer |
-| 2026-06-16 | Banco Popular Dominicano | ****8685 | The Childrens Place | debit | USD | 190.65 | shopping_clothing |
-| 2026-06-16 | Banco Popular Dominicano | ****8685 | The Childrens Place | debit | USD | 280.67 | shopping_clothing |
-| 2026-06-15 | Banco Popular Dominicano | ****8685 | EXTREMEPAQ LUCERNA | debit | DOP | 249.75 | other |
-| 2026-06-13 | Banco Popular Dominicano | ****8685 | PAYPAL *GITHUB INC | debit | DOP | 2,582.92 | software_subscription |
-| 2026-06-13 | Banco Popular Dominicano | ****8685 | Google Roblox | debit | USD | 1.99 | gaming |
-| 2026-06-11 | Banco Popular Dominicano | ****8685 | Google Roblox | debit | USD | 0.99 | gaming |
-| 2026-06-11 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | credit | DOP | 44,200.00 | transfer_in |
-| 2026-06-11 | Promerica | ****8321 | CR LBTR: CH BANCO SANTA CRUZ | credit | DOP | 118,037.51 | transfer |
-| 2026-06-11 | Promerica | ****8321 | PAGO TARJETAS DE CRÉDITO | debit | DOP | 118,037.51 | payment |
-| 2026-06-11 | Promerica | ****8321 | IMPUESTO 0.15% | debit | DOP | 177.06 | fees |
-| 2026-06-10 | Banco Popular Dominicano | ****8685 | PAYPAL *SHENDUQRWEA | debit | USD | 5.30 | other |
-| 2026-06-10 | Banco Popular Dominicano | ****8685 | PP*FSPRG.COM | debit | USD | 0.99 | subscription |
-| 2026-06-08 | Banco Popular Dominicano | ****8685 | UBER RIDES-*UBER RIDES | debit | DOP | 395.00 | transport |
-| 2026-06-08 | Banco Popular Dominicano | ****7483 | AUT PAGO ****7664 - seguro deuda ****7483 | debit | DOP | 76.39 | loan_insurance |
-| 2026-06-08 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | credit | DOP | 40,000.00 | transfer_in |
-| 2026-06-08 | Banco Popular Dominicano | ****7483 | AUT PAGO ****7664 - cuota prestamo ****7483 | debit | DOP | 39,010.92 | loan_payment |
-| 2026-06-08 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | credit | DOP | 13,432.00 | transfer_in |
-| 2026-06-07 | Banco Popular Dominicano | ****8685 | BASKIN ROBBINS SAN ISI | debit | DOP | 1,680.00 | food |
-| 2026-06-07 | Banco Popular Dominicano | ****8685 | SWAROVSKI BLUE MALL | debit | DOP | 5,884.40 | shopping |
-| 2026-06-07 | Banco Popular Dominicano | ****8685 | GOFNDME* AYUDEMOS A SO | debit | USD | 105.00 | donation |
-| 2026-06-07 | Banco Popular Dominicano | ****8685 | Google Roblox | debit | USD | 4.99 | gaming |
-| 2026-06-06 | Banco Popular Dominicano | ****8685 | PAYPAL *NAMECHEAP | debit | USD | 23.55 | domain_hosting |
-| 2026-06-06 | Banco Popular Dominicano | ****8685 | Google Roblox | debit | USD | 1.99 | gaming |
-| 2026-06-06 | Banco Popular Dominicano | ****8685 | Google Roblox | debit | USD | 2.99 | gaming |
+| 2026-07-07 | Banco Popular Dominicano | ****7483 | MBANKING APP: Transf via ACH | credit | DOP | 140.67 | transfer_in |
+| 2026-07-06 | APAP | ****7962 | CASHBACK FARMACIAS | credit | DOP | 0.30 | rewards |
+| 2026-07-06 | APAP | ****7962 | Redondeo TC FCIA MEDIC | debit | DOP | 0.03 | charity |
+| 2026-07-06 | BHD | ****5528 | AMAZON MARK* TR1GF9503 | debit | USD | 12.46 | shopping |
+| 2026-07-06 | BSC | ****2841 | Por Transferencia Ach | debit | DOP | 660.07 | transfer |
+| 2026-07-06 | BSC | ****2841 | Transferencia Recibida | credit | DOP | 660.07 | transfer |
+| 2026-07-06 | BSC | ****2841 | Imp. 2.0 Por 1000 S/Ley 30-26 | debit | DOP | 0.32 | fees |
+| 2026-07-06 | BSC | ****2841 | Por Transferencia Ach | debit | DOP | 157.62 | transfer |
+| 2026-07-06 | BSC | ****2841 | Transferencia Recibida | credit | DOP | 157.62 | transfer |
+| 2026-07-06 | BSC | ****5474 | Debito Por Transferencia | debit | USD | 6.60 | transfer |
+| 2026-07-06 | BSC | ****5474 | Debito Por Transferencia | debit | USD | 1.58 | transfer |
+| 2026-07-05 | BSC | ****0210 | AHORRO POR COMPRA | credit | DOP | 13.69 | rewards |
+| 2026-07-05 | BSC | ****0210 | AHORRO POR COMPRA | credit | USD | 0.00 | rewards |
+| 2026-07-05 | Example Bank | ****1234 | SUPERMERCADO NACIONAL | debit | DOP | 46.67 | groceries |
+| 2026-07-05 | Promerica | ****5288 | HUMANO SEG ECOM APP | debit | DOP | 1,041.48 | insurance |
+| 2026-07-04 | APAP | ****7962 | FCIA MEDICAR GBC CANCI SANTO DOMINGO DO | debit | DOP | 10.09 | pharmacy |
+| 2026-07-04 | BHD | ****5528 | CLARO PAGO 8098951186 | debit | DOP | 148.79 | utilities |
+| 2026-07-04 | Banco Popular Dominicano | ****7483 | MB a ****0021 Juan Santana | debit | DOP | 14.07 | transfer_out |
+| 2026-07-04 | BSC | ****0210 | AHORRO POR COMPRA | credit | DOP | 0.40 | rewards |
+| 2026-07-04 | BSC | ****0210 | AHORRO POR COMPRA | credit | DOP | 1.61 | rewards |
+| 2026-07-04 | BSC | ****0210 | BRAVOVA #8567355 | debit | DOP | 195.58 | shopping |
+| 2026-07-04 | BSC | ****0210 | ELEVENLABS.IO | debit | USD | 0.30 | cloud |
+| 2026-07-04 | Example Bank | ****1234 | NETFLIX SUBSCRIPTION | debit | DOP | 8.67 | streaming |
+| 2026-07-03 | APAP | ****7962 | 000 FT2618412MWY- PAGO IVR | credit | USD | 54.80 | payment |
+| 2026-07-03 | APAP | ****7962 | FT261842YGGL - PAGO TC APP MOVIL | credit | DOP | 237.80 | payment |
+| 2026-07-03 | APAP | ****4862 | PAGO BM T.CREDITO APAP | debit | DOP | 237.80 | payment |
+| 2026-07-03 | APAP | ****4862 | DR IMP TRANSFERENCIA FONDOS | debit | DOP | 0.48 | tax |
+| 2026-07-03 | APAP | ****4862 | TRANSFERENCIA ACH | credit | DOP | 1,106.33 | transfer |
+| 2026-07-03 | BHD | ****5528 | PAGO LBTR | credit | USD | 21.01 | payment |
+| 2026-07-03 | BHD | ****5528 | UBER*RIDES | debit | DOP | 1.54 | transport |
+| 2026-07-03 | BHD | ****5528 | PAGO DEBITO A CUENTA MBP | credit | DOP | 472.15 | payment |
+| 2026-07-03 | BHD | ****0015 | PAGO DE TC ****5528 | debit | DOP | 472.15 | payment |
+| 2026-07-03 | BHD | ****0015 | Imp. transferencia o cheque | debit | DOP | 0.69 | fee |
+| 2026-07-03 | BHD | ****0015 | Imp. transferencia o cheque | debit | DOP | 0.94 | fee |
+| 2026-07-03 | BHD | ****0015 | T24 DB Pago Presta. Activa RD | debit | DOP | 343.37 | loan_payment |
+| 2026-07-03 | BHD | ****0015 | MBANKING.APP Transf via ACH de Grego | credit | DOP | 850.93 | transfer |
+| 2026-07-03 | Banco Popular Dominicano | ****8685 | HOTEL ANSELMO | debit | DOP | 21.75 | hotel |
+| 2026-07-03 | Banco Popular Dominicano | ****8685 | COLMADO HNOS SANTANA V | debit | DOP | 2.15 | groceries |
+| 2026-07-03 | Banco Popular Dominicano | ****8685 | GOOGLE *ROBLOX | debit | USD | 0.17 | gaming_subscription |
+| 2026-07-03 | Banco Popular Dominicano | ****7483 | PAGO IMPUESTO 0.15 DGII 2 TRANS | debit | DOP | 0.17 | tax |
+| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | debit | DOP | 9,735.96 | transfer |
+| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | debit | DOP | 2,145.21 | transfer |
+| 2026-07-03 | BSC | ****2841 | Transferencia Recibida | credit | DOP | 9,999.99 | transfer |
+| 2026-07-03 | BSC | ****2841 | Imp. 2.0 Por 1000 S/Ley 30-26 | debit | DOP | 0.71 | fees |
+| 2026-07-03 | BSC | ****2841 | Por Transferencia Ach | debit | DOP | 356.44 | transfer |
+| 2026-07-03 | BSC | ****5474 | Imp. 2.0 Por 1000 S/Ley 30-26 | debit | USD | 0.02 | fees |
+| 2026-07-03 | BSC | ****5474 | Pago De Tarjeta Por Internet Banking | debit | USD | 11.59 | payment |
+| 2026-07-03 | BSC | ****5474 | Debito Por Transferencia | debit | USD | 99.99 | transfer |
+| 2026-07-03 | BSC | ****5474 | Transferencia Recibida de: DEEL, INC. | credit | USD | 5.32 | salary |
+| 2026-07-03 | BSC | ****5474 | Comision Por Transferencia Lbtr | debit | USD | 0.10 | fees |
+| 2026-07-03 | BSC | ****5474 | Imp. 2.0 Por 1000 S/Ley 30-26 | debit | USD | 0.00 | fees |
+| 2026-07-03 | BSC | ****5474 | Debito Por Transferencia | debit | USD | 1.22 | transfer |
+| 2026-07-03 | BSC | ****5474 | Imp. 2.0 Por 1000 S/Ley 30-26 | debit | USD | 0.00 | fees |
+| 2026-07-03 | BSC | ****5474 | Pago De Tarjeta Por Internet Banking | debit | USD | 0.59 | payment |
+| 2026-07-03 | BSC | ****0210 | CREDITO POR PAGO TOTAL | credit | DOP | 30.44 | payment |
+| 2026-07-03 | BSC | ****0210 | PAGO POR BANCANET | credit | DOP | 1,158.91 | payment |
+| 2026-07-03 | BSC | ****0210 | DLO*TEMU.COM | debit | DOP | 40.46 | shopping |
+| 2026-07-03 | BSC | ****0210 | DLO*TEMU.COM | debit | DOP | 161.25 | shopping |
+| 2026-07-03 | BSC | ****0210 | CREDITO POR PAGO TOTAL | credit | USD | 0.02 | payment |
+| 2026-07-03 | BSC | ****0210 | PAGO POR BANCANET | credit | USD | 0.59 | payment |
+| 2026-07-03 | Example Bank | ****1234 | INTERES TARJETA | debit | DOP | 16.00 | fees |
+| 2026-07-03 | Promerica | ****5288 | Pago Tarjetas de Crédito | credit | DOP | 7.69 | payment |
+| 2026-07-02 | BHD | ****5528 | UBER*RIDES | debit | DOP | 1.55 | transport |
+| 2026-07-02 | Example Bank | ****1234 | PAGO NOMINA | credit | DOP | 1,133.33 | salary |
+| 2026-07-02 | Promerica | ****5288 | NATIVA INVIVIENDA | debit | DOP | 216.41 | shopping |
+| 2026-07-01 | BHD | ****5528 | UBER RIDES-W*UBER RIDES-W | debit | DOP | 1.44 | transport |
+| 2026-07-01 | BHD | ****5528 | UBER RIDES-W*UBER RIDES-W | debit | DOP | 1.31 | transport |
+| 2026-07-01 | Banco Popular Dominicano | ****8685 | PAYPAL *BOOKING PARTNE | debit | USD | 12.09 | travel |
+| 2026-07-01 | Banco Popular Dominicano | ****8685 | GOOGLE *CLOUD FJF4QW | debit | USD | 0.00 | cloud |
+| 2026-07-01 | Banco Popular Dominicano | ****8685 | GOOGLE *CLOUD TW4RSK | debit | USD | 0.02 | cloud |
+| 2026-07-01 | Banco Popular Dominicano | ****7483 | MB a ****4091 Llanira | debit | DOP | 105.50 | transfer_out |
+| 2026-07-01 | Example Bank | ****9911 | AMAZON WEB SERVICES | debit | USD | 1.73 | cloud |
+| 2026-06-30 | BHD | ****5528 | UBER*RIDES | debit | DOP | 1.31 | transport |
+| 2026-06-30 | BHD | ****5528 | UBER*RIDES | debit | DOP | 0.35 | transport |
+| 2026-06-30 | BHD | ****0015 | Com. Bal Min CA | debit | DOP | 1.96 | fee |
+| 2026-06-30 | Banco Popular Dominicano | ****8685 | STEREN STO DGO | debit | DOP | 16.52 | electronics |
+| 2026-06-30 | Banco Popular Dominicano | ****8685 | VFS MISION HOLANDA | debit | DOP | 144.29 | visa_services |
+| 2026-06-30 | BSC | ****2841 | Impuesto Sobre Intereses | debit | DOP | 0.04 | fees |
+| 2026-06-30 | BSC | ****2841 | Capitalizacion De Intereses | credit | DOP | 0.37 | interest |
+| 2026-06-29 | BHD | ****5528 | UBER*RIDES | debit | DOP | 1.29 | transport |
+| 2026-06-29 | BHD | ****5528 | UBER*RIDES | debit | DOP | 1.49 | transport |
+| 2026-06-29 | Banco Popular Dominicano | ****8685 | MEDI EQUIPOS | debit | DOP | 17.58 | medical |
+| 2026-06-29 | Banco Popular Dominicano | ****8685 | GOOGLE *Crunchyroll An | debit | USD | 0.14 | streaming_subscription |
+| 2026-06-29 | BSC | ****2841 | Cargo Por Cartas Consulares | debit | DOP | 6.60 | fees |
+| 2026-06-28 | Banco Popular Dominicano | ****8685 | SUN ON THE BAY BEACH | debit | DOP | 53.12 | restaurant |
+| 2026-06-28 | Banco Popular Dominicano | ****7483 | MB a ****2302 MARTIRES MERCE | debit | DOP | 7.03 | transfer_out |
+| 2026-06-28 | Promerica | ****5288 | CREDIGAS NATIVA LA PELONA | debit | DOP | 253.14 | utilities |
+| 2026-06-27 | BHD | ****5528 | UBER*RIDES | debit | DOP | 0.82 | transport |
+| 2026-06-27 | BHD | ****5528 | UBER*RIDES | debit | DOP | 0.83 | transport |
+| 2026-06-27 | BHD | ****5528 | JUMBO MEGACENTRO | debit | DOP | 107.71 | groceries |
+| 2026-06-27 | Banco Popular Dominicano | ****8685 | SAVA SALINAS | debit | DOP | 40.09 | travel |
+| 2026-06-27 | Banco Popular Dominicano | ****8685 | CARDNET PAAJES-RS | debit | DOP | 7.03 | tolls |
+| 2026-06-27 | Promerica | ****5288 | Pago orange_recarga | debit | DOP | 6.41 | telecom |
+| 2026-06-26 | BHD | ****5528 | UBER RIDES-W*UBER RIDES-W | debit | DOP | 0.72 | transport |
+| 2026-06-26 | BHD | ****5528 | UBER*EATS | debit | DOP | 15.26 | dining |
+| 2026-06-26 | BHD | ****5528 | UBER*EATS | debit | DOP | 5.40 | dining |
+| 2026-06-26 | Banco Popular Dominicano | ****7483 | PAGO IMPUESTO 0.15 DGII 1 TRANS | debit | DOP | 0.11 | tax |
+| 2026-06-25 | Banco Popular Dominicano | ****8685 | Pago Via App | credit | DOP | 72.34 | payment |
+| 2026-06-25 | Banco Popular Dominicano | ****8685 | Pago via SPE | credit | USD | 10.74 | payment |
+| 2026-06-24 | BHD | ****5528 | Amazon Digit*1S04W6M93 | debit | USD | 0.33 | subscription |
+| 2026-06-24 | BHD | ****5528 | AMZN Digital*H858P7T43 | debit | USD | 5.00 | subscription |
+| 2026-06-24 | Banco Popular Dominicano | ****8685 | GOOGLE *ROBLOX | debit | USD | 0.03 | gaming |
+| 2026-06-24 | Promerica | ****8321 | TRANSF PROPIA PROMERICA ONLINE | credit | DOP | 1,666.66 | transfer |
+| 2026-06-24 | Promerica | ****8321 | TRANSF ACH PROMERICA ONLINE A TC BANCO SANTA CRUZ | debit | DOP | 1,635.36 | transfer |
+| 2026-06-23 | Banco Popular Dominicano | ****8685 | AFP*The Law Office of | debit | USD | 21.66 | legal |
+| 2026-06-20 | Banco Popular Dominicano | ****8685 | REGISTRO INMOBILIARIO | debit | DOP | 7.03 | government |
+| 2026-06-20 | Banco Popular Dominicano | ****8685 | DGII CERTIFICACIONES-W | debit | DOP | 2.11 | government |
+| 2026-06-20 | Banco Popular Dominicano | ****8685 | UNITRIPS | debit | USD | 19.70 | travel |
+| 2026-06-19 | Banco Popular Dominicano | ****8685 | GOOGLE *ROBLOX | debit | USD | 1.17 | gaming_subscription |
+| 2026-06-18 | BHD | ****0023 | TRANSFERENCIA RECIBIDA DE MARTINEZ SANTA | credit | DOP | 32.73 | transfer |
+| 2026-06-16 | Banco Popular Dominicano | ****8685 | The Childrens Place | debit | USD | 6.35 | shopping_clothing |
+| 2026-06-16 | Banco Popular Dominicano | ****8685 | The Childrens Place | debit | USD | 9.35 | shopping_clothing |
+| 2026-06-15 | Banco Popular Dominicano | ****8685 | EXTREMEPAQ LUCERNA | debit | DOP | 1.76 | other |
+| 2026-06-13 | Banco Popular Dominicano | ****8685 | PAYPAL *GITHUB INC | debit | DOP | 18.17 | software_subscription |
+| 2026-06-13 | Banco Popular Dominicano | ****8685 | Google Roblox | debit | USD | 0.07 | gaming |
+| 2026-06-11 | Banco Popular Dominicano | ****8685 | Google Roblox | debit | USD | 0.03 | gaming |
+| 2026-06-11 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | credit | DOP | 310.88 | transfer_in |
+| 2026-06-11 | Promerica | ****8321 | CR LBTR: CH BANCO SANTA CRUZ | credit | DOP | 7,566.50 | transfer |
+| 2026-06-11 | Promerica | ****8321 | PAGO TARJETAS DE CRÉDITO | debit | DOP | 7,566.50 | payment |
+| 2026-06-11 | Promerica | ****8321 | IMPUESTO 0.15% | debit | DOP | 11.35 | fees |
+| 2026-06-10 | Banco Popular Dominicano | ****8685 | PAYPAL *SHENDUQRWEA | debit | USD | 0.18 | other |
+| 2026-06-10 | Banco Popular Dominicano | ****8685 | PP*FSPRG.COM | debit | USD | 0.03 | subscription |
+| 2026-06-08 | Banco Popular Dominicano | ****8685 | UBER RIDES-*UBER RIDES | debit | DOP | 2.78 | transport |
+| 2026-06-08 | Banco Popular Dominicano | ****7483 | AUT PAGO ****7664 - seguro deuda ****7483 | debit | DOP | 0.54 | loan_insurance |
+| 2026-06-08 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | credit | DOP | 281.34 | transfer_in |
+| 2026-06-08 | Banco Popular Dominicano | ****7483 | AUT PAGO ****7664 - cuota prestamo ****7483 | debit | DOP | 274.38 | loan_payment |
+| 2026-06-08 | Banco Popular Dominicano | ****7483 | LBTR GREGORY AMABLE GARCIA CORDERO | credit | DOP | 94.47 | transfer_in |
+| 2026-06-07 | Banco Popular Dominicano | ****8685 | BASKIN ROBBINS SAN ISI | debit | DOP | 11.82 | food |
+| 2026-06-07 | Banco Popular Dominicano | ****8685 | SWAROVSKI BLUE MALL | debit | DOP | 41.39 | shopping |
+| 2026-06-07 | Banco Popular Dominicano | ****8685 | GOFNDME* AYUDEMOS A SO | debit | USD | 3.50 | donation |
+| 2026-06-07 | Banco Popular Dominicano | ****8685 | Google Roblox | debit | USD | 0.17 | gaming |
+| 2026-06-06 | Banco Popular Dominicano | ****8685 | PAYPAL *NAMECHEAP | debit | USD | 0.78 | domain_hosting |
+| 2026-06-06 | Banco Popular Dominicano | ****8685 | Google Roblox | debit | USD | 0.07 | gaming |
+| 2026-06-06 | Banco Popular Dominicano | ****8685 | Google Roblox | debit | USD | 0.10 | gaming |
 
 ## Missing or uncertain data
 
@@ -318,7 +318,8 @@ Partial: yes
 - BSC: Both credit card currency lines share card ending ****0210.
 - BSC [warning]: DOP card shows RD$3,890.55 in transit transactions not individually listed.
 - BSC [warning]: Minimum payment shows RD$0.00 / US$0.00 — may reflect post-payment cycle state.
-- Example Bank: Example data only. Replace with real read-only extraction output.
+- Example Bank: Example data only. Demo amounts: DOP < RD$10,000, USD < US$100.
+- Example Bank: Replace with real read-only extraction output.
 - Promerica: USD credit card shows $248.53 in pending transactions on detail page.
 - Promerica: Loan detail page returned internal system error (Code 9901); loan balance taken from summary only.
 - Promerica [warning]: Loan remaining balance ambiguous: summary shows Balance Actual RD$0.00 but Balance Disponible RD$468,000.00.

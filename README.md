@@ -135,6 +135,40 @@ so you can do common chores from the browser instead of the console.
 
 Any bank you extract and build appears automatically — no frontend changes required.
 
+### Screenshots
+
+Sample UI from `npm run build` + `npm run serve` using demo data in `input/banks/` (amounts
+scaled under RD$10,000 / US$100).
+
+#### Dashboard
+
+**Summary and credit cards** — bank filter tabs, cash/card/loan totals, and utilization bars.
+
+![Dashboard summary and credit cards](img/Dashboard_Summary_Credit_Cards.png)
+
+**Upcoming payments, cash accounts, and spending by category** — due dates, masked account
+balances, and debit-only category breakdown.
+
+![Dashboard cash accounts and spending](img/Dashboard_Cash_Accounts_Sending_Categories.png)
+
+**Warnings** — extraction notes and items flagged for review across banks.
+
+![Dashboard warnings](img/Dashboard_Warnings.png)
+
+**Transactions** — filter by currency, flow, and search; debits and credits with categories.
+
+![Dashboard transactions](img/Dashboard_Transactions.png)
+
+#### Admin
+
+**Bank list** — create a bank, open its config, or rebuild the snapshot from the browser.
+
+![Admin page](img/Admin_Page.png)
+
+**Config editor** — edit `config/banks/<id>.md` (safe pages, login URL, extraction notes).
+
+![Admin config editor](img/Admin_Config_Detail.png)
+
 ### Admin view
 
 Open **http://127.0.0.1:4173/#/admin** (or click **Admin** in the top nav) to:
@@ -212,6 +246,7 @@ The server binds to `127.0.0.1` by default and is intended for local use only.
 ├─ input/banks/            Per-bank extracted data (source of truth; real files git-ignored)
 ├─ statements/             Drop CSV/PDF statements here for offline ingestion
 ├─ examples/               Sample statement CSV
+├─ img/                    Dashboard and admin screenshots (README samples)
 ├─ output/                 Generated snapshot: md, json, 4 csv, history/, finance.db
 ├─ prompts/                Agent prompt files
 ├─ tools/                  Zero-dependency Node CLI + libs + tests
