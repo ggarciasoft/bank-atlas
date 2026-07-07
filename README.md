@@ -6,6 +6,7 @@
 [![Playwright MCP](https://img.shields.io/badge/browser-Playwright%20MCP-2EAD33?logo=playwright&logoColor=white)](docs/03-mcp-environment-setup.md)
 [![Local only](https://img.shields.io/badge/deploy-local%20only-orange)](#quick-start)
 [![GitHub](https://img.shields.io/badge/GitHub-ggarciasoft%2Fbank--atlas-181717?logo=github)](https://github.com/ggarciasoft/bank-atlas)
+[![Sponsor](https://img.shields.io/badge/Sponsor-ggarciasoft-ea4aaa?logo=githubsponsors&logoColor=white)](https://github.com/sponsors/ggarciasoft)
 
 A local, **no-app** personal finance workflow for an AI coding agent (Cursor Agent or
 VS Code GitHub Copilot Agent Mode) plus **Playwright MCP**. It is not a SaaS or hosted
