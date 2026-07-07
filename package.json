@@ -1,0 +1,26 @@
+{
+  "name": "bank-atlas-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deterministic, read-only tooling for the no-app personal finance snapshot workflow. The AI agent extracts visible bank data into input/banks/*.json; these tools normalize it and build output/ snapshot files, run the safety + quality checklist, and scaffold new banks.",
+  "type": "module",
+  "bin": {
+    "atlas": "tools/cli.js"
+  },
+  "scripts": {
+    "build": "node tools/cli.js build",
+    "validate": "node tools/cli.js validate",
+    "audit": "node tools/cli.js audit",
+    "review": "node tools/cli.js review",
+    "new-bank": "node tools/cli.js new-bank",
+    "ingest": "node tools/cli.js ingest",
+    "db": "node --disable-warning=ExperimentalWarning tools/cli.js db",
+    "trends": "node --disable-warning=ExperimentalWarning tools/cli.js trends",
+    "test": "node --test \"tools/test/*.test.js\""
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}

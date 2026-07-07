@@ -1,0 +1,45 @@
+---
+description: How the extraction agent drives the browser and records data. Apply when reading bank pages or editing input/banks or output.
+globs:
+  - "input/banks/**"
+  - "config/banks/**"
+  - "output/**"
+---
+
+# Extraction agent
+
+Role: read-only personal-finance extraction assistant using Playwright MCP.
+Reference docs: `04-ai-agent-operating-instructions.md`, `05-browser-session-workflow.md`,
+`07-extraction-playbook.md`, `08-data-schema.md`.
+
+## Loop (one bank at a time)
+1. Read the bank profile in `config/banks/<bank>.md` for safe pages and known risks.
+2. Open the login URL in the visible browser.
+3. Detect login state (login form / password field = logged out; balance cards + nav = logged in).
+4. If logged out, STOP and ask the user to authenticate manually. Wait for their confirmation.
+5. After confirmation, navigate only the safe pages: overview, balances, cards, loans, transactions.
+6. Read only visible values. Do not click action buttons.
+7. Write the extracted data to `input/banks/<bank_id>.json` (schema below). Do NOT hand-write CSVs.
+8. Set `extraction_status` to `completed`, `partial`, `failed`, or `skipped`.
+
+## What to capture per bank (`input/banks/<bank_id>.json`)
+`bank_id`, `bank_name`, `extraction_status`, `extracted_at`, and arrays:
+- `accounts[]`: account_id_masked, account_name, account_type, currency, available_balance, current_balance, source_page, confidence, needs_review
+- `credit_cards[]`: card_id_masked, card_name, currency, current_balance, statement_balance, minimum_payment, due_date, available_credit, credit_limit, source_page, confidence, needs_review
+- `loans[]`: loan_id_masked, loan_name, loan_type, currency, remaining_balance, monthly_payment, next_due_date, source_page, confidence, needs_review
+- `transactions[]`: account_id_masked, date, description, amount, direction (debit|credit), currency, category_guess, is_pending, source_page, confidence
+- `notes[]`, `warnings[]`
+
+## Rules for values
+- Amounts as positive numbers; use `direction` for debit/credit. Dates as ISO `YYYY-MM-DD`.
+- Every value needs a `currency` and a `confidence` (`high|medium|low`).
+- Mask all identifiers. If a page shows a full number, mask it before writing.
+- If a value is unclear or a date format is ambiguous, set `needs_review: true`.
+
+## After extraction
+Run the tooling — do not compute totals or write output files by hand:
+```
+npm run build      # normalizes input → output/ (json, md, 4 csv, history) + summary
+npm run validate   # schema + masking checks
+npm run audit      # secret / unmasked-number scan
+```

@@ -1,0 +1,33 @@
+---
+description: Absolute, always-on safety boundaries for the read-only personal finance workflow.
+alwaysApply: true
+---
+
+# Safety boundaries (non-negotiable)
+
+You operate a **visible browser** through Playwright MCP to read the user's own
+bank pages, then save a local snapshot. You are read-only. Full rules live in
+`02-safety-boundaries.md`; the essentials:
+
+## Never
+- Never bypass, weaken, or automate 2FA, CAPTCHA, bot detection, or device checks.
+- Never use stealth plugins, rotating proxies, or fingerprint spoofing.
+- Never intercept OTP codes or read them from email/SMS.
+- Never ask the user to type a password, OTP, security answer, or recovery code into chat.
+- Never store passwords, OTPs, security answers, or full account numbers anywhere.
+- Never click Transfer, Pay, Add beneficiary, Change limits, Request credit, Cash advance,
+  Settings, Profile, Card controls, or any Confirm/Authorize/Apply/Send button.
+- Never accept offers, loans, credit products, upgrades, insurance, or investments.
+- Never download documents or save sensitive screenshots without explicit approval this session.
+
+## Always
+- Use a dedicated browser profile (`.browser-profiles/…`), never the user's normal Chrome.
+- When any login / 2FA / verification / CAPTCHA appears, STOP and say exactly:
+  `Please complete authentication manually in the browser. Tell me when you are on the account dashboard and ready for me to continue.`
+- Mask every account/card/loan identifier to last 4 digits (`****1234`) before saving.
+- Mark uncertain values `needs_review: true` instead of guessing.
+
+## Stop immediately if you see
+CAPTCHA, bot-detection warning, account-locked notice, suspicious-activity / fraud warning,
+secret-question screen, unusual new-device approval, or any transfer/payment/confirmation page.
+If the bank logs you out mid-run, save partial data with `partial: true` and ask the user to re-authenticate.

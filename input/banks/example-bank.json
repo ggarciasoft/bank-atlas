@@ -1,0 +1,121 @@
+{
+  "bank_id": "example-bank",
+  "bank_name": "Example Bank",
+  "extraction_status": "completed",
+  "extracted_at": "2026-07-06T23:00:00-04:00",
+  "accounts": [
+    {
+      "account_id_masked": "****1234",
+      "account_name": "Cuenta de Ahorro",
+      "account_type": "savings",
+      "currency": "DOP",
+      "available_balance": 125000.5,
+      "current_balance": 125000.5,
+      "source_page": "account overview",
+      "confidence": "high",
+      "needs_review": false
+    },
+    {
+      "account_id_masked": "****9911",
+      "account_name": "USD Checking",
+      "account_type": "checking",
+      "currency": "USD",
+      "available_balance": 2450.75,
+      "current_balance": 2450.75,
+      "source_page": "account overview",
+      "confidence": "high",
+      "needs_review": false
+    }
+  ],
+  "credit_cards": [
+    {
+      "card_id_masked": "****5678",
+      "card_name": "Visa Platinum",
+      "currency": "DOP",
+      "current_balance": 45000,
+      "statement_balance": 42000,
+      "minimum_payment": 3500,
+      "due_date": "2026-07-20",
+      "available_credit": 155000,
+      "credit_limit": 200000,
+      "source_page": "credit card summary",
+      "confidence": "high",
+      "needs_review": false
+    }
+  ],
+  "loans": [
+    {
+      "loan_id_masked": "****9012",
+      "loan_name": "Vehicle Loan",
+      "loan_type": "vehicle",
+      "currency": "DOP",
+      "remaining_balance": 750000,
+      "monthly_payment": 28000,
+      "next_due_date": "2026-07-30",
+      "source_page": "loan summary",
+      "confidence": "medium",
+      "needs_review": false
+    }
+  ],
+  "transactions": [
+    {
+      "account_id_masked": "****1234",
+      "date": "2026-07-05",
+      "description": "SUPERMERCADO NACIONAL",
+      "amount": 3500,
+      "direction": "debit",
+      "currency": "DOP",
+      "category_guess": "groceries",
+      "source_page": "transactions",
+      "confidence": "high"
+    },
+    {
+      "account_id_masked": "****1234",
+      "date": "2026-07-04",
+      "description": "NETFLIX SUBSCRIPTION",
+      "amount": 650,
+      "direction": "debit",
+      "currency": "DOP",
+      "category_guess": "streaming",
+      "source_page": "transactions",
+      "confidence": "high"
+    },
+    {
+      "account_id_masked": "****1234",
+      "date": "2026-07-03",
+      "description": "INTERES TARJETA",
+      "amount": 1200,
+      "direction": "debit",
+      "currency": "DOP",
+      "category_guess": "fees",
+      "source_page": "transactions",
+      "confidence": "medium"
+    },
+    {
+      "account_id_masked": "****1234",
+      "date": "2026-07-02",
+      "description": "PAGO NOMINA",
+      "amount": 85000,
+      "direction": "credit",
+      "currency": "DOP",
+      "category_guess": "salary",
+      "source_page": "transactions",
+      "confidence": "high"
+    },
+    {
+      "account_id_masked": "****9911",
+      "date": "2026-07-01",
+      "description": "AMAZON WEB SERVICES",
+      "amount": 42.3,
+      "direction": "debit",
+      "currency": "USD",
+      "category_guess": "cloud",
+      "source_page": "transactions",
+      "confidence": "high"
+    }
+  ],
+  "notes": [
+    "Example data only. Replace with real read-only extraction output."
+  ],
+  "warnings": []
+}

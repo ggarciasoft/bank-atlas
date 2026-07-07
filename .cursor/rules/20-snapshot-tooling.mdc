@@ -1,0 +1,28 @@
+---
+description: The deterministic Node tools that build and check the snapshot. Apply when running builds, editing tools/, or producing output.
+globs:
+  - "tools/**"
+  - "output/**"
+---
+
+# Snapshot tooling
+
+Never hand-write `output/*.csv`, `output/financial-snapshot.json`, or the executive
+summary. The Node tools in `tools/` are the single source of truth. They are
+zero-dependency and run on Node >= 18.
+
+## Commands
+- `npm run build [-- --date YYYY-MM-DD]` — read every `input/banks/*.json`, normalize
+  amounts/dates/masking, flag large movements + possible duplicates + recurring charges,
+  compute the summary, and write `output/` (JSON, Markdown, 4 CSVs) plus a timestamped
+  copy under `output/history/`.
+- `npm run validate` — check inputs and the built snapshot against the schema and masking rules.
+- `npm run audit` — scan the workspace for secrets and unmasked (>=12-digit) account numbers.
+- `npm run review` — print a read-only summary of the current snapshot (no rebuild, no browser).
+- `npm run new-bank -- "Bank Name"` — scaffold `config/banks/<id>.md` + `input/banks/<id>.json`.
+
+## Contract
+- Input lives in `input/banks/`. Output is generated in `output/`. Treat `output/` as build artifacts.
+- The tools only ADD analysis flags; explicit `true` flags and values you set are preserved.
+- Money is rounded to 2 decimals; identifiers are re-masked defensively on build.
+- After changing any code in `tools/`, run `npm test` and re-run `npm run build`.

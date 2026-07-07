@@ -1,0 +1,5 @@
+snapshot_date,bank_id,bank_name,account_type,account_name,account_id_masked,currency,available_balance,current_balance,confidence,needs_review
+2026-07-07,bsc,BSC,savings,Cuenta de Ahorro,****2841,DOP,4802.4,4802.4,high,false
+2026-07-07,bsc,BSC,savings,Cuenta de Ahorro,****5474,USD,1080.54,1080.54,high,false
+2026-07-07,example-bank,Example Bank,savings,Cuenta de Ahorro,****1234,DOP,125000.5,125000.5,high,false
+2026-07-07,example-bank,Example Bank,checking,USD Checking,****9911,USD,2450.75,2450.75,high,false

@@ -1,0 +1,2 @@
+snapshot_date,bank_id,bank_name,loan_name,loan_id_masked,currency,remaining_balance,monthly_payment,next_due_date,confidence,needs_review
+2026-07-07,example-bank,Example Bank,Vehicle Loan,****9012,DOP,750000,28000,2026-07-30,medium,false

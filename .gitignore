@@ -141,3 +141,25 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# --- bank-atlas privacy ---
+# Dedicated automation browser profiles (cookies, sessions) — never commit.
+.browser-profiles/
+
+# Real per-bank extraction data. Keep only the example checked in.
+input/banks/*.json
+!input/banks/example-bank.json
+
+# Timestamped snapshot history may contain real financial data.
+output/history/
+
+# Local statements you drop in for offline ingestion (keep the README only).
+statements/*
+!statements/README.md
+
+# SQLite history database contains real financial data.
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+.playwright-mcp

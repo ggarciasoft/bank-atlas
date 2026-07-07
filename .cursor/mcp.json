@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "playwright-finance": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--browser=chrome",
+        "--user-data-dir=./.browser-profiles/finance",
+        "--viewport-size=1366x768"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--use-system-ca"
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+snapshot_date,bank_id,bank_name,card_name,card_id_masked,currency,current_balance,statement_balance,minimum_payment,due_date,available_credit,credit_limit,confidence,needs_review
+2026-07-07,bsc,BSC,Tarjeta de Crédito (Pesos),****0210,DOP,23361.33,35114.92,0,2026-07-16,45388.67,68750,high,false
+2026-07-07,bsc,BSC,Tarjeta de Crédito (Dólares),****0210,USD,35.05,30.69,0,2026-07-16,1100.95,1136,high,false
+2026-07-07,example-bank,Example Bank,Visa Platinum,****5678,DOP,45000,42000,3500,2026-07-20,155000,200000,high,false

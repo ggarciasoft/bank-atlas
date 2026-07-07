@@ -1,0 +1,28 @@
+---
+description: Offline statement ingestion and SQLite history/trends. Apply when working with statements/, ingestion, or the history database.
+globs:
+  - "statements/**"
+  - "input/banks/**"
+  - "tools/lib/ingest.js"
+  - "tools/lib/db.js"
+---
+
+# Statements & history
+
+## Statement ingestion (no browser)
+- CSV/TSV: use `npm run ingest -- --bank <id> --file statements/<file>.csv`. It auto-detects
+  common English/Spanish column names (date/fecha, description/concepto, debit/debito,
+  credit/credito, amount/monto, currency/moneda). Override with `--date-col`, `--desc-col`,
+  `--amount-col`, `--debit-col`, `--credit-col`, `--currency-col`. Duplicates (same
+  date+amount+description+direction) are skipped automatically.
+- PDF/images: read the file and write structured JSON into `input/banks/<id>.json` directly —
+  there is no binary parser. Mask identifiers, use ISO dates, set currency + confidence.
+- Never copy full account numbers from a statement; mask to `****1234`. After ingesting,
+  run `npm run build && npm run validate && npm run audit`.
+
+## History & trends (SQLite)
+- `npm run db` writes the current `output/financial-snapshot.json` into `output/finance.db`
+  (built on Node's `node:sqlite`; idempotent per `snapshot_date`).
+- `npm run trends` prints cash / card-debt / loan-debt by currency across all snapshots.
+- `output/finance.db` is git-ignored (real financial data). Snapshot history is also
+  duplicated as timestamped files under `output/history/`.
