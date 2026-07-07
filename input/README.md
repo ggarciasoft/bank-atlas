@@ -5,7 +5,7 @@ Per-bank extraction files live here as `input/banks/<bank_id>.json`. The
 (`npm run build`) reads all of them and generates `output/`.
 
 - One file per bank. `bank_id` should match the config profile in `config/banks/`.
-- Follow the schema in `08-data-schema.md`. Every amount needs a `currency` and a
+- Follow the schema in `docs/08-data-schema.md`. Every amount needs a `currency` and a
   `confidence` (`high|medium|low`); mask all identifiers to `****1234`.
 - Real bank files are git-ignored for privacy; only `example-bank.json` is committed.
 - Scaffold a new one with: `npm run new-bank -- "Bank Name"`.

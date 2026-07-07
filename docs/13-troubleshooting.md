@@ -65,7 +65,7 @@ Stop the agent immediately.
 Then:
 
 1. Close the browser tab.
-2. Review `02-safety-boundaries.md`.
+2. Review `docs/02-safety-boundaries.md`.
 3. Tighten the bank profile forbidden pages.
 4. Restart from a safe page.
 
@@ -83,4 +83,31 @@ Fix:
 - Mark the value as `needs_review`.
 - Add extraction notes to the bank profile.
 - Ask the agent to compare the visible page again.
+
+## Web dashboard shows no data or an error
+
+Possible causes:
+
+- `npm run build` was not run (no `output/financial-snapshot.json`).
+- The server is not running (`npm run serve`).
+- You are viewing a stale browser tab from before the last build.
+
+Try:
+
+```bash
+npm run build
+npm run serve
+```
+
+Open http://127.0.0.1:4173/ and hard-refresh. Check the browser console if the page loads but stays empty.
+
+## Port already in use
+
+Another process may be using port 4173.
+
+Try:
+
+```bash
+npm run serve -- --port 8080
+```
 

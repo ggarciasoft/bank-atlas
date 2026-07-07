@@ -9,8 +9,8 @@ globs:
 # Extraction agent
 
 Role: read-only personal-finance extraction assistant using Playwright MCP.
-Reference docs: `04-ai-agent-operating-instructions.md`, `05-browser-session-workflow.md`,
-`07-extraction-playbook.md`, `08-data-schema.md`.
+Reference docs: `docs/04-ai-agent-operating-instructions.md`, `docs/05-browser-session-workflow.md`,
+`docs/07-extraction-playbook.md`, `docs/08-data-schema.md`.
 
 ## Loop (one bank at a time)
 1. Read the bank profile in `config/banks/<bank>.md` for safe pages and known risks.

@@ -21,11 +21,12 @@ Expected result:
 Prompt:
 
 ```text
-Read `04-ai-agent-operating-instructions.md` and follow it strictly.
+Read `docs/04-ai-agent-operating-instructions.md` and follow it strictly.
 Open the first bank profile in `config/banks/`.
 Use Playwright MCP to open the bank login URL in a visible browser.
 If I am not logged in, stop and ask me to authenticate manually.
-After I confirm I am on the dashboard, extract only read-only financial data and update the files in `output/`.
+After I confirm I am on the dashboard, extract only read-only financial data into `input/banks/<bank_id>.json`.
+Then run `npm run build && npm run validate && npm run audit`.
 ```
 
 Expected result:
@@ -62,8 +63,8 @@ Prompt:
 Read the statement files I placed in `statements/`.
 Extract transactions and balances from the files.
 Do not use browser tools.
-Normalize the data into the schema from `08-data-schema.md`.
-Update the output files.
+Normalize the data into the schema from `docs/08-data-schema.md`.
+Write to `input/banks/<bank_id>.json`, then run `npm run build`.
 ```
 
 Expected result:
@@ -85,4 +86,20 @@ Expected result:
 
 - Agent summarizes existing data only.
 - No browser actions occur.
+
+## Runbook F - Browse snapshot in the web dashboard
+
+Prompt:
+
+```text
+Do not use browser tools for bank login.
+Run `npm run build` if needed, then `npm run serve`.
+Tell me the local URL to open and what I should check on the dashboard.
+```
+
+Expected result:
+
+- Server runs at http://127.0.0.1:4173/ (or custom `--port`).
+- Dashboard shows summary, accounts, cards, and transactions from `output/financial-snapshot.json`.
+- Refresh the browser after a new `npm run build`.
 

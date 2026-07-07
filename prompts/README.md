@@ -16,3 +16,5 @@ Cursor / Copilot chat to run that agent. The always-on safety rule
 
 Typical run: **Extraction** and/or **Statement ingest** (per bank) → **Normalizer** →
 **Review** → **History & trends**, with **Safety audit** before you trust or commit anything.
+After `npm run build`, use `npm run serve` to browse the snapshot in the local web dashboard.
+See `README.md` and `docs/README.md` for details.

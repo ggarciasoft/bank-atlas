@@ -19,11 +19,14 @@ The workflow should answer:
 This project does not build:
 
 - A public SaaS app
-- A backend API
-- A frontend dashboard
+- A hosted backend API exposed to the internet
 - A credential-storage product
 - A bank scraper for other users
 - A 2FA/CAPTCHA/bot-detection bypass system
+
+Local-only tooling **is** in scope: generated Markdown/JSON/CSV files, optional SQLite
+history, statement ingestion, and a **local web dashboard** (`web/`, served by
+`npm run serve`) that reads `output/financial-snapshot.json` on your machine only.
 
 ## Intended workflow
 
@@ -38,7 +41,11 @@ User manually completes authentication
         ↓
 Agent reads visible financial data
         ↓
-Agent writes local files
+Agent writes input/banks/<bank_id>.json
+        ↓
+npm run build  →  output/ snapshot files
+        ↓
+npm run serve  →  local web dashboard (optional)
 ```
 
 ## Allowed data sources
@@ -66,4 +73,3 @@ The AI agent must not use:
 ## Personal-use assumption
 
 This workflow is intended only for the account owner using their own accounts. It should not be used on behalf of clients, family members, or third parties unless you have explicit authorization and the bank terms allow it.
-

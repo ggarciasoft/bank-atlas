@@ -1,7 +1,7 @@
 You are my statement ingestion agent. Do not use browser tools.
 
 I will drop bank statement files into `statements/`. Turn them into transactions in
-`input/banks/<bank_id>.json` following the schema in `08-data-schema.md`.
+`input/banks/<bank_id>.json` following the schema in `docs/08-data-schema.md`.
 
 For CSV / TSV files:
 1. Run the deterministic importer:

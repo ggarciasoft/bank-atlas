@@ -86,6 +86,27 @@ async function cmdReview() {
   console.log(await review());
 }
 
+async function cmdServe(args) {
+  const portFlag = getFlag(args, "--port");
+  const port = portFlag ? Number(portFlag) : 4173;
+  const snapPath = path.join(PATHS.output, "financial-snapshot.json");
+  if (!(await exists(snapPath))) {
+    console.log(`${YELLOW}No snapshot found yet.${RESET} Run \`npm run build\` first — the page will show a friendly error until then.`);
+  }
+  const { loadWebConfig } = await import("./lib/web-config.js");
+  const webConfig = await loadWebConfig();
+  let excludeExampleBank = webConfig.exclude_example_bank !== false;
+  if (args.includes("--include-example")) excludeExampleBank = false;
+  const { serve } = await import("./lib/serve.js");
+  const { url } = await serve({ port, excludeExampleBank });
+  console.log(`${GREEN}Dashboard running${RESET} at ${url}`);
+  console.log(`  ${DIM}serving${RESET} web/ + live output/financial-snapshot.json`);
+  if (excludeExampleBank) {
+    console.log(`  ${DIM}example bank hidden${RESET} (set exclude_example_bank:false in config/web.json or pass --include-example)`);
+  }
+  console.log(`  ${DIM}stop with${RESET} Ctrl+C`);
+}
+
 async function cmdNewBank(args) {
   const name = args.find((a) => !a.startsWith("--"));
   if (!name) {
@@ -197,6 +218,7 @@ Usage:
   node tools/cli.js validate                     Check inputs + snapshot against the schema
   node tools/cli.js audit                        Safety scan (secrets, unmasked account numbers)
   node tools/cli.js review                        Print a read-only summary of the snapshot
+  node tools/cli.js serve [--port 4173] [--include-example]  Serve the web dashboard (reads output/ live)
   node tools/cli.js new-bank "<Bank Name>"       Scaffold a bank profile + input file
   node tools/cli.js ingest --bank <id> --file <csv>   Import a statement CSV into input/banks/<id>.json
   node tools/cli.js db                            Save the current snapshot into output/finance.db
@@ -214,6 +236,9 @@ async function main() {
       return cmdAudit();
     case "review":
       return cmdReview();
+    case "serve":
+    case "web":
+      return cmdServe(args);
     case "new-bank":
     case "newbank":
       return cmdNewBank(args);

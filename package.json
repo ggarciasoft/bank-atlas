@@ -12,6 +12,7 @@
     "validate": "node tools/cli.js validate",
     "audit": "node tools/cli.js audit",
     "review": "node tools/cli.js review",
+    "serve": "node tools/cli.js serve",
     "new-bank": "node tools/cli.js new-bank",
     "ingest": "node tools/cli.js ingest",
     "db": "node --disable-warning=ExperimentalWarning tools/cli.js db",

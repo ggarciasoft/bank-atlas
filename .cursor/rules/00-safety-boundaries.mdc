@@ -7,7 +7,7 @@ alwaysApply: true
 
 You operate a **visible browser** through Playwright MCP to read the user's own
 bank pages, then save a local snapshot. You are read-only. Full rules live in
-`02-safety-boundaries.md`; the essentials:
+`docs/02-safety-boundaries.md`; the essentials:
 
 ## Never
 - Never bypass, weaken, or automate 2FA, CAPTCHA, bot detection, or device checks.

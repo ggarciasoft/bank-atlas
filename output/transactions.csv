@@ -1,10 +1,93 @@
 snapshot_date,bank_id,bank_name,account_id_masked,date,description,amount,direction,currency,category_guess,is_pending,is_large_movement,possible_duplicate,confidence,needs_review
+2026-07-07,apap,APAP,****7962,2026-07-06,CASHBACK FARMACIAS,80.73,credit,DOP,rewards,false,false,false,high,false
+2026-07-07,apap,APAP,****7962,2026-07-06,Redondeo TC FCIA MEDIC,9,debit,DOP,charity,false,false,false,medium,false
+2026-07-07,apap,APAP,****7962,2026-07-04,FCIA MEDICAR GBC CANCI SANTO DOMINGO DO,2691,debit,DOP,pharmacy,false,false,false,high,false
+2026-07-07,apap,APAP,****7962,2026-07-03,000 FT2618412MWY- PAGO IVR,2776.9,credit,USD,payment,false,false,false,high,false
+2026-07-07,apap,APAP,****7962,2026-07-03,FT261842YGGL - PAGO TC APP MOVIL,63409.91,credit,DOP,payment,false,false,false,high,false
+2026-07-07,apap,APAP,****4862,2026-07-03,PAGO BM T.CREDITO APAP,63409.91,debit,DOP,payment,false,true,false,high,false
+2026-07-07,apap,APAP,****4862,2026-07-03,DR IMP TRANSFERENCIA FONDOS,126.82,debit,DOP,tax,false,true,false,high,false
+2026-07-07,apap,APAP,****4862,2026-07-03,TRANSFERENCIA ACH,295000,credit,DOP,transfer,false,true,true,high,false
+2026-07-07,bhd,BHD,****5528,2026-07-06,AMAZON MARK* TR1GF9503,37.37,debit,USD,shopping,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-07-04,CLARO PAGO 8098951186,11365.72,debit,DOP,utilities,false,true,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-07-03,PAGO LBTR,63.03,credit,USD,payment,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-07-03,UBER*RIDES,118,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-07-03,PAGO DEBITO A CUENTA MBP,36065.73,credit,DOP,payment,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-07-02,UBER*RIDES,118.78,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-07-01,UBER RIDES-W*UBER RIDES-W,109.85,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-07-01,UBER RIDES-W*UBER RIDES-W,99.88,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-30,UBER*RIDES,99.94,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-30,UBER*RIDES,26.9,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-29,UBER*RIDES,98.46,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-29,UBER*RIDES,113.63,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-27,UBER*RIDES,62.69,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-27,UBER*RIDES,63.65,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-27,JUMBO MEGACENTRO,8227.5,debit,DOP,groceries,false,true,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-26,UBER RIDES-W*UBER RIDES-W,55.18,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-26,UBER*EATS,1166,debit,DOP,dining,false,true,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-26,UBER*EATS,412.63,debit,DOP,dining,false,true,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-24,Amazon Digit*1S04W6M93,0.99,debit,USD,subscription,false,false,false,high,false
+2026-07-07,bhd,BHD,****5528,2026-06-24,AMZN Digital*H858P7T43,14.99,debit,USD,subscription,false,false,false,high,false
+2026-07-07,bhd,BHD,****0015,2026-07-03,PAGO DE TC ****5528,36065.73,debit,DOP,payment,false,true,false,high,false
+2026-07-07,bhd,BHD,****0015,2026-07-03,Imp. transferencia o cheque,52.45,debit,DOP,fee,false,true,false,medium,false
+2026-07-07,bhd,BHD,****0015,2026-07-03,Imp. transferencia o cheque,72.13,debit,DOP,fee,false,true,false,medium,false
+2026-07-07,bhd,BHD,****0015,2026-07-03,T24 DB Pago Presta. Activa RD,26229.08,debit,DOP,loan_payment,false,true,false,high,false
+2026-07-07,bhd,BHD,****0015,2026-07-03,MBANKING.APP Transf via ACH de Grego,65000,credit,DOP,transfer,false,false,false,high,false
+2026-07-07,bhd,BHD,****0015,2026-06-30,Com. Bal Min CA,150,debit,DOP,fee,false,false,false,high,false
+2026-07-07,bhd,BHD,****0023,2026-06-18,TRANSFERENCIA RECIBIDA DE MARTINEZ SANTA,2500,credit,DOP,transfer,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-07-03,HOTEL ANSELMO,3092.16,debit,DOP,hotel,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-07-03,COLMADO HNOS SANTANA V,305,debit,DOP,groceries,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-30,STEREN STO DGO,2349.02,debit,DOP,electronics,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-30,VFS MISION HOLANDA,20514,debit,DOP,visa_services,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-29,MEDI EQUIPOS,2500,debit,DOP,medical,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-27,SAVA SALINAS,5700,debit,DOP,travel,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-27,CARDNET PAAJES-RS,1000,debit,DOP,tolls,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-28,SUN ON THE BAY BEACH,7552,debit,DOP,restaurant,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-25,Pago Via App,10285.39,credit,DOP,payment,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-20,REGISTRO INMOBILIARIO,1000,debit,DOP,government,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-20,DGII CERTIFICACIONES-W,300,debit,DOP,government,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-15,EXTREMEPAQ LUCERNA,249.75,debit,DOP,other,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-13,PAYPAL *GITHUB INC,2582.92,debit,DOP,software_subscription,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-08,UBER RIDES-*UBER RIDES,395,debit,DOP,transport,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-07,BASKIN ROBBINS SAN ISI,1680,debit,DOP,food,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-07,SWAROVSKI BLUE MALL,5884.4,debit,DOP,shopping,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-07-01,PAYPAL *BOOKING PARTNE,362.72,debit,USD,travel,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-07-03,GOOGLE *ROBLOX,4.99,debit,USD,gaming_subscription,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-07-01,GOOGLE *CLOUD FJF4QW,0.06,debit,USD,cloud,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-07-01,GOOGLE *CLOUD TW4RSK,0.52,debit,USD,cloud,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-29,GOOGLE *Crunchyroll An,4.3,debit,USD,streaming_subscription,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-24,GOOGLE *ROBLOX,0.99,debit,USD,gaming,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-25,Pago via SPE,322.19,credit,USD,payment,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-23,AFP*The Law Office of,650,debit,USD,legal,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-20,UNITRIPS,591.07,debit,USD,travel,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-19,GOOGLE *ROBLOX,34.99,debit,USD,gaming_subscription,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-16,The Childrens Place,190.65,debit,USD,shopping_clothing,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-16,The Childrens Place,280.67,debit,USD,shopping_clothing,false,true,true,high,true
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-13,Google Roblox,1.99,debit,USD,gaming,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-11,Google Roblox,0.99,debit,USD,gaming,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-10,PAYPAL *SHENDUQRWEA,5.3,debit,USD,other,false,false,false,medium,true
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-10,PP*FSPRG.COM,0.99,debit,USD,subscription,false,false,false,medium,true
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-06,PAYPAL *NAMECHEAP,23.55,debit,USD,domain_hosting,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-07,GOFNDME* AYUDEMOS A SO,105,debit,USD,donation,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-07,Google Roblox,4.99,debit,USD,gaming,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-06,Google Roblox,1.99,debit,USD,gaming,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****8685,2026-06-06,Google Roblox,2.99,debit,USD,gaming,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****7483,2026-06-08,AUT PAGO ****7664 - seguro deuda ****7483,76.39,debit,DOP,loan_insurance,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****7483,2026-06-08,LBTR GREGORY AMABLE GARCIA CORDERO,40000,credit,DOP,transfer_in,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****7483,2026-06-08,AUT PAGO ****7664 - cuota prestamo ****7483,39010.92,debit,DOP,loan_payment,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****7483,2026-06-08,LBTR GREGORY AMABLE GARCIA CORDERO,13432,credit,DOP,transfer_in,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****7483,2026-06-11,LBTR GREGORY AMABLE GARCIA CORDERO,44200,credit,DOP,transfer_in,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****7483,2026-06-26,PAGO IMPUESTO 0.15 DGII 1 TRANS,15.43,debit,DOP,tax,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****7483,2026-06-28,MB a ****2302 MARTIRES MERCE,1000,debit,DOP,transfer_out,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****7483,2026-07-01,MB a ****4091 Llanira,15000,debit,DOP,transfer_out,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****7483,2026-07-03,PAGO IMPUESTO 0.15 DGII 2 TRANS,24,debit,DOP,tax,false,true,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****7483,2026-07-04,MB a ****0021 Juan Santana,2000,debit,DOP,transfer_out,false,false,false,high,false
+2026-07-07,bpd,Banco Popular Dominicano,****7483,2026-07-07,MBANKING APP: Transf via ACH,20000,credit,DOP,transfer_in,false,true,false,high,false
 2026-07-07,bsc,BSC,****2841,2026-07-06,Por Transferencia Ach,20000,debit,DOP,transfer,false,true,false,high,false
 2026-07-07,bsc,BSC,****2841,2026-07-06,Transferencia Recibida,20000,credit,DOP,transfer,false,true,false,high,false
 2026-07-07,bsc,BSC,****2841,2026-07-06,Imp. 2.0 Por 1000 S/Ley 30-26,9.55,debit,DOP,fees,false,false,false,high,false
 2026-07-07,bsc,BSC,****2841,2026-07-06,Por Transferencia Ach,4776,debit,DOP,transfer,false,true,false,high,false
 2026-07-07,bsc,BSC,****2841,2026-07-06,Transferencia Recibida,4776,credit,DOP,transfer,false,true,false,high,false
-2026-07-07,bsc,BSC,****2841,2026-07-03,Por Transferencia Ach,295000,debit,DOP,transfer,false,true,false,high,false
+2026-07-07,bsc,BSC,****2841,2026-07-03,Por Transferencia Ach,295000,debit,DOP,transfer,false,true,true,high,false
 2026-07-07,bsc,BSC,****2841,2026-07-03,Por Transferencia Ach,65000,debit,DOP,transfer,false,true,false,high,false
 2026-07-07,bsc,BSC,****2841,2026-07-03,Transferencia Recibida,303000,credit,DOP,transfer,false,true,false,high,false
 2026-07-07,bsc,BSC,****2841,2026-07-03,Imp. 2.0 Por 1000 S/Ley 30-26,21.6,debit,DOP,fees,false,false,false,high,false
@@ -40,3 +123,13 @@ snapshot_date,bank_id,bank_name,account_id_masked,date,description,amount,direct
 2026-07-07,example-bank,Example Bank,****1234,2026-07-03,INTERES TARJETA,1200,debit,DOP,fees,false,true,false,medium,false
 2026-07-07,example-bank,Example Bank,****1234,2026-07-02,PAGO NOMINA,85000,credit,DOP,salary,false,false,false,high,false
 2026-07-07,example-bank,Example Bank,****9911,2026-07-01,AMAZON WEB SERVICES,42.3,debit,USD,cloud,false,false,false,high,false
+2026-07-07,promerica,Promerica,****5288,2026-07-05,HUMANO SEG ECOM APP,16247.17,debit,DOP,insurance,false,true,false,high,false
+2026-07-07,promerica,Promerica,****5288,2026-07-03,Pago Tarjetas de Crédito,120,credit,DOP,payment,false,false,false,high,false
+2026-07-07,promerica,Promerica,****5288,2026-07-02,NATIVA INVIVIENDA,3376,debit,DOP,shopping,false,false,false,high,false
+2026-07-07,promerica,Promerica,****5288,2026-06-28,CREDIGAS NATIVA LA PELONA,3949,debit,DOP,utilities,false,false,false,high,false
+2026-07-07,promerica,Promerica,****5288,2026-06-27,Pago orange_recarga,100,debit,DOP,telecom,false,false,false,high,false
+2026-07-07,promerica,Promerica,****8321,2026-06-11,CR LBTR: CH BANCO SANTA CRUZ,118037.51,credit,DOP,transfer,false,true,false,high,false
+2026-07-07,promerica,Promerica,****8321,2026-06-11,PAGO TARJETAS DE CRÉDITO,118037.51,debit,DOP,payment,false,true,false,high,false
+2026-07-07,promerica,Promerica,****8321,2026-06-11,IMPUESTO 0.15%,177.06,debit,DOP,fees,false,true,false,high,false
+2026-07-07,promerica,Promerica,****8321,2026-06-24,TRANSF PROPIA PROMERICA ONLINE,26000,credit,DOP,transfer,false,true,false,high,false
+2026-07-07,promerica,Promerica,****8321,2026-06-24,TRANSF ACH PROMERICA ONLINE A TC BANCO SANTA CRUZ,25511.64,debit,DOP,transfer,false,true,false,high,false

@@ -1,11 +1,11 @@
-# Bank Profile: BSC
+# Bank Profile: BHD
 
 ## Basic information
 
-- Bank name: BSC
-- Country: RD
-- Website URL: https://bsc.com.do/
-- Login URL: https://bscenlinea.com.do/onlinebanking/
+- Bank name: BHD
+- Country:
+- Website URL:
+- Login URL: https://ibp.bhd.com.do/#/login
 - Currency defaults: RD
 - Last reviewed:
 
@@ -21,9 +21,9 @@
 
 The AI agent may visit:
 
-- Account overview: https://bscenlinea.com.do/onlinebanking/QueryBank/Summary
-- Checking/savings list: https://bscenlinea.com.do/onlinebanking/QueryBank/Summary
-- Credit card summary: https://bscenlinea.com.do/onlinebanking/QueryBank/Summary
+- Account overview: https://ibp.bhd.com.do/#/bhd/dashboard
+- Checking/savings list: https://ibp.bhd.com.do/#/bhd/product-detail
+- Credit card summary:
 - Loan summary:
 - Transaction list:
 
@@ -41,9 +41,9 @@ The AI agent must not visit or interact with:
 ## Extraction notes
 
 - Table headers to look for:
-- Date format used: MM/dd/YYYY
-- Decimal format used: #.##
-- Currency symbols used: RD$, US$
+- Date format used:
+- Decimal format used:
+- Currency symbols used:
 - Pages that load slowly:
 
 ## Known risks

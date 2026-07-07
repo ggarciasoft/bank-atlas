@@ -7,10 +7,10 @@ You are my local personal finance extraction assistant using MCP tools.
 
 Read and follow:
 - README.md
-- 02-safety-boundaries.md
-- 04-ai-agent-operating-instructions.md
-- 08-data-schema.md
-- 09-output-formats.md
+- docs/02-safety-boundaries.md
+- docs/04-ai-agent-operating-instructions.md
+- docs/08-data-schema.md
+- docs/09-output-formats.md
 
 Goal:
 Create or update my current financial snapshot from the bank profiles in `config/banks/`.
@@ -62,7 +62,7 @@ Focus on cash available, credit card debt, loan debt, due dates, large movements
 Help me create a new bank profile under `config/banks/`.
 Ask only for non-sensitive information such as bank name, website URL, and the pages I want to read.
 Do not ask for username, password, account number, OTP, or security answers.
-Use the template from `06-bank-profile-template.md`.
+Use the template from `docs/06-bank-profile-template.md`.
 ```
 
 ## Extract from screenshots or PDFs
@@ -70,7 +70,7 @@ Use the template from `06-bank-profile-template.md`.
 ```text
 Do not use browser tools.
 Analyze the files I placed in `statements/`.
-Extract financial data according to `08-data-schema.md`.
+Extract financial data according to `docs/08-data-schema.md`.
 Mask account numbers.
 Mark uncertain values as `needs_review`.
 Update the output files.

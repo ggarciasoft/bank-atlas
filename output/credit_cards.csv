@@ -1,4 +1,12 @@
 snapshot_date,bank_id,bank_name,card_name,card_id_masked,currency,current_balance,statement_balance,minimum_payment,due_date,available_credit,credit_limit,confidence,needs_review
+2026-07-07,apap,APAP,VISA FAMILIAR APAP (DOP),****7962,DOP,24875.06,0,0,2026-07-11,297424.84,293000,high,false
+2026-07-07,apap,APAP,VISA FAMILIAR APAP (USD),****7962,USD,0,0,0,2026-07-11,5067.12,4991.73,high,false
+2026-07-07,bhd,BHD,VISA PREMIA BHD (DOP),****5528,DOP,37803.54,36065.73,0,2026-07-02,15512,58000,high,true
+2026-07-07,bhd,BHD,VISA PREMIA BHD (USD),****5528,USD,120.27,63.03,0,2026-07-02,173.24,300,high,true
+2026-07-07,bpd,Banco Popular Dominicano,Tarjeta de Credito Local DOP,****8685,DOP,57114.89,55104.25,1530.68,2026-07-29,79644.71,110000,high,false
+2026-07-07,bpd,Banco Popular Dominicano,Tarjeta de Credito Local USD,****8685,USD,2268.75,2268.75,63.05,2026-07-29,1481.25,3000,high,false
 2026-07-07,bsc,BSC,Tarjeta de Crédito (Pesos),****0210,DOP,23361.33,35114.92,0,2026-07-16,45388.67,68750,high,false
 2026-07-07,bsc,BSC,Tarjeta de Crédito (Dólares),****0210,USD,35.05,30.69,0,2026-07-16,1100.95,1136,high,false
 2026-07-07,example-bank,Example Bank,Visa Platinum,****5678,DOP,45000,42000,3500,2026-07-20,155000,200000,high,false
+2026-07-07,promerica,Promerica,Tarjeta de Crédito RD$,****5288,DOP,23672.17,120,0,2026-07-16,117708.42,156000,high,false
+2026-07-07,promerica,Promerica,Tarjeta de Crédito US$,****5288,USD,0,0,0,2026-07-16,2007.04,2658,high,false
