@@ -1,7 +1,7 @@
 # bank-atlas — MCP Personal Finance Workspace
 
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)](package.json)
 [![Playwright MCP](https://img.shields.io/badge/browser-Playwright%20MCP-2EAD33?logo=playwright&logoColor=white)](docs/03-mcp-environment-setup.md)
 [![Local only](https://img.shields.io/badge/deploy-local%20only-orange)](#quick-start)
@@ -279,3 +279,47 @@ Read these in order for the full workflow (or start at `docs/README.md`):
 13. `docs/13-troubleshooting.md`
 14. `docs/14-future-upgrades.md`
 15. `docs/15-official-references.md`
+
+## Contributing
+
+Contributions are welcome — issues, docs, bank profiles, prompts, tooling, and web UI
+improvements all help.
+
+1. **Fork** the repo and create a branch from `main`.
+2. **Make your change** — keep the scope focused; match existing style in `tools/` and `web/`.
+3. **Test locally:**
+   ```bash
+   npm test
+   npm run build
+   npm run validate
+   npm run audit
+   ```
+4. **Open a pull request** with a short description of what changed and why.
+
+### What to contribute
+
+| Area | Examples |
+|---|---|
+| Bank profiles | `config/banks/<id>.md` — safe pages, login URL, extraction notes for a new bank |
+| Prompts & rules | `prompts/`, `.cursor/rules/` — clearer agent instructions |
+| Tooling | `tools/` — schema validation, ingest, build, dashboard API (stay zero-dependency) |
+| Web dashboard | `web/` — layout, filters, accessibility |
+| Docs | `docs/` — setup guides, playbooks, troubleshooting |
+
+### Please do not submit
+
+- Real bank data, account numbers, balances, or screenshots with identifiable info
+- Changes that weaken safety boundaries (`docs/02-safety-boundaries.md`)
+- Passwords, API keys, or browser profile directories
+
+`input/banks/*.json` (except `example-bank.json`) and `output/` are git-ignored on purpose.
+Use `input/banks/example-bank.json` and `examples/sample-statement.csv` for demos.
+
+If you change the data schema, update `docs/08-data-schema.md` and `tools/lib/schema.js`
+together.
+
+## Support
+
+If this project saves you time, consider sponsoring ongoing maintenance:
+
+**[Sponsor @ggarciasoft on GitHub](https://github.com/sponsors/ggarciasoft)**
