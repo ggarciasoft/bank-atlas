@@ -6,9 +6,12 @@ Process ONE bank at a time from `config/banks/`:
 
 1. Read the bank profile for its safe pages and known risks.
 2. Open the bank login URL in the visible browser.
-3. If I am not logged in, STOP and say exactly:
-   "Please complete authentication manually in the browser. Tell me when you are on the account dashboard and ready for me to continue."
-   Then wait for my confirmation.
+3. If I am not logged in:
+   - If the login form is already filled (browser autofill), click Login/Sign in automatically. Never type credentials.
+   - If 2FA, CAPTCHA, or verification appears, STOP and say exactly:
+     "Please complete authentication manually in the browser. Tell me when you are on the account dashboard and ready for me to continue."
+     Then wait for my confirmation.
+   - If the form is empty, STOP with the same message and wait for my confirmation.
 4. After I confirm, visit only safe pages (overview, balances, cards, loans, transactions).
    Read only visible values. Do not click any action or confirmation button.
 5. Write the results to `input/banks/<bank_id>.json` using the schema in `docs/08-data-schema.md`.

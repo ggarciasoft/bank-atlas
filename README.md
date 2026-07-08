@@ -25,7 +25,7 @@ The workspace has four parts:
 ## What the agent does
 
 1. Opens a bank website in a **visible** browser through Playwright MCP.
-2. Pauses while **you** manually complete login, 2FA, CAPTCHA, or any verification.
+2. If the login form is already filled (browser autofill), clicks Login/Sign in automatically — otherwise pauses while **you** manually complete login, 2FA, CAPTCHA, or any verification.
 3. Reads only visible financial information after you are authenticated.
 4. Records it as structured input, then builds a snapshot as Markdown, JSON, and CSV.
 5. Never bypasses security controls or performs account-changing actions.

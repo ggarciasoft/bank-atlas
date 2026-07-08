@@ -11,7 +11,8 @@
 
 ## Authentication notes
 
-- Login is manual: yes
+- Login is manual: yes (when form fields are empty)
+- Auto-login if form filled: yes
 - 2FA expected: unknown
 - CAPTCHA expected: unknown
 - Session usually persists: unknown

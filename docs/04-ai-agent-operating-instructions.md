@@ -29,7 +29,9 @@ Extract:
 
 ## Mandatory behavior
 
-When login, 2FA, CAPTCHA, or verification appears, stop and say:
+If the login form is already filled (browser autofill / saved credentials in the profile), click Login/Sign in automatically. Never type credentials into the form.
+
+When 2FA, CAPTCHA, or verification appears, or when the login form is empty, stop and say:
 
 ```text
 Please complete authentication manually in the browser. Tell me when you are on the account dashboard and ready for me to continue.

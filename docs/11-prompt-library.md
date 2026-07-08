@@ -19,7 +19,8 @@ Rules:
 - Use a visible browser only.
 - Do not bypass 2FA, CAPTCHA, or bot detection.
 - Do not ask me to paste passwords, OTP codes, or security answers in chat.
-- If authentication appears, pause and ask me to complete it manually in the browser.
+- If 2FA, CAPTCHA, or verification appears, or the login form is empty, pause and ask me to complete authentication manually in the browser.
+- If the login form is already filled (browser autofill), click Login/Sign in automatically — never type credentials.
 - Only read visible financial information.
 - Do not click transfer, payment, beneficiary, profile, settings, card controls, or confirmation buttons.
 - Mask all account numbers before saving.
@@ -32,7 +33,9 @@ Rules:
 ```text
 Use the bank profile at `config/banks/<bank-file>.md`.
 Open the bank URL with Playwright MCP.
-If I am logged out, ask me to authenticate manually and wait.
+If I am logged out and the login form is empty, ask me to authenticate manually and wait.
+If the login form is already filled, click Login/Sign in automatically (never type credentials).
+If 2FA or verification appears, ask me to complete it manually and wait.
 After I confirm that the dashboard is visible, extract read-only financial data.
 Update output files without overwriting data from other banks unless you are refreshing the full snapshot.
 ```

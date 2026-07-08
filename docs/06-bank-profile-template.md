@@ -26,7 +26,8 @@ config/banks/banreservas.md
 
 ## Authentication notes
 
-- Login is manual: yes
+- Login is manual: yes (when form fields are empty)
+- Auto-login if form filled: yes
 - 2FA expected: yes/no/unknown
 - CAPTCHA expected: yes/no/unknown
 - Session usually persists: yes/no/unknown

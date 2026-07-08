@@ -24,7 +24,9 @@ Prompt:
 Read `docs/04-ai-agent-operating-instructions.md` and follow it strictly.
 Open the first bank profile in `config/banks/`.
 Use Playwright MCP to open the bank login URL in a visible browser.
-If I am not logged in, stop and ask me to authenticate manually.
+If I am not logged in and the login form is empty, stop and ask me to authenticate manually.
+If the login form is already filled, click Login/Sign in automatically (never type credentials).
+If 2FA or verification appears, stop and ask me to authenticate manually.
 After I confirm I am on the dashboard, extract only read-only financial data into `input/banks/<bank_id>.json`.
 Then run `npm run build && npm run validate && npm run audit`.
 ```
@@ -32,8 +34,8 @@ Then run `npm run build && npm run validate && npm run audit`.
 Expected result:
 
 - Agent opens bank page.
-- User logs in manually.
-- Agent extracts data only after confirmation.
+- User logs in manually when the form is empty, or the agent clicks Login when the form is already filled.
+- Agent extracts data only after the dashboard is visible (and after user confirmation if manual auth was needed).
 - Output files are updated.
 
 ## Runbook C - Refresh all banks
@@ -43,7 +45,8 @@ Prompt:
 ```text
 Read all bank profiles under `config/banks/`.
 For each bank, open it with Playwright MCP and check whether I am already logged in.
-If authentication is required, stop for that bank and ask me to complete it manually.
+If authentication is required (empty login form or 2FA/verification), stop for that bank and ask me to complete it manually.
+If the login form is already filled, click Login/Sign in automatically (never type credentials).
 Extract balances, credit cards, loans, upcoming payments, and recent transactions.
 Update all output files.
 Mark missing or uncertain values as `needs_review`.

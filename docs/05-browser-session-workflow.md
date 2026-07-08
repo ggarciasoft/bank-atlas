@@ -20,8 +20,10 @@ If logged in:
     Save output
 
 If not logged in:
-    Ask user to authenticate manually
-    Wait for user confirmation
+    If login form already filled → click Login/Sign in (never type credentials)
+    If 2FA/CAPTCHA/verification appears → ask user to authenticate manually
+    If form empty → ask user to authenticate manually
+    Wait for user confirmation when manual auth was needed
     Read financial data
     Save output
 ```
@@ -45,6 +47,23 @@ Logged in signals:
 - User name visible
 - Navigation includes accounts/cards/loans/transactions
 - No password field visible
+
+## Auto-login when form is filled
+
+If the login page shows username and password fields already populated (browser autofill or saved credentials in the dedicated profile), the agent may click the Login/Sign in button automatically.
+
+Allowed:
+
+- Click Login, Sign in, Acceder, Entrar, or equivalent submit control
+- Wait for the next page to load
+
+Not allowed:
+
+- Type or paste username, password, OTP, or security answers
+- Fill empty fields
+- Bypass 2FA, CAPTCHA, or device verification that appears after submit
+
+If 2FA or verification appears after auto-login, follow the 2FA flow below.
 
 ## 2FA flow
 

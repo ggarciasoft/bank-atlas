@@ -16,7 +16,10 @@ Reference docs: `docs/04-ai-agent-operating-instructions.md`, `docs/05-browser-s
 1. Read the bank profile in `config/banks/<bank>.md` for safe pages and known risks.
 2. Open the login URL in the visible browser.
 3. Detect login state (login form / password field = logged out; balance cards + nav = logged in).
-4. If logged out, STOP and ask the user to authenticate manually. Wait for their confirmation.
+4. If logged out:
+   - If login form fields are already filled (browser autofill), click Login/Sign in automatically. Never type credentials.
+   - If 2FA, CAPTCHA, or verification appears, STOP and ask the user to authenticate manually.
+   - If the form is empty, STOP and ask the user to authenticate manually. Wait for their confirmation.
 5. After confirmation, navigate only the safe pages: overview, balances, cards, loans, transactions.
 6. Read only visible values. Do not click action buttons.
 7. Write the extracted data to `input/banks/<bank_id>.json` (schema below). Do NOT hand-write CSVs.

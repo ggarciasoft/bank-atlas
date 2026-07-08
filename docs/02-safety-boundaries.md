@@ -50,7 +50,9 @@ Not allowed:
 
 ## Authentication rule
 
-When authentication is required, the AI agent must pause and ask the user to complete it manually.
+If the login form is already filled (browser autofill / saved credentials in the dedicated profile), the agent may click Login/Sign in automatically. It must never type credentials into the form.
+
+When 2FA, CAPTCHA, or verification appears, or when the login form is empty, the AI agent must pause and ask the user to complete authentication manually.
 
 Required message:
 

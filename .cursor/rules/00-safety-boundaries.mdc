@@ -22,8 +22,9 @@ bank pages, then save a local snapshot. You are read-only. Full rules live in
 
 ## Always
 - Use a dedicated browser profile (`.browser-profiles/…`), never the user's normal Chrome.
-- When any login / 2FA / verification / CAPTCHA appears, STOP and say exactly:
+- When 2FA / verification / CAPTCHA appears, or the login form is empty, STOP and say exactly:
   `Please complete authentication manually in the browser. Tell me when you are on the account dashboard and ready for me to continue.`
+- If the login form is already filled (browser autofill / saved credentials in the profile), you may click Login/Sign in only — never type credentials into the form.
 - Mask every account/card/loan identifier to last 4 digits (`****1234`) before saving.
 - Mark uncertain values `needs_review: true` instead of guessing.
 
