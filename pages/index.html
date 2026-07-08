@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Atlas — local-first AI agent workspaces for personal finance and promotional inbox intelligence. Read-only, privacy-first, powered by MCP."
+    />
+    <title>Atlas — Local-first AI agent workspaces</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23161b22'/><path d='M8 22V10l8 6 8-6v12' stroke='%234c8dff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Atlas home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Atlas</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#projects">Projects</a>
+          <a href="#principles">Principles</a>
+          <a href="#stack">Stack</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-ghost" href="https://github.com/ggarciasoft/bank-atlas" target="_blank" rel="noopener noreferrer">bank-atlas</a>
+          <a class="btn btn-primary" href="https://github.com/ggarciasoft/mail-atlas" target="_blank" rel="noopener noreferrer">mail-atlas</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Local-first · Read-only · MCP-powered</p>
+            <h1>Agent workspaces that keep your data on your machine</h1>
+            <p class="lead">
+              <strong>Atlas</strong> is a family of open-source workspaces where AI coding agents
+              help you understand money and mail — without SaaS backends, without uploading
+              credentials, and without giving an agent permission to move money or touch your inbox.
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-primary btn-lg" href="#projects">Explore projects</a>
+              <a class="btn btn-ghost btn-lg" href="https://github.com/sponsors/ggarciasoft" target="_blank" rel="noopener noreferrer">Sponsor on GitHub</a>
+            </div>
+            <ul class="hero-stats" aria-label="Project highlights">
+              <li>
+                <span class="stat-value">2</span>
+                <span class="stat-label">workspaces</span>
+              </li>
+              <li>
+                <span class="stat-value">0</span>
+                <span class="stat-label">cloud uploads</span>
+              </li>
+              <li>
+                <span class="stat-value">100%</span>
+                <span class="stat-label">local storage</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orbit-card orbit-card--bank">
+              <span class="orbit-icon">🏦</span>
+              <div>
+                <strong>bank-atlas</strong>
+                <span>Financial snapshot</span>
+              </div>
+            </div>
+            <div class="orbit-core">
+              <span>MCP</span>
+              <small>Agent + tools</small>
+            </div>
+            <div class="orbit-card orbit-card--mail">
+              <span class="orbit-icon">📨</span>
+              <div>
+                <strong>mail-atlas</strong>
+                <span>Offer intelligence</span>
+              </div>
+            </div>
+            <div class="orbit-ring"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="principles" id="principles">
+        <div class="container">
+          <div class="section-head">
+            <h2>Built on the same philosophy</h2>
+            <p>Both workspaces share safety boundaries designed for real personal data.</p>
+          </div>
+          <div class="principle-grid">
+            <article class="principle-card">
+              <div class="principle-icon" aria-hidden="true">🔒</div>
+              <h3>Local &amp; private</h3>
+              <p>Data stays on your machine in JSON, CSV, Markdown, or SQLite. Nothing is sent to a third-party service.</p>
+            </article>
+            <article class="principle-card">
+              <div class="principle-icon" aria-hidden="true">👁️</div>
+              <h3>Read-only by design</h3>
+              <p>Agents observe and structure information. They do not transfer money, send email, or change account settings.</p>
+            </article>
+            <article class="principle-card">
+              <div class="principle-icon" aria-hidden="true">🤖</div>
+              <h3>Agent-native</h3>
+              <p>Prompts, rules, and MCP servers are first-class. Run in Cursor, VS Code Copilot Agent Mode, or Claude.</p>
+            </article>
+            <article class="principle-card">
+              <div class="principle-icon" aria-hidden="true">📊</div>
+              <h3>Structured output</h3>
+              <p>Schemas, validation, and confidence gates turn messy sources into data you can query, export, and browse.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects" id="projects">
+        <div class="container">
+          <div class="section-head">
+            <h2>The Atlas family</h2>
+            <p>Two focused workspaces. One shared approach to personal intelligence.</p>
+          </div>
+
+          <article class="project-card project-card--bank">
+            <div class="project-meta">
+              <span class="project-badge">Personal finance</span>
+              <span class="project-status">Stable</span>
+            </div>
+            <div class="project-body">
+              <div class="project-copy">
+                <h3>
+                  <span class="project-emoji" aria-hidden="true">🏦</span>
+                  bank-atlas
+                </h3>
+                <p class="project-tagline">Local, no-app personal finance workflow for an AI coding agent</p>
+                <p>
+                  A repeatable MCP workspace where an agent reads your own bank pages through
+                  Playwright MCP (with you in the loop for login and 2FA), normalizes the data with
+                  zero-dependency Node tooling, and produces a local financial snapshot — Markdown,
+                  JSON, CSV, and an optional read-only web dashboard.
+                </p>
+                <ul class="feature-list">
+                  <li>Visible browser extraction with manual auth handoff</li>
+                  <li>Statement CSV ingest and schema validation</li>
+                  <li>Local dashboard at <code>127.0.0.1:4173</code></li>
+                  <li>Optional SQLite history and spending trends</li>
+                </ul>
+                <div class="project-links">
+                  <a class="btn btn-primary" href="https://github.com/ggarciasoft/bank-atlas" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                  <a class="btn btn-ghost" href="https://github.com/ggarciasoft/bank-atlas#quick-start" target="_blank" rel="noopener noreferrer">Quick start</a>
+                </div>
+                <div class="tag-row" aria-label="Technologies">
+                  <span>Node.js</span>
+                  <span>MCP</span>
+                  <span>Playwright</span>
+                  <span>SQLite</span>
+                  <span>Cursor</span>
+                </div>
+              </div>
+              <figure class="project-shot">
+                <img
+                  src="https://raw.githubusercontent.com/ggarciasoft/bank-atlas/main/img/Dashboard_Summary_Credit_Cards.png"
+                  alt="bank-atlas dashboard showing summary totals and credit card utilization"
+                  loading="lazy"
+                  width="640"
+                  height="360"
+                />
+                <figcaption>Local read-only dashboard — sample data from <code>npm run build</code> + <code>npm run serve</code></figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <article class="project-card project-card--mail">
+            <div class="project-meta">
+              <span class="project-badge">Inbox intelligence</span>
+              <span class="project-status project-status--beta">Beta</span>
+            </div>
+            <div class="project-body project-body--reverse">
+              <div class="project-copy">
+                <h3>
+                  <span class="project-emoji" aria-hidden="true">📨</span>
+                  mail-atlas
+                </h3>
+                <p class="project-tagline">Local, privacy-first AI workspace for promotional inbox intelligence</p>
+                <p>
+                  Turns promotional email into structured, searchable offer data without modifying,
+                  sending, or deleting mail. A read-only mail MCP server retrieves messages locally;
+                  agent prompts classify and extract offers (including image-aware parsing), validate
+                  confidence, and store results in SQLite — with an optional read-only web UI.
+                </p>
+                <ul class="feature-list">
+                  <li>Read-only mail MCP (IMAP, Gmail, Microsoft Graph)</li>
+                  <li>Multi-step agent pipeline with confidence gating</li>
+                  <li>Calendar and list views in offers-web</li>
+                  <li>Image analysis for banner and attachment offers</li>
+                </ul>
+                <div class="project-links">
+                  <a class="btn btn-primary" href="https://github.com/ggarciasoft/mail-atlas" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                  <a class="btn btn-ghost" href="https://github.com/ggarciasoft/mail-atlas#quick-start" target="_blank" rel="noopener noreferrer">Quick start</a>
+                </div>
+                <div class="tag-row" aria-label="Technologies">
+                  <span>TypeScript</span>
+                  <span>MCP</span>
+                  <span>React</span>
+                  <span>SQLite</span>
+                  <span>Cursor</span>
+                </div>
+              </div>
+              <figure class="project-shot">
+                <img
+                  src="https://raw.githubusercontent.com/ggarciasoft/mail-atlas/main/sample/dashboard-calendar-offers.png"
+                  alt="mail-atlas offers-web calendar view with active promotional offers"
+                  loading="lazy"
+                  width="640"
+                  height="360"
+                />
+                <figcaption>offers-web calendar — browse saved offers from local SQLite</figcaption>
+              </figure>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="flow" id="flow">
+        <div class="container">
+          <div class="section-head">
+            <h2>How it works</h2>
+            <p>The same pattern: agent + MCP tools → structured local files → optional browser UI.</p>
+          </div>
+          <div class="flow-grid">
+            <div class="flow-step">
+              <span class="flow-num">1</span>
+              <h3>Connect tools</h3>
+              <p>Register MCP servers in Cursor or VS Code — Playwright for banks, mail-mcp-server for inbox.</p>
+            </div>
+            <div class="flow-step">
+              <span class="flow-num">2</span>
+              <h3>Run agents</h3>
+              <p>Follow prompts and rules. You stay in control for login, 2FA, and anything sensitive.</p>
+            </div>
+            <div class="flow-step">
+              <span class="flow-num">3</span>
+              <h3>Build locally</h3>
+              <p>Normalize into schemas, validate, audit for secrets, and export Markdown, JSON, or CSV.</p>
+            </div>
+            <div class="flow-step">
+              <span class="flow-num">4</span>
+              <h3>Browse offline</h3>
+              <p>Open the local dashboard to review snapshots or offers — read-only, bound to localhost.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stack" id="stack">
+        <div class="container stack-inner">
+          <div>
+            <h2>Open source, Apache 2.0</h2>
+            <p>
+              Atlas projects are maintained by
+              <a href="https://github.com/ggarciasoft" target="_blank" rel="noopener noreferrer">@ggarciasoft</a>.
+              Contributions welcome — docs, prompts, tooling, and UI improvements all help.
+            </p>
+            <div class="stack-links">
+              <a href="https://github.com/ggarciasoft/bank-atlas/issues" target="_blank" rel="noopener noreferrer">bank-atlas issues</a>
+              <a href="https://github.com/ggarciasoft/mail-atlas/issues" target="_blank" rel="noopener noreferrer">mail-atlas issues</a>
+              <a href="https://github.com/sponsors/ggarciasoft" target="_blank" rel="noopener noreferrer">Sponsor</a>
+            </div>
+          </div>
+          <div class="stack-card">
+            <h3>Start here</h3>
+            <ol class="start-list">
+              <li>Clone the repo you need</li>
+              <li>Configure MCP in <code>.cursor/mcp.json</code> or <code>.vscode/mcp.json</code></li>
+              <li>Run the agent workflow from the README</li>
+              <li>Launch the local web UI to explore results</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>
+          <strong>Atlas</strong> — bank-atlas &amp; mail-atlas by
+          <a href="https://github.com/ggarciasoft" target="_blank" rel="noopener noreferrer">Gregory García</a>
+        </p>
+        <p class="footer-note">Your data never leaves your machine unless you choose to share it.</p>
+      </div>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
