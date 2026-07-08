@@ -163,3 +163,9 @@ statements/*
 *.db-wal
 *.db-shm
 .playwright-mcp
+output/financial-snapshot.md
+output/financial-snapshot.json
+output/credit_cards.csv
+output/accounts.csv
+output/loans.csv
+output/transactions.csv

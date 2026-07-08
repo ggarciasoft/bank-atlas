@@ -38,6 +38,8 @@ Reference docs: `docs/04-ai-agent-operating-instructions.md`, `docs/05-browser-s
 - Every value needs a `currency` and a `confidence` (`high|medium|low`).
 - Mask all identifiers. If a page shows a full number, mask it before writing.
 - If a value is unclear or a date format is ambiguous, set `needs_review: true`.
+- **Multi-currency products:** If a credit card (or account) has separate balances/limits per currency, write **one row per currency** in `credit_cards[]` (same `card_id_masked`, different `currency`). Never fold foreign currency into `notes[]`.
+- Read `config/web.json` → `banks.<bank_id>.only_local_items` for context only. **Always extract all currencies**; dashboard filtering is applied at serve time, not during extraction.
 
 ## After extraction
 Run the tooling — do not compute totals or write output files by hand:
