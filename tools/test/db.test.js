@@ -41,6 +41,7 @@ const FIXTURE = {
           statement_balance: 180,
           minimum_payment: 20,
           due_date: "2026-07-15",
+          statement_closing_date: "2026-07-25",
           available_credit: 800,
           credit_limit: 1000,
           confidence: "high",
@@ -103,6 +104,7 @@ test("saveSnapshotToDb and readSnapshotFromDb round-trip", () => {
     assert.equal(back.banks[0].bank_id, "demo");
     assert.equal(back.banks[0].accounts[0].available_balance, 1000);
     assert.equal(back.banks[0].credit_cards[0].current_balance, 200);
+    assert.equal(back.banks[0].credit_cards[0].statement_closing_date, "2026-07-25");
     assert.equal(back.banks[0].loans[0].remaining_balance, 5000);
     assert.equal(back.banks[0].transactions[0].description, "Grocery");
     assert.equal(back.banks[0].transactions[0].is_pending, false);

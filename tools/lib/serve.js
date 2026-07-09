@@ -8,6 +8,11 @@
 //   POST /api/banks               scaffold a new bank { name }
 //   GET  /api/banks/<id>/config   read config/banks/<id>.md
 //   PUT  /api/banks/<id>/config   write config/banks/<id>.md { content }
+//   GET  /api/banks/<id>/items    read config/items/<id>.json
+//   PUT  /api/banks/<id>/items    write config/items/<id>.json
+//   POST /api/banks/<id>/items/<kind>              add/replace item { item }
+//   PATCH /api/banks/<id>/items/<kind>/<key>       patch item fields
+//   DELETE /api/banks/<id>/items/<kind>/<key>      remove item
 //   POST /api/build               regenerate output/ from current inputs
 //   POST /api/validate            validate inputs + snapshot
 //   POST /api/audit               safety scan
@@ -29,8 +34,15 @@ import {
   saveBankConfig,
   createBank,
   isValidBankId,
+  getBankItems,
+  saveBankItems,
+  upsertBankItem,
+  patchBankItem,
+  deleteBankItem,
+  syncItemsFromInputs,
 } from "./admin.js";
 import { filterSnapshotForFrontend } from "./filter-snapshot.js";
+import { bankItemsPath } from "./items.js";
 
 const WEB_DIR = path.join(PATHS.root, "web");
 const SNAPSHOT = path.join(PATHS.output, "financial-snapshot.json");
@@ -221,6 +233,100 @@ async function handleApi(req, res, pathname, method) {
       return true;
     }
     sendJson(res, 405, { error: "method not allowed" });
+    return true;
+  }
+
+  const itemsKindMatch = pathname.match(/^\/api\/banks\/([^/]+)\/items\/([^/]+)$/);
+  if (itemsKindMatch) {
+    const id = decodeURIComponent(itemsKindMatch[1]);
+    const kind = decodeURIComponent(itemsKindMatch[2]);
+    if (!isValidBankId(id)) {
+      sendJson(res, 400, { error: "invalid bank id" });
+      return true;
+    }
+    if (method === "POST") {
+      try {
+        const body = await readJsonBody(req);
+        const result = await upsertBankItem(id, kind, body.item || body, {
+          markUserEdited: body.mark_user_edited !== false,
+        });
+        sendJson(res, 200, { ok: true, ...result });
+      } catch (err) {
+        sendJson(res, 400, { error: err.message });
+      }
+      return true;
+    }
+    sendJson(res, 405, { error: "method not allowed" });
+    return true;
+  }
+
+  const itemsKeyMatch = pathname.match(/^\/api\/banks\/([^/]+)\/items\/([^/]+)\/(.+)$/);
+  if (itemsKeyMatch) {
+    const id = decodeURIComponent(itemsKeyMatch[1]);
+    const kind = decodeURIComponent(itemsKeyMatch[2]);
+    const key = decodeURIComponent(itemsKeyMatch[3]);
+    if (!isValidBankId(id)) {
+      sendJson(res, 400, { error: "invalid bank id" });
+      return true;
+    }
+    if (method === "PATCH") {
+      try {
+        const body = await readJsonBody(req);
+        const result = await patchBankItem(id, kind, key, body);
+        sendJson(res, 200, { ok: true, ...result });
+      } catch (err) {
+        sendJson(res, 400, { error: err.message });
+      }
+      return true;
+    }
+    if (method === "DELETE") {
+      try {
+        const result = await deleteBankItem(id, kind, key);
+        sendJson(res, 200, result);
+      } catch (err) {
+        sendJson(res, 400, { error: err.message });
+      }
+      return true;
+    }
+    sendJson(res, 405, { error: "method not allowed" });
+    return true;
+  }
+
+  const itemsMatch = pathname.match(/^\/api\/banks\/([^/]+)\/items$/);
+  if (itemsMatch) {
+    const id = decodeURIComponent(itemsMatch[1]);
+    if (!isValidBankId(id)) {
+      sendJson(res, 400, { error: "invalid bank id" });
+      return true;
+    }
+    if (method === "GET") {
+      sendJson(res, 200, await getBankItems(id));
+      return true;
+    }
+    if (method === "PUT" || method === "POST") {
+      try {
+        const body = await readJsonBody(req);
+        const saved = await saveBankItems(id, body);
+        sendJson(res, 200, { ok: true, id: saved.id, path: rel(saved.path || bankItemsPath(id)) });
+      } catch (err) {
+        sendJson(res, 400, { error: err.message });
+      }
+      return true;
+    }
+    sendJson(res, 405, { error: "method not allowed" });
+    return true;
+  }
+
+  if (pathname === "/api/items/sync") {
+    if (method !== "POST") {
+      sendJson(res, 405, { error: "method not allowed" });
+      return true;
+    }
+    try {
+      sendJson(res, 200, await syncItemsFromInputs());
+    } catch (err) {
+      sendJson(res, 500, { error: err.message });
+    }
     return true;
   }
 

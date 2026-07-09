@@ -17,6 +17,50 @@ export const DIRECTIONS = ["debit", "credit"];
 
 export const EXTRACTION_STATUSES = ["completed", "partial", "failed", "skipped"];
 
+export const LOAN_TYPES = [
+  "mortgage",
+  "vehicle",
+  "personal",
+  "student",
+  "line_of_credit",
+  "other",
+];
+
+export const ITEM_KINDS = ["accounts", "credit_cards", "loans"];
+
+/** Editable metadata fields stored in config/items/<bank_id>.json */
+export const ITEM_REGISTRY_FIELDS = {
+  accounts: ["account_name", "account_type", "currency", "notes"],
+  credit_cards: [
+    "card_name",
+    "currency",
+    "credit_limit",
+    "statement_closing_day",
+    "payment_due_day",
+    "notes",
+  ],
+  loans: [
+    "loan_name",
+    "loan_type",
+    "currency",
+    "monthly_payment",
+    "payment_due_day",
+    "term_months",
+    "notes",
+  ],
+};
+
+export const DAY_OF_MONTH_MIN = 1;
+export const DAY_OF_MONTH_MAX = 31;
+
+/** @param {unknown} raw @returns {number|null} */
+export function normalizeDayOfMonth(raw) {
+  if (raw === null || raw === undefined || raw === "") return null;
+  const n = Number(raw);
+  if (!Number.isInteger(n) || n < DAY_OF_MONTH_MIN || n > DAY_OF_MONTH_MAX) return null;
+  return n;
+}
+
 // CSV column order per docs/08-data-schema.md. Do not reorder without updating docs.
 export const CSV_COLUMNS = {
   accounts: [
@@ -43,6 +87,7 @@ export const CSV_COLUMNS = {
     "statement_balance",
     "minimum_payment",
     "due_date",
+    "statement_closing_date",
     "available_credit",
     "credit_limit",
     "confidence",

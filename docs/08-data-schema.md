@@ -67,6 +67,7 @@ Schema:
   "statement_balance": 42000,
   "minimum_payment": 3500,
   "due_date": "2026-07-20",
+  "statement_closing_date": "2026-07-25",
   "available_credit": 155000,
   "credit_limit": 200000,
   "source_page": "credit card summary",
@@ -129,7 +130,7 @@ snapshot_date,bank_id,bank_name,account_type,account_name,account_id_masked,curr
 Columns:
 
 ```text
-snapshot_date,bank_id,bank_name,card_name,card_id_masked,currency,current_balance,statement_balance,minimum_payment,due_date,available_credit,credit_limit,confidence,needs_review
+snapshot_date,bank_id,bank_name,card_name,card_id_masked,currency,current_balance,statement_balance,minimum_payment,due_date,statement_closing_date,available_credit,credit_limit,confidence,needs_review
 ```
 
 ### `output/loans.csv`
@@ -146,5 +147,55 @@ Columns:
 
 ```text
 snapshot_date,bank_id,bank_name,account_id_masked,date,description,amount,direction,currency,category_guess,is_pending,is_large_movement,possible_duplicate,confidence,needs_review
+```
+
+## Items registry (persistent reference metadata)
+
+File per bank:
+
+```text
+config/items/<bank_id>.json
+```
+
+The items registry stores stable metadata about accounts, credit cards, and loans.
+It is auto-seeded from extraction on each build and can be edited in the Admin
+dashboard. At build time the registry is merged into the snapshot.
+
+Merge precedence per field:
+
+```text
+user frontend edit > freshly extracted value > auto-seeded registry value > null
+```
+
+Recurring calendar days (`payment_due_day`, `statement_closing_day`) are stored as
+day-of-month (1–31) and converted to concrete dates at build time
+(`next_due_date`, `statement_closing_date`, and card `due_date` when applicable).
+
+Registry entries are keyed by `masked_id|currency`. Fields the user edits in the
+frontend are listed in `user_edited` and are never overwritten by extraction or
+auto-seed.
+
+Example:
+
+```json
+{
+  "bank_id": "apap",
+  "bank_name": "APAP",
+  "accounts": [],
+  "credit_cards": [
+    {
+      "key": "****7962|DOP",
+      "card_id_masked": "****7962",
+      "card_name": "VISA FAMILIAR APAP (Pesos)",
+      "currency": "DOP",
+      "credit_limit": 293000,
+      "statement_closing_day": 25,
+      "payment_due_day": 11,
+      "notes": "",
+      "user_edited": ["payment_due_day"]
+    }
+  ],
+  "loans": []
+}
 ```
 

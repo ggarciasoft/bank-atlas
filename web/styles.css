@@ -615,3 +615,62 @@ input[type="search"]::placeholder {
   border-color: color-mix(in srgb, var(--danger) 45%, var(--stroke));
   color: var(--danger);
 }
+
+.bank-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.items-section {
+  margin-top: 20px;
+}
+.items-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.items-section-head h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.item-form {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--stroke-soft);
+}
+.item-form h4 {
+  margin: 0 0 12px;
+}
+.item-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.item-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.item-field span {
+  font-weight: 500;
+}
+.item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.btn.mini-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+.btn.mini-btn.danger {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 35%, var(--stroke));
+}

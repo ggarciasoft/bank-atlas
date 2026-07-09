@@ -20,9 +20,20 @@ const admin = {
   notice: null, // { kind: "success"|"warn"|"error", text }
   editing: null, // bank_id currently being edited, or null
   editingContent: "",
+  itemsEditing: null, // bank_id for items registry editor
+  itemsDoc: null,
+  itemForm: null, // { kind, mode: "add"|"edit", data }
   busy: false,
   commandOutput: null, // { command, ok, text }
 };
+
+const ACCOUNT_TYPES = ["checking", "savings", "cash", "wallet", "investment", "other"];
+const LOAN_TYPES = ["mortgage", "vehicle", "personal", "student", "line_of_credit", "other"];
+const ITEM_KINDS = [
+  { id: "accounts", label: "Accounts", idField: "account_id_masked" },
+  { id: "credit_cards", label: "Credit cards", idField: "card_id_masked" },
+  { id: "loans", label: "Loans", idField: "loan_id_masked" },
+];
 
 function money(amount, currency) {
   const sym = SYMBOLS[currency] || currency + " ";
@@ -196,6 +207,9 @@ function renderCards() {
             el("div", { class: "card-meta" }, `${c.bank_name} · ${c.currency}`),
           ]),
           c.due_date ? el("div", { class: "card-meta" }, `Due ${c.due_date}`) : null,
+          c.statement_closing_date
+            ? el("div", { class: "card-meta" }, `Closes ${c.statement_closing_date}`)
+            : null,
         ]),
         el("div", { class: "usage" }, [
           el("div", { class: "usage-top" }, [
@@ -458,6 +472,9 @@ async function createBankAction() {
 }
 
 async function editConfig(id) {
+  admin.itemsEditing = null;
+  admin.itemsDoc = null;
+  admin.itemForm = null;
   admin.busy = true;
   render();
   try {
@@ -498,6 +515,161 @@ function closeEditor() {
   admin.editing = null;
   admin.editingContent = "";
   render();
+}
+
+function closeItemsEditor() {
+  admin.itemsEditing = null;
+  admin.itemsDoc = null;
+  admin.itemForm = null;
+  render();
+}
+
+async function editItems(id) {
+  admin.busy = true;
+  admin.editing = null;
+  admin.itemForm = null;
+  render();
+  try {
+    const data = await api(`/api/banks/${encodeURIComponent(id)}/items`);
+    admin.itemsEditing = id;
+    admin.itemsDoc = data;
+    setNotice(null);
+  } catch (err) {
+    setNotice("error", String(err.message || err));
+  } finally {
+    admin.busy = false;
+    render();
+  }
+}
+
+async function syncItemsRegistry() {
+  admin.busy = true;
+  render();
+  try {
+    const data = await api("/api/items/sync", { method: "POST" });
+    setNotice("success", `Synced items for ${(data.banks_updated || []).length} bank(s). Rebuild to apply.`);
+    await loadBanks();
+    if (admin.itemsEditing) await editItems(admin.itemsEditing);
+  } catch (err) {
+    setNotice("error", String(err.message || err));
+  } finally {
+    admin.busy = false;
+    render();
+  }
+}
+
+function openItemForm(kind, mode, data) {
+  admin.itemForm = { kind, mode, data: { ...data } };
+  render();
+}
+
+function closeItemForm() {
+  admin.itemForm = null;
+  render();
+}
+
+function readItemFormFields(kind) {
+  const val = (id) => {
+    const node = document.getElementById(id);
+    return node ? node.value.trim() : "";
+  };
+  const num = (id) => {
+    const s = val(id);
+    return s === "" ? null : Number(s);
+  };
+  const day = (id) => {
+    const n = num(id);
+    return n === null || !Number.isInteger(n) ? null : n;
+  };
+
+  if (kind === "accounts") {
+    return {
+      account_id_masked: val("item-id"),
+      account_name: val("item-name") || null,
+      account_type: val("item-type") || "other",
+      currency: val("item-currency") || null,
+      notes: val("item-notes") || "",
+    };
+  }
+  if (kind === "credit_cards") {
+    return {
+      card_id_masked: val("item-id"),
+      card_name: val("item-name") || null,
+      currency: val("item-currency") || null,
+      credit_limit: num("item-limit"),
+      statement_closing_day: day("item-closing-day"),
+      payment_due_day: day("item-due-day"),
+      notes: val("item-notes") || "",
+    };
+  }
+  return {
+    loan_id_masked: val("item-id"),
+    loan_name: val("item-name") || null,
+    loan_type: val("item-type") || "other",
+    currency: val("item-currency") || null,
+    monthly_payment: num("item-payment"),
+    payment_due_day: day("item-due-day"),
+    term_months: day("item-term"),
+    notes: val("item-notes") || "",
+  };
+}
+
+async function saveItemForm() {
+  if (!admin.itemForm || !admin.itemsEditing) return;
+  const { kind, mode, data } = admin.itemForm;
+  const payload = readItemFormFields(kind);
+  const idField = ITEM_KINDS.find((k) => k.id === kind).idField;
+  if (!payload[idField]) {
+    setNotice("error", "Masked number (last 4 digits) is required.");
+    render();
+    return;
+  }
+  const currency = payload.currency || "?";
+  const key = `${payload[idField]}|${currency}`;
+
+  admin.busy = true;
+  render();
+  try {
+    if (mode === "edit" && data.key) {
+      await api(
+        `/api/banks/${encodeURIComponent(admin.itemsEditing)}/items/${encodeURIComponent(kind)}/${encodeURIComponent(data.key)}`,
+        { method: "PATCH", body: JSON.stringify(payload) }
+      );
+    } else {
+      await api(`/api/banks/${encodeURIComponent(admin.itemsEditing)}/items/${encodeURIComponent(kind)}`, {
+        method: "POST",
+        body: JSON.stringify({ item: { ...payload, key } }),
+      });
+    }
+    setNotice("success", "Item saved. Rebuild snapshot to apply to the dashboard.");
+    admin.itemForm = null;
+    await editItems(admin.itemsEditing);
+  } catch (err) {
+    setNotice("error", String(err.message || err));
+  } finally {
+    admin.busy = false;
+    render();
+  }
+}
+
+async function deleteItem(kind, key) {
+  if (!admin.itemsEditing) return;
+  if (!confirm(`Delete ${kind} item ${key}?`)) return;
+  admin.busy = true;
+  render();
+  try {
+    await api(
+      `/api/banks/${encodeURIComponent(admin.itemsEditing)}/items/${encodeURIComponent(kind)}/${encodeURIComponent(key)}`,
+      { method: "DELETE" }
+    );
+    setNotice("success", "Item deleted.");
+    await editItems(admin.itemsEditing);
+  } catch (err) {
+    setNotice("error", String(err.message || err));
+  } finally {
+    admin.busy = false;
+    render();
+  }
 }
 
 const COMMANDS = [
@@ -646,7 +818,9 @@ function renderAdminInto(view) {
 
   view.appendChild(renderCommands());
   view.appendChild(renderAddBank());
-  view.appendChild(admin.editing ? renderConfigEditor() : renderBankList());
+  if (admin.itemsEditing) view.appendChild(renderItemsEditor());
+  else if (admin.editing) view.appendChild(renderConfigEditor());
+  else view.appendChild(renderBankList());
 }
 
 function renderCommands() {
@@ -719,18 +893,209 @@ function renderBankList() {
             b.has_input
               ? el("span", { class: "chip" }, "input")
               : el("span", { class: "chip missing" }, "no input"),
+            b.has_items
+              ? el("span", { class: "chip" }, "items")
+              : el("span", { class: "chip missing" }, "no items"),
           ]),
         ]),
-        el(
-          "button",
-          { class: "btn", disabled: admin.busy ? "" : null, onClick: () => editConfig(b.id) },
-          "Edit config"
-        ),
+        el("div", { class: "bank-actions" }, [
+          el(
+            "button",
+            { class: "btn", disabled: admin.busy ? "" : null, onClick: () => editConfig(b.id) },
+            "Edit config"
+          ),
+          el(
+            "button",
+            { class: "btn", disabled: admin.busy ? "" : null, onClick: () => editItems(b.id) },
+            "Edit items"
+          ),
+        ]),
       ])
     );
   }
   wrap.appendChild(list);
   return wrap;
+}
+
+function renderItemsEditor() {
+  const doc = admin.itemsDoc || { accounts: [], credit_cards: [], loans: [] };
+  const sections = ITEM_KINDS.map((meta) => renderItemsSection(meta, doc[meta.id] || []));
+  const form = admin.itemForm ? renderItemForm() : null;
+
+  return el("section", { class: "admin-card" }, [
+    el("div", { class: "editor-head" }, [
+      el("h3", { class: "admin-title" }, ["Items registry — ", el("code", {}, admin.itemsEditing)]),
+      el("div", { class: "muted" }, `config/items/${admin.itemsEditing}.json — reference metadata merged at build time.`),
+    ]),
+    el("div", { class: "admin-row" }, [
+      el(
+        "button",
+        { class: "btn", disabled: admin.busy ? "" : null, onClick: () => syncItemsRegistry() },
+        "Sync from inputs"
+      ),
+      el(
+        "button",
+        { class: "btn primary", disabled: admin.busy ? "" : null, onClick: () => runCommand("build") },
+        "Rebuild snapshot"
+      ),
+      el("button", { class: "btn", disabled: admin.busy ? "" : null, onClick: () => closeItemsEditor() }, "Back to list"),
+    ]),
+    ...sections,
+    form,
+  ]);
+}
+
+function renderItemsSection(meta, items) {
+  const rows = items.map((item) =>
+    el("tr", {}, [
+      el("td", {}, item[meta.idField] || "—"),
+      el("td", {}, labelForItem(meta.id, item)),
+      el("td", {}, item.currency || "—"),
+      el("td", {}, extraItemFields(meta.id, item)),
+      el("td", {}, (item.user_edited || []).length ? el("span", { class: "chip" }, "edited") : "—"),
+      el("td", { class: "item-actions" }, [
+        el(
+          "button",
+          {
+            class: "btn mini-btn",
+            disabled: admin.busy ? "" : null,
+            onClick: () => openItemForm(meta.id, "edit", item),
+          },
+          "Edit"
+        ),
+        el(
+          "button",
+          {
+            class: "btn mini-btn danger",
+            disabled: admin.busy ? "" : null,
+            onClick: () => deleteItem(meta.id, item.key),
+          },
+          "Delete"
+        ),
+      ]),
+    ])
+  );
+
+  return el("div", { class: "items-section" }, [
+    el("div", { class: "items-section-head" }, [
+      el("h4", {}, meta.label),
+      el(
+        "button",
+        {
+          class: "btn mini-btn",
+          disabled: admin.busy ? "" : null,
+          onClick: () => openItemForm(meta.id, "add", {}),
+        },
+        "Add"
+      ),
+    ]),
+    tableEl(
+      ["Number", "Name", "Currency", "Details", "Locked", "Actions"],
+      rows,
+      [false, false, false, false, false, false],
+      `No ${meta.label.toLowerCase()} in the registry yet. Sync from inputs or add manually.`
+    ),
+  ]);
+}
+
+function labelForItem(kind, item) {
+  if (kind === "accounts") return item.account_name || "—";
+  if (kind === "credit_cards") return item.card_name || "—";
+  return item.loan_name || "—";
+}
+
+function extraItemFields(kind, item) {
+  if (kind === "credit_cards") {
+    const parts = [];
+    if (item.credit_limit != null) parts.push(`limit ${item.credit_limit}`);
+    if (item.statement_closing_day) parts.push(`closes day ${item.statement_closing_day}`);
+    if (item.payment_due_day) parts.push(`due day ${item.payment_due_day}`);
+    return parts.join(" · ") || "—";
+  }
+  if (kind === "loans") {
+    const parts = [];
+    if (item.monthly_payment != null) parts.push(`pay ${item.monthly_payment}`);
+    if (item.payment_due_day) parts.push(`due day ${item.payment_due_day}`);
+    return parts.join(" · ") || "—";
+  }
+  return item.account_type || "—";
+}
+
+function fieldInput(id, label, value, attrs) {
+  return el("label", { class: "item-field" }, [
+    el("span", {}, label),
+    el("input", { id, class: "admin-input", value: value ?? "", ...(attrs || {}) }),
+  ]);
+}
+
+function renderItemForm() {
+  const { kind, mode, data } = admin.itemForm;
+  const meta = ITEM_KINDS.find((k) => k.id === kind);
+  const fields = [];
+
+  fields.push(fieldInput("item-id", "Masked number", data[meta.idField] || "", mode === "edit" ? { readonly: "readonly" } : {}));
+  fields.push(
+    fieldInput(
+      "item-name",
+      "Name",
+      kind === "accounts"
+        ? data.account_name || ""
+        : kind === "credit_cards"
+          ? data.card_name || ""
+          : data.loan_name || ""
+    )
+  );
+  fields.push(fieldInput("item-currency", "Currency", data.currency || ""));
+
+  if (kind === "accounts") {
+    fields.push(
+      el("label", { class: "item-field" }, [
+        el("span", {}, "Type"),
+        el(
+          "select",
+          { id: "item-type", class: "admin-input" },
+          ACCOUNT_TYPES.map((t) =>
+            el("option", { value: t, ...(data.account_type === t ? { selected: "selected" } : {}) }, titleCase(t))
+          )
+        ),
+      ])
+    );
+  } else if (kind === "credit_cards") {
+    fields.push(fieldInput("item-limit", "Credit limit", data.credit_limit ?? ""));
+    fields.push(fieldInput("item-closing-day", "Statement closing day (1-31)", data.statement_closing_day ?? ""));
+    fields.push(fieldInput("item-due-day", "Payment due day (1-31)", data.payment_due_day ?? ""));
+  } else {
+    fields.push(
+      el("label", { class: "item-field" }, [
+        el("span", {}, "Loan type"),
+        el(
+          "select",
+          { id: "item-type", class: "admin-input" },
+          LOAN_TYPES.map((t) =>
+            el("option", { value: t, ...(data.loan_type === t ? { selected: "selected" } : {}) }, titleCase(t))
+          )
+        ),
+      ])
+    );
+    fields.push(fieldInput("item-payment", "Monthly payment", data.monthly_payment ?? ""));
+    fields.push(fieldInput("item-due-day", "Payment due day (1-31)", data.payment_due_day ?? ""));
+    fields.push(fieldInput("item-term", "Term (months)", data.term_months ?? ""));
+  }
+
+  fields.push(fieldInput("item-notes", "Notes", data.notes || ""));
+
+  return el("div", { class: "item-form" }, [
+    el("h4", {}, `${mode === "add" ? "Add" : "Edit"} ${meta.label.slice(0, -1).toLowerCase()}`),
+    el("div", { class: "item-form-grid" }, fields),
+    el("div", { class: "admin-row" }, [
+      el(
+        "button",
+        { class: "btn primary", disabled: admin.busy ? "" : null, onClick: () => saveItemForm() },
+        "Save item"
+      ),
+      el("button", { class: "btn", disabled: admin.busy ? "" : null, onClick: () => closeItemForm() }, "Cancel"),
+    ]),
+  ]);
 }
 
 function renderConfigEditor() {

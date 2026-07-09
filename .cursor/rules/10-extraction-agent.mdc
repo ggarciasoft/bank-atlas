@@ -3,6 +3,7 @@ description: How the extraction agent drives the browser and records data. Apply
 globs:
   - "input/banks/**"
   - "config/banks/**"
+  - "config/items/**"
   - "output/**"
 ---
 
@@ -14,16 +15,20 @@ Reference docs: `docs/04-ai-agent-operating-instructions.md`, `docs/05-browser-s
 
 ## Loop (one bank at a time)
 1. Read the bank profile in `config/banks/<bank>.md` for safe pages and known risks.
-2. Open the login URL in the visible browser.
-3. Detect login state (login form / password field = logged out; balance cards + nav = logged in).
-4. If logged out:
+2. Read `config/items/<bank_id>.json` when it exists — reuse known item names, types,
+   currency, limits, and due/closing days; expect the items listed there.
+3. Open the login URL in the visible browser.
+4. Detect login state (login form / password field = logged out; balance cards + nav = logged in).
+5. If logged out:
    - If login form fields are already filled (browser autofill), click Login/Sign in automatically. Never type credentials.
    - If 2FA, CAPTCHA, or verification appears, STOP and ask the user to authenticate manually.
    - If the form is empty, STOP and ask the user to authenticate manually. Wait for their confirmation.
-5. After confirmation, navigate only the safe pages: overview, balances, cards, loans, transactions.
-6. Read only visible values. Do not click action buttons.
-7. Write the extracted data to `input/banks/<bank_id>.json` (schema below). Do NOT hand-write CSVs.
-8. Set `extraction_status` to `completed`, `partial`, `failed`, or `skipped`.
+6. After confirmation, navigate only the safe pages: overview, balances, cards, loans, transactions.
+7. Read only visible values. Do not click action buttons.
+8. Write the extracted data to `input/banks/<bank_id>.json` (schema below). Do NOT hand-write CSVs.
+9. Update `config/items/<bank_id>.json` with any newly discovered accounts, cards, or loans.
+   Never overwrite fields listed in `user_edited` — those are locked by the user.
+10. Set `extraction_status` to `completed`, `partial`, `failed`, or `skipped`.
 
 ## What to capture per bank (`input/banks/<bank_id>.json`)
 `bank_id`, `bank_name`, `extraction_status`, `extracted_at`, and arrays:

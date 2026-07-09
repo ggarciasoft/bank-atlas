@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS credit_cards (
   snapshot_date TEXT, bank_id TEXT, bank_name TEXT,
   card_id_masked TEXT, card_name TEXT, currency TEXT,
   current_balance REAL, statement_balance REAL, minimum_payment REAL,
-  due_date TEXT, available_credit REAL, credit_limit REAL,
+  due_date TEXT, statement_closing_date TEXT, available_credit REAL, credit_limit REAL,
   confidence TEXT, needs_review INTEGER
 );
 CREATE TABLE IF NOT EXISTS loans (
@@ -62,7 +62,15 @@ function open(dbPath = DEFAULT_DB) {
   ensureDbDir(dbPath);
   const db = new DatabaseSync(dbPath);
   db.exec(SCHEMA);
+  migrateCreditCards(db);
   return db;
+}
+
+function migrateCreditCards(db) {
+  const cols = db.prepare("PRAGMA table_info(credit_cards)").all();
+  if (!cols.some((c) => c.name === "statement_closing_date")) {
+    db.exec("ALTER TABLE credit_cards ADD COLUMN statement_closing_date TEXT");
+  }
 }
 
 function bankShell(bankId, bankName) {
@@ -102,6 +110,7 @@ function rowToCreditCard(r) {
     statement_balance: r.statement_balance,
     minimum_payment: r.minimum_payment,
     due_date: r.due_date,
+    statement_closing_date: r.statement_closing_date ?? null,
     available_credit: r.available_credit,
     credit_limit: r.credit_limit,
     confidence: r.confidence,
@@ -168,7 +177,7 @@ export function saveSnapshotToDb(snapshot, dbPath = DEFAULT_DB) {
       `INSERT INTO accounts VALUES (@snapshot_date,@bank_id,@bank_name,@account_id_masked,@account_name,@account_type,@currency,@available_balance,@current_balance,@confidence,@needs_review)`
     );
     const insCard = db.prepare(
-      `INSERT INTO credit_cards VALUES (@snapshot_date,@bank_id,@bank_name,@card_id_masked,@card_name,@currency,@current_balance,@statement_balance,@minimum_payment,@due_date,@available_credit,@credit_limit,@confidence,@needs_review)`
+      `INSERT INTO credit_cards VALUES (@snapshot_date,@bank_id,@bank_name,@card_id_masked,@card_name,@currency,@current_balance,@statement_balance,@minimum_payment,@due_date,@statement_closing_date,@available_credit,@credit_limit,@confidence,@needs_review)`
     );
     const insLoan = db.prepare(
       `INSERT INTO loans VALUES (@snapshot_date,@bank_id,@bank_name,@loan_id_masked,@loan_name,@loan_type,@currency,@remaining_balance,@monthly_payment,@next_due_date,@confidence,@needs_review)`
@@ -203,6 +212,7 @@ export function saveSnapshotToDb(snapshot, dbPath = DEFAULT_DB) {
           statement_balance: num(c.statement_balance),
           minimum_payment: num(c.minimum_payment),
           due_date: c.due_date ?? null,
+          statement_closing_date: c.statement_closing_date ?? null,
           available_credit: num(c.available_credit),
           credit_limit: num(c.credit_limit),
           confidence: c.confidence ?? null,

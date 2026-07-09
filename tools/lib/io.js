@@ -13,6 +13,7 @@ export const PATHS = {
   output: path.join(ROOT, "output"),
   history: path.join(ROOT, "output", "history"),
   configBanks: path.join(ROOT, "config", "banks"),
+  configItems: path.join(ROOT, "config", "items"),
 };
 
 export async function ensureDir(dir) {

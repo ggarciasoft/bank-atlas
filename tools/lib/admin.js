@@ -10,6 +10,17 @@ import path from "node:path";
 
 import { PATHS, exists, readText, writeText, readJson, listJson } from "./io.js";
 import { newBank } from "./newbank.js";
+import {
+  readBankItems,
+  writeBankItems,
+  normalizeItemsDoc,
+  upsertRegistryItem,
+  deleteRegistryItem,
+  applyEdit,
+  bankItemsPath,
+  syncAllItemsFromInputs,
+} from "./items.js";
+import { ITEM_KINDS } from "./schema.js";
 
 // A bank id is the slug produced by newBank(): lowercase letters, digits, and
 // dashes. Validating against it also blocks path traversal in API routes.
@@ -63,6 +74,8 @@ export async function listBanks() {
     const inputPath = bankInputPath(id);
     const has_config = await exists(configPath);
     const has_input = await exists(inputPath);
+    const itemsPath = bankItemsPath(id);
+    const has_items = await exists(itemsPath);
 
     let name = null;
     if (has_input) {
@@ -80,7 +93,7 @@ export async function listBanks() {
       }
     }
 
-    banks.push({ id, name: name || id, has_config, has_input });
+    banks.push({ id, name: name || id, has_config, has_input, has_items });
   }
   return banks;
 }
@@ -124,4 +137,91 @@ export async function saveBankConfig(id, content) {
 export async function createBank(name, opts = {}) {
   if (!name || !String(name).trim()) throw new Error("bank name is required");
   return newBank(String(name).trim(), opts);
+}
+
+async function assertKnownBank(id) {
+  const configPath = bankConfigPath(id);
+  const known = (await exists(configPath)) || (await exists(bankInputPath(id)));
+  if (!known) throw new Error(`unknown bank "${id}" — create it first`);
+}
+
+/**
+ * Read a bank's items registry.
+ * @param {string} id
+ */
+export async function getBankItems(id) {
+  if (!isValidBankId(id)) throw new Error("invalid bank id");
+  await assertKnownBank(id);
+  const p = bankItemsPath(id);
+  const doc = await readBankItems(id);
+  return { id, exists: await exists(p), ...doc };
+}
+
+/**
+ * Replace a bank's full items registry document.
+ * @param {string} id
+ * @param {object} doc
+ */
+export async function saveBankItems(id, doc) {
+  if (!isValidBankId(id)) throw new Error("invalid bank id");
+  await assertKnownBank(id);
+  const normalized = normalizeItemsDoc({ ...doc, bank_id: id }, id);
+  await writeBankItems(id, normalized);
+  return { id, path: bankItemsPath(id), ...normalized };
+}
+
+/**
+ * Add or replace one registry item.
+ * @param {string} id
+ * @param {string} kind
+ * @param {object} item
+ * @param {{ markUserEdited?: boolean }} [opts]
+ */
+export async function upsertBankItem(id, kind, item, opts = {}) {
+  if (!isValidBankId(id)) throw new Error("invalid bank id");
+  if (!ITEM_KINDS.includes(kind)) throw new Error("invalid item kind");
+  await assertKnownBank(id);
+  const registry = await readBankItems(id);
+  upsertRegistryItem(registry, kind, item, opts);
+  await writeBankItems(id, registry);
+  return { id, kind, item: registry[kind].find((e) => e.key === (item.key || registry[kind].at(-1)?.key)) };
+}
+
+/**
+ * Patch one registry item (marks edited fields user_edited by default).
+ * @param {string} id
+ * @param {string} kind
+ * @param {string} key
+ * @param {object} patch
+ */
+export async function patchBankItem(id, kind, key, patch) {
+  if (!isValidBankId(id)) throw new Error("invalid bank id");
+  if (!ITEM_KINDS.includes(kind)) throw new Error("invalid item kind");
+  await assertKnownBank(id);
+  const registry = await readBankItems(id);
+  applyEdit(registry, kind, key, patch);
+  await writeBankItems(id, registry);
+  return { id, kind, key, item: registry[kind].find((e) => e.key === key) };
+}
+
+/**
+ * Delete one registry item.
+ * @param {string} id
+ * @param {string} kind
+ * @param {string} key
+ */
+export async function deleteBankItem(id, kind, key) {
+  if (!isValidBankId(id)) throw new Error("invalid bank id");
+  if (!ITEM_KINDS.includes(kind)) throw new Error("invalid item kind");
+  await assertKnownBank(id);
+  const registry = await readBankItems(id);
+  deleteRegistryItem(registry, kind, key);
+  await writeBankItems(id, registry);
+  return { id, kind, key, ok: true };
+}
+
+/** Seed config/items from all input/banks/*.json without rebuilding output. */
+export async function syncItemsFromInputs() {
+  const banks = await syncAllItemsFromInputs(listJson, readJson);
+  return { ok: true, banks_updated: banks };
 }

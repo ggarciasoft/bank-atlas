@@ -235,6 +235,40 @@ async function cmdDb(args) {
   process.exitCode = 1;
 }
 
+async function cmdItems(args) {
+  const sub = args[0];
+  if (sub === "sync") {
+    const { syncItemsFromInputs } = await import("./lib/admin.js");
+    const result = await syncItemsFromInputs();
+    console.log(`${GREEN}Synced items registry${RESET} for ${result.banks_updated.length} bank(s):`);
+    for (const id of result.banks_updated) console.log(`  ${id}`);
+    return;
+  }
+  const bankId = sub && !sub.startsWith("--") && sub !== "list" ? sub : null;
+  if (!bankId) {
+    const { listBanks, getBankItems } = await import("./lib/admin.js");
+    const banks = await listBanks();
+    if (banks.length === 0) {
+      console.log("No banks found.");
+      return;
+    }
+    for (const b of banks) {
+      let counts = "";
+      try {
+        const doc = await getBankItems(b.id);
+        counts = ` — ${doc.accounts.length} account(s), ${doc.credit_cards.length} card(s), ${doc.loans.length} loan(s)`;
+      } catch {
+        counts = "";
+      }
+      console.log(`  ${b.id}${b.has_items ? "" : " (no registry yet)"}${counts}`);
+    }
+    return;
+  }
+  const { getBankItems } = await import("./lib/admin.js");
+  const doc = await getBankItems(bankId);
+  console.log(JSON.stringify(doc, null, 2));
+}
+
 async function cmdTrends() {
   const { getTrends, DEFAULT_DB } = await import("./lib/db.js");
   if (!(await exists(DEFAULT_DB))) {
@@ -289,6 +323,8 @@ Usage:
   node tools/cli.js db [save]                       Save the current snapshot into output/finance.db
   node tools/cli.js db list                         List snapshots stored in output/finance.db
   node tools/cli.js db read [--date YYYY-MM-DD] [--json]   Read a snapshot from output/finance.db
+  node tools/cli.js items [list] [<bank_id>]               List or show the items registry (config/items/)
+  node tools/cli.js items sync                             Seed config/items from input/banks/*.json
   node tools/cli.js trends                        Show cash/debt trends across recorded snapshots`);
 }
 
@@ -313,6 +349,8 @@ async function main() {
       return cmdIngest(args);
     case "db":
       return cmdDb(args);
+    case "items":
+      return cmdItems(args);
     case "trends":
       return cmdTrends();
     case "help":

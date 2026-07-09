@@ -20,9 +20,13 @@ zero-dependency and run on Node >= 18.
 - `npm run audit` — scan the workspace for secrets and unmasked (>=12-digit) account numbers.
 - `npm run review` — print a read-only summary of the current snapshot (no rebuild, no browser).
 - `npm run new-bank -- "Bank Name"` — scaffold `config/banks/<id>.md` + `input/banks/<id>.json`.
+- `npm run build` also auto-seeds and merges `config/items/<id>.json` (persistent item metadata).
 
 ## Contract
-- Input lives in `input/banks/`. Output is generated in `output/`. Treat `output/` as build artifacts.
+- Input lives in `input/banks/`. Item metadata lives in `config/items/`. Output is generated in `output/`.
+- Build merges the items registry into each bank before summarizing: user-edited fields win,
+  then freshly extracted values, then auto-seeded registry values.
+- Recurring due/closing days in the registry become concrete dates in the snapshot.
 - The tools only ADD analysis flags; explicit `true` flags and values you set are preserved.
 - Money is rounded to 2 decimals; identifiers are re-masked defensively on build.
 - After changing any code in `tools/`, run `npm test` and re-run `npm run build`.

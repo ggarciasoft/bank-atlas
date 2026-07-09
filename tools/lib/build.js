@@ -10,6 +10,7 @@ import { annotateTransactions } from "./analyze.js";
 import { buildSummary } from "./summarize.js";
 import { renderMarkdown } from "./markdown.js";
 import { todayIso, nowIso } from "./datetime.js";
+import { readBankItems, writeBankItems, upsertFromExtraction, mergeIntoBank } from "./items.js";
 
 function coerceMoney(value) {
   if (typeof value === "string") {
@@ -56,6 +57,9 @@ function normalizeBank(bank) {
       available_credit: coerceMoney(c.available_credit),
       credit_limit: coerceMoney(c.credit_limit),
       due_date: c.due_date ? normalizeDate(c.due_date).date : null,
+      statement_closing_date: c.statement_closing_date
+        ? normalizeDate(c.statement_closing_date).date
+        : null,
       confidence: c.confidence || "medium",
       needs_review: c.needs_review === true,
     });
@@ -109,17 +113,23 @@ export async function build(opts = {}) {
   const files = await listJson(PATHS.inputBanks);
   const banks = [];
   const allTransactions = [];
+  const snapshotDate = opts.snapshotDate || todayIso();
 
   for (const file of files) {
     const raw = await readJson(file);
-    const bank = normalizeBank(raw);
+    let bank = normalizeBank(raw);
+
+    const registry = await readBankItems(bank.bank_id);
+    const seeded = upsertFromExtraction(registry, bank);
+    await writeBankItems(bank.bank_id, seeded);
+    bank = mergeIntoBank(bank, seeded, snapshotDate);
+
     banks.push(bank);
     allTransactions.push(...bank.transactions);
   }
 
   annotateTransactions(allTransactions); // flags mutate bank.transactions in place
 
-  const snapshotDate = opts.snapshotDate || todayIso();
   const generatedAt = opts.generatedAt || nowIso();
   const partial = banks.some((b) => b.extraction_status !== "completed") || banks.length === 0;
 
