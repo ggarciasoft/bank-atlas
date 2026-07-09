@@ -21,8 +21,13 @@ globs:
   run `npm run build && npm run validate && npm run audit`.
 
 ## History & trends (SQLite)
-- `npm run db` writes the current `output/financial-snapshot.json` into `output/finance.db`
-  (built on Node's `node:sqlite`; idempotent per `snapshot_date`).
+- `npm run build` writes the current snapshot into `output/finance.db` automatically
+  (built on Node's `node:sqlite`; idempotent per `snapshot_date`). The web dashboard
+  reads the latest snapshot from SQLite via `/api/snapshot`.
+- `npm run db` re-saves `output/financial-snapshot.json` into the database without rebuilding.
+- `npm run db:list` lists recorded snapshot dates; `npm run db:read [-- --date YYYY-MM-DD] [--json]`
+  reads one snapshot back from the database (latest if `--date` is omitted).
 - `npm run trends` prints cash / card-debt / loan-debt by currency across all snapshots.
+- The web server exposes `GET /api/history` and `GET /api/history/<date>` when the database exists.
 - `output/finance.db` is git-ignored (real financial data). Snapshot history is also
   duplicated as timestamped files under `output/history/`.

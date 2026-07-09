@@ -100,7 +100,7 @@ async function cmdServe(args) {
   const { serve } = await import("./lib/serve.js");
   const { url } = await serve({ port, excludeExampleBank });
   console.log(`${GREEN}Dashboard running${RESET} at ${url}`);
-  console.log(`  ${DIM}serving${RESET} web/ + live output/financial-snapshot.json`);
+  console.log(`  ${DIM}serving${RESET} web/ + live output/finance.db (latest snapshot)`);
   if (excludeExampleBank) {
     console.log(`  ${DIM}example bank hidden${RESET} (set exclude_example_bank:false in config/web.json or pass --include-example)`);
   }
@@ -156,7 +156,7 @@ async function cmdIngest(args) {
   console.log(`  ${DIM}next:${RESET} npm run build`);
 }
 
-async function cmdDb() {
+async function cmdDbSave() {
   const snapPath = path.join(PATHS.output, "financial-snapshot.json");
   if (!(await exists(snapPath))) {
     console.error(`${RED}No snapshot found.${RESET} Run \`npm run build\` first.`);
@@ -166,14 +166,79 @@ async function cmdDb() {
   const snapshot = await readJson(snapPath);
   const { saveSnapshotToDb, DEFAULT_DB } = await import("./lib/db.js");
   const { counts } = saveSnapshotToDb(snapshot);
-  console.log(`${GREEN}Saved snapshot${RESET} ${snapshot.snapshot_date} to ${path.relative(PATHS.root, DEFAULT_DB)}`);
+  console.log(`${GREEN}Saved snapshot${RESET} ${snapshot.snapshot_date} to ${path.relative(PATHS.root, DEFAULT_DB)} (build saves automatically; this re-syncs from JSON)`);
   console.log(`  ${DIM}rows:${RESET} accounts ${counts.accounts}, cards ${counts.credit_cards}, loans ${counts.loans}, transactions ${counts.transactions}`);
+}
+
+async function cmdDbList() {
+  const { listSnapshots, DEFAULT_DB } = await import("./lib/db.js");
+  if (!(await exists(DEFAULT_DB))) {
+    console.error(`${RED}No history database.${RESET} Run \`npm run build\` first.`);
+    process.exitCode = 1;
+    return;
+  }
+  const snapshots = listSnapshots();
+  if (snapshots.length === 0) {
+    console.log("No snapshots recorded yet.");
+    return;
+  }
+  console.log(`${snapshots.length} snapshot(s) in ${path.relative(PATHS.root, DEFAULT_DB)}:`);
+  for (const s of snapshots) {
+    const partial = s.partial ? ` ${YELLOW}partial${RESET}` : "";
+    console.log(`  ${s.snapshot_date}  ${DIM}${s.generated_at || "—"}${RESET}${partial}`);
+  }
+}
+
+async function cmdDbRead(args) {
+  const { readSnapshotFromDb, readLatestSnapshotFromDb, listSnapshots, DEFAULT_DB } = await import("./lib/db.js");
+  if (!(await exists(DEFAULT_DB))) {
+    console.error(`${RED}No history database.${RESET} Run \`npm run build\` first.`);
+    process.exitCode = 1;
+    return;
+  }
+  const date = getFlag(args, "--date");
+  const asJson = args.includes("--json");
+  const snapshot = date ? readSnapshotFromDb(date) : readLatestSnapshotFromDb();
+  if (!snapshot) {
+    const hint = date
+      ? `No snapshot for ${date}.`
+      : "No snapshots recorded yet.";
+    const dates = listSnapshots().map((s) => s.snapshot_date);
+    console.error(`${RED}${hint}${RESET}${dates.length ? ` Available: ${dates.join(", ")}` : ""}`);
+    process.exitCode = 1;
+    return;
+  }
+  if (asJson) {
+    console.log(JSON.stringify(snapshot, null, 2));
+    return;
+  }
+  console.log(`${GREEN}Snapshot${RESET} ${snapshot.snapshot_date} (${snapshot.banks.length} bank(s), partial: ${snapshot.partial})`);
+  const s = snapshot.summary || {};
+  for (const row of s.cash_by_currency || []) {
+    console.log(`  ${DIM}cash${RESET}     ${row.currency}  ${Number(row.total).toLocaleString("en-US")}`);
+  }
+  for (const row of s.credit_card_debt_by_currency || []) {
+    console.log(`  ${DIM}cards${RESET}    ${row.currency}  ${Number(row.total).toLocaleString("en-US")}`);
+  }
+  for (const row of s.loan_debt_by_currency || []) {
+    console.log(`  ${DIM}loans${RESET}    ${row.currency}  ${Number(row.total).toLocaleString("en-US")}`);
+  }
+}
+
+async function cmdDb(args) {
+  const sub = args[0];
+  if (sub === "list") return cmdDbList();
+  if (sub === "read") return cmdDbRead(args.slice(1));
+  if (sub === "save" || !sub || sub.startsWith("--")) return cmdDbSave();
+  console.error(`${RED}Unknown db subcommand:${RESET} ${sub}`);
+  console.error(`  Use: db save | db list | db read [--date YYYY-MM-DD] [--json]`);
+  process.exitCode = 1;
 }
 
 async function cmdTrends() {
   const { getTrends, DEFAULT_DB } = await import("./lib/db.js");
   if (!(await exists(DEFAULT_DB))) {
-    console.error(`${RED}No history database.${RESET} Run \`npm run db\` after a build to start tracking.`);
+    console.error(`${RED}No history database.${RESET} Run \`npm run build\` first.`);
     process.exitCode = 1;
     return;
   }
@@ -221,7 +286,9 @@ Usage:
   node tools/cli.js serve [--port 4173] [--include-example]  Serve the web dashboard (reads output/ live)
   node tools/cli.js new-bank "<Bank Name>"       Scaffold a bank profile + input file
   node tools/cli.js ingest --bank <id> --file <csv>   Import a statement CSV into input/banks/<id>.json
-  node tools/cli.js db                            Save the current snapshot into output/finance.db
+  node tools/cli.js db [save]                       Save the current snapshot into output/finance.db
+  node tools/cli.js db list                         List snapshots stored in output/finance.db
+  node tools/cli.js db read [--date YYYY-MM-DD] [--json]   Read a snapshot from output/finance.db
   node tools/cli.js trends                        Show cash/debt trends across recorded snapshots`);
 }
 
@@ -245,7 +312,7 @@ async function main() {
     case "ingest":
       return cmdIngest(args);
     case "db":
-      return cmdDb();
+      return cmdDb(args);
     case "trends":
       return cmdTrends();
     case "help":

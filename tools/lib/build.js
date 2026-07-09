@@ -161,6 +161,10 @@ async function writeAll(snapshot) {
   await writeText(histMd, renderMarkdown(snapshot));
   written.push(histJson, histMd);
 
+  const { saveSnapshotToDb, DEFAULT_DB } = await import("./db.js");
+  saveSnapshotToDb(snapshot);
+  written.push(DEFAULT_DB);
+
   return written;
 }
 

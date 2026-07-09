@@ -589,3 +589,29 @@ input[type="search"]::placeholder {
   outline: none;
   border-color: var(--accent);
 }
+
+.cmd-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.cmd-output {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  max-height: 320px;
+  overflow: auto;
+  background: var(--bg-inset);
+  border: 1px solid var(--stroke-soft);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  line-height: 1.55;
+  font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-secondary);
+}
+.cmd-output.error {
+  border-color: color-mix(in srgb, var(--danger) 45%, var(--stroke));
+  color: var(--danger);
+}

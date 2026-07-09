@@ -14,13 +14,14 @@ const state = {
   error: null, // dashboard load error, if any
 };
 
-// Admin view state (create bank, edit config, rebuild).
+// Admin view state (create bank, edit config, run commands).
 const admin = {
   banks: null, // null = not loaded yet
   notice: null, // { kind: "success"|"warn"|"error", text }
   editing: null, // bank_id currently being edited, or null
   editingContent: "",
   busy: false,
+  commandOutput: null, // { command, ok, text }
 };
 
 function money(amount, currency) {
@@ -499,19 +500,125 @@ function closeEditor() {
   render();
 }
 
-async function rebuildSnapshot() {
+const COMMANDS = [
+  { id: "build", label: "Rebuild snapshot", method: "POST", path: "/api/build", primary: true },
+  { id: "validate", label: "Validate", method: "POST", path: "/api/validate" },
+  { id: "audit", label: "Audit", method: "POST", path: "/api/audit" },
+  { id: "review", label: "Review", method: "GET", path: "/api/review" },
+  { id: "db", label: "Re-save to SQLite", method: "POST", path: "/api/db" },
+  { id: "history", label: "List history", method: "GET", path: "/api/history" },
+  { id: "trends", label: "Trends", method: "GET", path: "/api/trends" },
+];
+
+function formatCommandOutput(data) {
+  if (data.error && !data.command) return data.error;
+  const lines = [];
+  switch (data.command) {
+    case "build":
+      lines.push(`Built snapshot ${data.snapshot_date} (${data.banks} bank(s), partial: ${data.partial})`);
+      for (const f of data.files || []) lines.push(`  wrote ${f}`);
+      break;
+    case "validate":
+      if (data.errors === 0 && data.warnings === 0) {
+        lines.push(`Validation passed — ${data.banks_checked} bank input(s), no issues.`);
+      } else {
+        lines.push(`${data.errors} error(s), ${data.warnings} warning(s) across ${data.banks_checked} bank input(s):`);
+        for (const i of data.issues || []) {
+          lines.push(`  [${i.level}] ${i.where}: ${i.message}`);
+        }
+      }
+      break;
+    case "audit":
+      if (data.errors === 0 && data.warnings === 0) {
+        lines.push("Safety audit passed — no secrets or unmasked numbers found.");
+      } else {
+        lines.push(`${data.errors} error(s), ${data.warnings} warning(s):`);
+        for (const f of data.findings || []) {
+          const loc = f.line ? `${f.file}:${f.line}` : f.file;
+          lines.push(`  [${f.level}] ${loc}  ${f.message}`);
+        }
+      }
+      break;
+    case "review":
+      return data.text || "";
+    case "db":
+      if (data.error) return data.error;
+      lines.push(`Saved snapshot ${data.snapshot_date} to ${data.db_path}`);
+      if (data.counts) {
+        lines.push(
+          `  rows: accounts ${data.counts.accounts}, cards ${data.counts.credit_cards}, loans ${data.counts.loans}, transactions ${data.counts.transactions}`
+        );
+      }
+      break;
+    case undefined:
+      if (data.snapshots) {
+        if (data.snapshots.length === 0) {
+          lines.push("No snapshots recorded yet. Run Save to SQLite after a build.");
+        } else {
+          lines.push(`${data.snapshots.length} snapshot(s):`);
+          for (const s of data.snapshots) {
+            const partial = s.partial ? " (partial)" : "";
+            lines.push(`  ${s.snapshot_date}  ${s.generated_at || "—"}${partial}`);
+          }
+        }
+        break;
+      }
+      if (data.error) return data.error;
+      break;
+    case "trends":
+      if (data.error) return data.error;
+      if ((data.snapshots || 0) === 0) {
+        lines.push("No snapshots recorded yet.");
+        break;
+      }
+      lines.push(`History: ${data.snapshots} snapshot(s) — ${data.dates[0]} → ${data.dates[data.dates.length - 1]}`);
+      const printSeries = (title, rows) => {
+        lines.push("");
+        lines.push(title);
+        if (!rows || rows.length === 0) lines.push("  (none)");
+        else {
+          for (const r of rows) {
+            lines.push(`  ${r.snapshot_date}  ${r.currency}  ${Number(r.total).toLocaleString("en-US")}`);
+          }
+        }
+      };
+      printSeries("Cash available:", data.cash);
+      printSeries("Credit card debt:", data.card_debt);
+      printSeries("Loan debt:", data.loan_debt);
+      break;
+    default:
+      if (data.error) return data.error;
+      lines.push(JSON.stringify(data, null, 2));
+  }
+  return lines.join("\n");
+}
+
+async function runCommand(id) {
+  const cmd = COMMANDS.find((c) => c.id === id);
+  if (!cmd) return;
   admin.busy = true;
+  admin.commandOutput = null;
   setNotice(null);
   render();
   try {
-    const data = await api("/api/build", { method: "POST" });
-    setNotice(
-      "success",
-      `Rebuilt snapshot ${data.snapshot_date} (${data.banks} bank(s)). Open the Dashboard to see changes.`
-    );
-    state.snapshot = null; // force a fresh fetch next time the dashboard opens
-    state.error = null;
+    const data = await api(cmd.path, { method: cmd.method });
+    const text = formatCommandOutput(data);
+    admin.commandOutput = { command: id, ok: data.ok !== false, text };
+    if (id === "build" && data.ok !== false) {
+      state.snapshot = null;
+      state.error = null;
+    }
+    if (data.ok === false) {
+      setNotice(data.error ? "error" : "warn", data.error || `${cmd.label} finished with issues — see output below.`);
+    } else if (id === "validate" && (data.errors > 0 || data.warnings > 0)) {
+      setNotice("warn", `${cmd.label} finished with ${data.errors} error(s), ${data.warnings} warning(s).`);
+    } else if (id === "audit" && (data.errors > 0 || data.warnings > 0)) {
+      setNotice("warn", `${cmd.label} found ${data.errors} error(s), ${data.warnings} warning(s).`);
+    } else {
+      setNotice("success", `${cmd.label} completed.`);
+    }
   } catch (err) {
+    admin.commandOutput = { command: id, ok: false, text: String(err.message || err) };
     setNotice("error", String(err.message || err));
   } finally {
     admin.busy = false;
@@ -528,7 +635,7 @@ function renderAdminInto(view) {
       el(
         "div",
         { class: "muted" },
-        "Create banks, edit their config profile, and rebuild the snapshot. These write to config/ and input/ on this machine — the same files the CLI edits."
+        "Create banks, edit their config profile, and run local tooling commands. These write to config/, input/, and output/ on this machine — the same files the CLI edits."
       ),
     ])
   );
@@ -537,9 +644,32 @@ function renderAdminInto(view) {
     view.appendChild(el("div", { class: "notice " + (admin.notice.kind || "") }, admin.notice.text));
   }
 
+  view.appendChild(renderCommands());
   view.appendChild(renderAddBank());
   view.appendChild(admin.editing ? renderConfigEditor() : renderBankList());
-  view.appendChild(renderRebuild());
+}
+
+function renderCommands() {
+  const buttons = COMMANDS.map((cmd) =>
+    el(
+      "button",
+      {
+        class: "btn" + (cmd.primary ? " primary" : ""),
+        disabled: admin.busy ? "" : null,
+        onClick: () => runCommand(cmd.id),
+      },
+      cmd.label
+    )
+  );
+  const output =
+    admin.commandOutput &&
+    el("pre", { class: "cmd-output" + (admin.commandOutput.ok ? "" : " error") }, admin.commandOutput.text);
+  return el("section", { class: "admin-card" }, [
+    el("h3", { class: "admin-title" }, "Commands"),
+    el("div", { class: "muted" }, "Same as npm run build, validate, audit, review, db (re-save), db:list, and trends."),
+    el("div", { class: "cmd-grid" }, buttons),
+    output,
+  ]);
 }
 
 function renderAddBank() {
@@ -621,16 +751,6 @@ function renderConfigEditor() {
         "Save config"
       ),
       el("button", { class: "btn", disabled: admin.busy ? "" : null, onClick: () => closeEditor() }, "Back to list"),
-    ]),
-  ]);
-}
-
-function renderRebuild() {
-  return el("section", { class: "admin-card" }, [
-    el("h3", { class: "admin-title" }, "Rebuild snapshot"),
-    el("div", { class: "muted" }, "Runs npm run build to regenerate output/ from the current inputs."),
-    el("div", { class: "admin-row" }, [
-      el("button", { class: "btn", disabled: admin.busy ? "" : null, onClick: () => rebuildSnapshot() }, "Rebuild now"),
     ]),
   ]);
 }

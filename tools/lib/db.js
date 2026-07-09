@@ -2,10 +2,12 @@
 // Each build can be pushed into output/finance.db (idempotent per snapshot_date),
 // enabling net-worth / debt trends over time. Mirrors docs/14 Upgrade 1 & 2.
 
+import { mkdirSync } from "node:fs";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
 
-import { PATHS, ensureDir } from "./io.js";
+import { PATHS } from "./io.js";
+import { buildSummary } from "./summarize.js";
 
 export const DEFAULT_DB = path.join(PATHS.output, "finance.db");
 
@@ -45,15 +47,99 @@ CREATE TABLE IF NOT EXISTS transactions (
 function b(v) {
   return v === true ? 1 : 0;
 }
+function fromBool(v) {
+  return v === 1;
+}
 function num(v) {
   return v === null || v === undefined || !Number.isFinite(Number(v)) ? null : Number(v);
 }
 
+function ensureDbDir(dbPath) {
+  mkdirSync(path.dirname(dbPath), { recursive: true });
+}
+
 function open(dbPath = DEFAULT_DB) {
-  ensureDir(path.dirname(dbPath));
+  ensureDbDir(dbPath);
   const db = new DatabaseSync(dbPath);
   db.exec(SCHEMA);
   return db;
+}
+
+function bankShell(bankId, bankName) {
+  return {
+    bank_id: bankId,
+    bank_name: bankName,
+    extraction_status: "completed",
+    extracted_at: null,
+    accounts: [],
+    credit_cards: [],
+    loans: [],
+    transactions: [],
+    notes: [],
+    warnings: [],
+  };
+}
+
+function rowToAccount(r) {
+  return {
+    account_id_masked: r.account_id_masked,
+    account_name: r.account_name,
+    account_type: r.account_type,
+    currency: r.currency,
+    available_balance: r.available_balance,
+    current_balance: r.current_balance,
+    confidence: r.confidence,
+    needs_review: fromBool(r.needs_review),
+  };
+}
+
+function rowToCreditCard(r) {
+  return {
+    card_id_masked: r.card_id_masked,
+    card_name: r.card_name,
+    currency: r.currency,
+    current_balance: r.current_balance,
+    statement_balance: r.statement_balance,
+    minimum_payment: r.minimum_payment,
+    due_date: r.due_date,
+    available_credit: r.available_credit,
+    credit_limit: r.credit_limit,
+    confidence: r.confidence,
+    needs_review: fromBool(r.needs_review),
+  };
+}
+
+function rowToLoan(r) {
+  return {
+    loan_id_masked: r.loan_id_masked,
+    loan_name: r.loan_name,
+    loan_type: r.loan_type,
+    currency: r.currency,
+    remaining_balance: r.remaining_balance,
+    monthly_payment: r.monthly_payment,
+    next_due_date: r.next_due_date,
+    confidence: r.confidence,
+    needs_review: fromBool(r.needs_review),
+  };
+}
+
+function rowToTransaction(r) {
+  return {
+    transaction_id_local: r.transaction_id_local,
+    bank_id: r.bank_id,
+    account_id_masked: r.account_id_masked,
+    date: r.date,
+    description: r.description,
+    amount: r.amount,
+    direction: r.direction,
+    currency: r.currency,
+    category_guess: r.category_guess,
+    is_pending: fromBool(r.is_pending),
+    is_large_movement: fromBool(r.is_large_movement),
+    possible_duplicate: fromBool(r.possible_duplicate),
+    confidence: r.confidence,
+    needs_review: fromBool(r.needs_review),
+  };
 }
 
 /**
@@ -167,6 +253,83 @@ export function saveSnapshotToDb(snapshot, dbPath = DEFAULT_DB) {
     db.close();
   }
   return { dbPath, counts };
+}
+
+/**
+ * List recorded snapshots (oldest first).
+ * @param {string} [dbPath]
+ * @returns {{ snapshot_date: string, generated_at: string | null, partial: boolean }[]}
+ */
+export function listSnapshots(dbPath = DEFAULT_DB) {
+  const db = open(dbPath);
+  try {
+    return db
+      .prepare("SELECT snapshot_date, generated_at, partial FROM snapshots ORDER BY snapshot_date")
+      .all()
+      .map((r) => ({
+        snapshot_date: r.snapshot_date,
+        generated_at: r.generated_at ?? null,
+        partial: fromBool(r.partial),
+      }));
+  } finally {
+    db.close();
+  }
+}
+
+/**
+ * Reconstruct a snapshot object from the database for one date.
+ * Summary is recomputed from stored rows; bank notes/warnings and source_page fields are not persisted.
+ * @param {string} snapshotDate
+ * @param {string} [dbPath]
+ * @returns {object | null}
+ */
+export function readSnapshotFromDb(snapshotDate, dbPath = DEFAULT_DB) {
+  const db = open(dbPath);
+  try {
+    const meta = db.prepare("SELECT snapshot_date, generated_at, partial FROM snapshots WHERE snapshot_date = ?").get(snapshotDate);
+    if (!meta) return null;
+
+    const banks = new Map();
+    const touch = (bankId, bankName) => {
+      if (!banks.has(bankId)) banks.set(bankId, bankShell(bankId, bankName));
+      return banks.get(bankId);
+    };
+
+    for (const r of db.prepare("SELECT * FROM accounts WHERE snapshot_date = ?").all(snapshotDate)) {
+      touch(r.bank_id, r.bank_name).accounts.push(rowToAccount(r));
+    }
+    for (const r of db.prepare("SELECT * FROM credit_cards WHERE snapshot_date = ?").all(snapshotDate)) {
+      touch(r.bank_id, r.bank_name).credit_cards.push(rowToCreditCard(r));
+    }
+    for (const r of db.prepare("SELECT * FROM loans WHERE snapshot_date = ?").all(snapshotDate)) {
+      touch(r.bank_id, r.bank_name).loans.push(rowToLoan(r));
+    }
+    for (const r of db.prepare("SELECT * FROM transactions WHERE snapshot_date = ? ORDER BY date, description").all(snapshotDate)) {
+      touch(r.bank_id, r.bank_name).transactions.push(rowToTransaction(r));
+    }
+
+    const bankList = [...banks.values()].sort((a, b) => a.bank_id.localeCompare(b.bank_id));
+    return {
+      snapshot_date: meta.snapshot_date,
+      generated_at: meta.generated_at ?? null,
+      partial: fromBool(meta.partial),
+      banks: bankList,
+      summary: buildSummary(bankList, meta.snapshot_date),
+    };
+  } finally {
+    db.close();
+  }
+}
+
+/**
+ * Read the most recent snapshot in the database.
+ * @param {string} [dbPath]
+ * @returns {object | null}
+ */
+export function readLatestSnapshotFromDb(dbPath = DEFAULT_DB) {
+  const list = listSnapshots(dbPath);
+  if (list.length === 0) return null;
+  return readSnapshotFromDb(list[list.length - 1].snapshot_date, dbPath);
 }
 
 /**

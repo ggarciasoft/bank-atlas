@@ -44,7 +44,7 @@ Reference docs: `docs/04-ai-agent-operating-instructions.md`, `docs/05-browser-s
 ## After extraction
 Run the tooling — do not compute totals or write output files by hand:
 ```
-npm run build      # normalizes input → output/ (json, md, 4 csv, history) + summary
+npm run build      # normalizes input → output/ (json, md, csv, history, finance.db) + summary
 npm run validate   # schema + masking checks
 npm run audit      # secret / unmasked-number scan
 ```

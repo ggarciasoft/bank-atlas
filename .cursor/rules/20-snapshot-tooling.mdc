@@ -14,7 +14,7 @@ zero-dependency and run on Node >= 18.
 ## Commands
 - `npm run build [-- --date YYYY-MM-DD]` — read every `input/banks/*.json`, normalize
   amounts/dates/masking, flag large movements + possible duplicates + recurring charges,
-  compute the summary, and write `output/` (JSON, Markdown, 4 CSVs) plus a timestamped
+  compute the summary, and write `output/` (JSON, Markdown, 4 CSVs, `finance.db`) plus a timestamped
   copy under `output/history/`.
 - `npm run validate` — check inputs and the built snapshot against the schema and masking rules.
 - `npm run audit` — scan the workspace for secrets and unmasked (>=12-digit) account numbers.

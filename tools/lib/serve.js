@@ -1,12 +1,19 @@
 // Local static + snapshot server for the web dashboard, plus a small local
 // administration API.
 //
-//   GET  /api/snapshot            read live output/financial-snapshot.json
+//   GET  /api/snapshot            read latest snapshot from output/finance.db
+//   GET  /api/history             list snapshots in output/finance.db
+//   GET  /api/history/<date>      read one snapshot from output/finance.db
 //   GET  /api/banks               list banks (config profiles + input files)
 //   POST /api/banks               scaffold a new bank { name }
 //   GET  /api/banks/<id>/config   read config/banks/<id>.md
 //   PUT  /api/banks/<id>/config   write config/banks/<id>.md { content }
 //   POST /api/build               regenerate output/ from current inputs
+//   POST /api/validate            validate inputs + snapshot
+//   POST /api/audit               safety scan
+//   GET  /api/review              read-only snapshot summary
+//   POST /api/db                  save current snapshot into output/finance.db
+//   GET  /api/trends              cash/debt trends from output/finance.db
 //
 // The admin routes write to config/ and input/ on this machine (the same files
 // the CLI edits). They never touch a browser or a bank. No external
@@ -27,6 +34,7 @@ import { filterSnapshotForFrontend } from "./filter-snapshot.js";
 
 const WEB_DIR = path.join(PATHS.root, "web");
 const SNAPSHOT = path.join(PATHS.output, "financial-snapshot.json");
+const HISTORY_DB = path.join(PATHS.output, "finance.db");
 
 /** @type {{ excludeExampleBank: boolean }} */
 let dashboardOptions = { excludeExampleBank: true };
@@ -84,21 +92,55 @@ function resolveStatic(urlPath) {
   return normalized;
 }
 
+async function loadLatestSnapshot() {
+  if (await exists(HISTORY_DB)) {
+    const { readLatestSnapshotFromDb } = await import("./db.js");
+    const fromDb = readLatestSnapshotFromDb();
+    if (fromDb) return fromDb;
+  }
+  if (await exists(SNAPSHOT)) {
+    const raw = await fs.readFile(SNAPSHOT, "utf8");
+    return JSON.parse(raw);
+  }
+  return null;
+}
+
 async function serveSnapshot(res) {
-  if (!(await exists(SNAPSHOT))) {
+  const snapshot = await loadLatestSnapshot();
+  if (!snapshot) {
     return sendJson(res, 404, {
       error: "no snapshot found — run `npm run build` first",
     });
   }
-  const raw = await fs.readFile(SNAPSHOT, "utf8");
-  const snapshot = filterSnapshotForFrontend(JSON.parse(raw), {
+  const filtered = filterSnapshotForFrontend(snapshot, {
     excludeExampleBank: dashboardOptions.excludeExampleBank,
   });
   res.writeHead(200, {
     "content-type": "application/json; charset=utf-8",
     "cache-control": "no-store",
   });
-  return res.end(JSON.stringify(snapshot));
+  return res.end(JSON.stringify(filtered));
+}
+
+async function serveHistorySnapshot(res, snapshotDate) {
+  if (!(await exists(HISTORY_DB))) {
+    return sendJson(res, 404, {
+      error: "no history database — run `npm run build` first",
+    });
+  }
+  const { readSnapshotFromDb } = await import("./db.js");
+  const snapshot = readSnapshotFromDb(snapshotDate);
+  if (!snapshot) {
+    return sendJson(res, 404, { error: `no snapshot for ${snapshotDate}` });
+  }
+  const filtered = filterSnapshotForFrontend(snapshot, {
+    excludeExampleBank: dashboardOptions.excludeExampleBank,
+  });
+  res.writeHead(200, {
+    "content-type": "application/json; charset=utf-8",
+    "cache-control": "no-store",
+  });
+  return res.end(JSON.stringify(filtered));
 }
 
 /** Admin API. Returns true if the request was handled. */
@@ -109,6 +151,29 @@ async function handleApi(req, res, pathname, method) {
       return true;
     }
     await serveSnapshot(res);
+    return true;
+  }
+
+  if (pathname === "/api/history") {
+    if (method !== "GET" && method !== "HEAD") {
+      sendJson(res, 405, { error: "method not allowed" });
+      return true;
+    }
+    if (!(await exists(HISTORY_DB))) {
+      return sendJson(res, 200, { snapshots: [] });
+    }
+    const { listSnapshots } = await import("./db.js");
+    sendJson(res, 200, { snapshots: listSnapshots() });
+    return true;
+  }
+
+  const historyMatch = pathname.match(/^\/api\/history\/([^/]+)$/);
+  if (historyMatch) {
+    if (method !== "GET" && method !== "HEAD") {
+      sendJson(res, 405, { error: "method not allowed" });
+      return true;
+    }
+    await serveHistorySnapshot(res, decodeURIComponent(historyMatch[1]));
     return true;
   }
 
@@ -169,11 +234,84 @@ async function handleApi(req, res, pathname, method) {
       const { snapshot, files } = await build();
       sendJson(res, 200, {
         ok: true,
+        command: "build",
         snapshot_date: snapshot.snapshot_date,
         banks: snapshot.banks.length,
         partial: snapshot.partial,
         files: files.map(rel),
       });
+    } catch (err) {
+      sendJson(res, 500, { error: err.message });
+    }
+    return true;
+  }
+
+  if (pathname === "/api/validate") {
+    if (method !== "POST") {
+      sendJson(res, 405, { error: "method not allowed" });
+      return true;
+    }
+    try {
+      const { runValidate } = await import("./commands.js");
+      sendJson(res, 200, await runValidate());
+    } catch (err) {
+      sendJson(res, 500, { error: err.message });
+    }
+    return true;
+  }
+
+  if (pathname === "/api/audit") {
+    if (method !== "POST") {
+      sendJson(res, 405, { error: "method not allowed" });
+      return true;
+    }
+    try {
+      const { runAudit } = await import("./commands.js");
+      sendJson(res, 200, await runAudit());
+    } catch (err) {
+      sendJson(res, 500, { error: err.message });
+    }
+    return true;
+  }
+
+  if (pathname === "/api/review") {
+    if (method !== "GET" && method !== "HEAD") {
+      sendJson(res, 405, { error: "method not allowed" });
+      return true;
+    }
+    try {
+      const { runReview } = await import("./commands.js");
+      sendJson(res, 200, await runReview());
+    } catch (err) {
+      sendJson(res, 500, { error: err.message });
+    }
+    return true;
+  }
+
+  if (pathname === "/api/db") {
+    if (method !== "POST") {
+      sendJson(res, 405, { error: "method not allowed" });
+      return true;
+    }
+    try {
+      const { runDbSave } = await import("./commands.js");
+      const result = await runDbSave();
+      sendJson(res, result.ok ? 200 : 400, result);
+    } catch (err) {
+      sendJson(res, 500, { error: err.message });
+    }
+    return true;
+  }
+
+  if (pathname === "/api/trends") {
+    if (method !== "GET" && method !== "HEAD") {
+      sendJson(res, 405, { error: "method not allowed" });
+      return true;
+    }
+    try {
+      const { runTrends } = await import("./commands.js");
+      const result = runTrends();
+      sendJson(res, result.ok ? 200 : 404, result);
     } catch (err) {
       sendJson(res, 500, { error: err.message });
     }
