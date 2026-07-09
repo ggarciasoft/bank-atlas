@@ -68,6 +68,29 @@ test("buildSummary totals by currency and lists upcoming", () => {
   assert.equal(s.needs_review.length, 1, "low-confidence loan needs review");
 });
 
+test("buildSummary uses statement balance for credit card upcoming payments", () => {
+  const banks = [
+    {
+      bank_id: "b",
+      bank_name: "B",
+      credit_cards: [
+        {
+          card_name: "Visa",
+          currency: "DOP",
+          statement_balance: 420,
+          minimum_payment: 35,
+          due_date: "2026-07-20",
+          confidence: "high",
+        },
+      ],
+    },
+  ];
+  const s = buildSummary(banks, "2026-07-06");
+  assert.equal(s.upcoming_payments.length, 1);
+  assert.equal(s.upcoming_payments[0].description, "Visa statement payment");
+  assert.equal(s.upcoming_payments[0].amount, 420);
+});
+
 test("validateBank flags unmasked numbers and missing currency", () => {
   const issues = validateBank({
     bank_id: "b",

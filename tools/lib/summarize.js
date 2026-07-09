@@ -52,9 +52,9 @@ export function buildSummary(banks, snapshotDate, horizonDays = DEFAULT_UPCOMING
           bank_id: bank.bank_id,
           bank_name: bank.bank_name,
           type: "credit_card",
-          description: `${card.card_name || "Credit card"} minimum payment`,
+          description: `${card.card_name || "Credit card"} statement payment`,
           currency: card.currency,
-          amount: money(card.minimum_payment ?? card.statement_balance ?? null),
+          amount: money(card.statement_balance ?? card.minimum_payment ?? null),
           days_until: snapshotDate ? daysBetween(snapshotDate, card.due_date) : null,
         });
       }

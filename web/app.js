@@ -98,6 +98,19 @@ function sumByCurrency(items, field) {
   return map;
 }
 
+function sectionTotalsEl(totalsByCurrency, label = "Total") {
+  const entries = Object.entries(totalsByCurrency).sort((a, b) => a[0].localeCompare(b[0]));
+  if (entries.length === 0) return null;
+  return el("div", { class: "section-total" }, [
+    el("span", { class: "section-total-label" }, label),
+    el(
+      "span",
+      { class: "section-total-value" },
+      entries.map(([cur, total]) => money(total, cur)).join(" · ")
+    ),
+  ]);
+}
+
 /* ---------- Renderers ---------- */
 
 function renderHeader() {
@@ -187,6 +200,7 @@ function renderUpcoming() {
     tableEl(["Date", "Bank", "Type", "Description", "Amount", "In"], rows, [
       false, false, false, false, true, true,
     ]),
+    sectionTotalsEl(sumByCurrency(payments, "amount")),
   ]);
 }
 
@@ -255,6 +269,7 @@ function renderAccountsAndSpend() {
     );
     left.push(el("h2", { class: "section-title" }, "Cash accounts"));
     left.push(tableEl(["Account", "Type", "Bank", "Balance"], rows, [false, false, false, true]));
+    left.push(sectionTotalsEl(sumByCurrency(accounts, "available_balance")));
   }
 
   const right = [
