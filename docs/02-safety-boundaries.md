@@ -4,7 +4,7 @@
 
 The AI agent must follow these rules at all times:
 
-1. Always use Playwright MCP (visible/headed browser) for bank-page browser work. Never use Puppeteer, Selenium, headless browsers, or other browser automation.
+1. Always use the `playwright-finance` MCP server (visible/headed browser) for bank-page browser work. Never use Puppeteer, Selenium, headless browsers, the VS Code built-in browser, or any other browser automation or MCP server.
 2. Do not bypass 2FA.
 3. Do not solve CAPTCHA.
 4. Do not evade bot detection.

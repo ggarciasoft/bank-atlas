@@ -2,13 +2,13 @@
 
 ## Why persistent sessions matter
 
-Bank websites often remember a browser profile for a limited period. If Playwright MCP uses a persistent user-data directory, login state, cookies, and localStorage may be preserved between sessions.
+Bank websites often remember a browser profile for a limited period. If the `playwright-finance` MCP server uses a persistent user-data directory, login state, cookies, and localStorage may be preserved between sessions.
 
 This does not guarantee that 2FA will be skipped. The bank can require 2FA again based on time, risk, device checks, location, or internal policies.
 
 ## Standard workflow
 
-Always open bank pages with **Playwright MCP** (visible browser). Do not use other
+Always open bank pages with the **`playwright-finance` MCP server** (visible browser). Do not use other
 browser automation tools.
 
 ```text

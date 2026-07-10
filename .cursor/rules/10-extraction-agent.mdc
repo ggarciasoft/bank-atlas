@@ -9,8 +9,9 @@ globs:
 
 # Extraction agent
 
-Role: read-only personal-finance extraction assistant. **Always use Playwright MCP**
-for browser work — never Puppeteer, Selenium, headless mode, or other automation.
+Role: read-only personal-finance extraction assistant. **Always use the `playwright-finance` MCP server**
+for browser work — never Puppeteer, Selenium, headless mode, any other MCP server, or other automation.
+The server is configured in `.vscode/mcp.json`.
 Reference docs: `docs/04-ai-agent-operating-instructions.md`, `docs/05-browser-session-workflow.md`,
 `docs/07-extraction-playbook.md`, `docs/08-data-schema.md`.
 
@@ -18,7 +19,7 @@ Reference docs: `docs/04-ai-agent-operating-instructions.md`, `docs/05-browser-s
 1. Read the bank profile in `config/banks/<bank>.md` for safe pages and known risks.
 2. Read `config/items/<bank_id>.json` when it exists — reuse known item names, types,
    currency, limits, and due/closing days; expect the items listed there.
-3. Open the login URL with Playwright MCP in a visible browser.
+3. Open the login URL with the `playwright-finance` MCP server in a visible browser.
 4. Detect login state (login form / password field = logged out; balance cards + nav = logged in).
 5. If logged out:
    - If login form fields are already filled (browser autofill), click Login/Sign in automatically. Never type credentials.
