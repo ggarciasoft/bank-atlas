@@ -22,6 +22,29 @@ The workspace has four parts:
   output files, so nothing is hand-written.
 - **Web** (`web/`) — a local, read-only dashboard served by `npm run serve`.
 
+## Index
+
+- [What the agent does](#what-the-agent-does)
+- [Core safety principle](#core-safety-principle)
+- [How it works (data flow)](#how-it-works-data-flow)
+- [Quick start](#quick-start)
+- [Demo banks](#demo-banks)
+- [Commands](#commands)
+- [Agents](#agents)
+- [Web dashboard](#web-dashboard)
+  - [What it shows](#what-it-shows)
+  - [Screenshots](#screenshots)
+  - [Admin view](#admin-view)
+  - [HTTP API](#http-api)
+  - [How to run](#how-to-run)
+  - [Files](#files)
+- [Statement ingestion & history](#statement-ingestion--history)
+- [Project structure](#project-structure)
+- [Tool stack](#tool-stack)
+- [Reference documentation](#reference-documentation)
+- [Contributing](#contributing)
+- [Support](#support)
+
 ## What the agent does
 
 1. Opens a bank website in a **visible** browser through Playwright MCP.
