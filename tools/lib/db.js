@@ -42,6 +42,15 @@ CREATE TABLE IF NOT EXISTS transactions (
   is_pending INTEGER, is_large_movement INTEGER, possible_duplicate INTEGER,
   confidence TEXT, needs_review INTEGER
 );
+CREATE TABLE IF NOT EXISTS banks (
+  bank_id TEXT PRIMARY KEY,
+  bank_name TEXT NOT NULL,
+  login_url TEXT,
+  dashboard_url TEXT,
+  demo_port INTEGER,
+  is_demo INTEGER NOT NULL DEFAULT 0,
+  config_path TEXT
+);
 `;
 
 function b(v) {
@@ -348,6 +357,77 @@ export function readLatestSnapshotFromDb(dbPath = DEFAULT_DB) {
  * @returns {{ dates: string[], cash: Row[], cardDebt: Row[], loanDebt: Row[] }}
  * @typedef {{ snapshot_date: string, currency: string, total: number }} Row
  */
+/**
+ * Upsert bank configuration rows (demo banks, login URLs, etc.).
+ * @param {Array<{ bank_id: string, bank_name: string, login_url?: string, dashboard_url?: string, demo_port?: number, is_demo?: boolean, config_path?: string }>} rows
+ * @param {string} [dbPath]
+ * @returns {{ dbPath: string, count: number }}
+ */
+export function saveBankConfigsToDb(rows, dbPath = DEFAULT_DB) {
+  const db = open(dbPath);
+  let count = 0;
+  try {
+    const stmt = db.prepare(
+      `INSERT INTO banks (bank_id, bank_name, login_url, dashboard_url, demo_port, is_demo, config_path)
+       VALUES (@bank_id, @bank_name, @login_url, @dashboard_url, @demo_port, @is_demo, @config_path)
+       ON CONFLICT(bank_id) DO UPDATE SET
+         bank_name = excluded.bank_name,
+         login_url = excluded.login_url,
+         dashboard_url = excluded.dashboard_url,
+         demo_port = excluded.demo_port,
+         is_demo = excluded.is_demo,
+         config_path = excluded.config_path`
+    );
+    db.exec("BEGIN");
+    for (const row of rows) {
+      stmt.run({
+        bank_id: row.bank_id,
+        bank_name: row.bank_name,
+        login_url: row.login_url ?? null,
+        dashboard_url: row.dashboard_url ?? null,
+        demo_port: row.demo_port ?? null,
+        is_demo: row.is_demo ? 1 : 0,
+        config_path: row.config_path ?? null,
+      });
+      count += 1;
+    }
+    db.exec("COMMIT");
+  } catch (err) {
+    db.exec("ROLLBACK");
+    throw err;
+  } finally {
+    db.close();
+  }
+  return { dbPath, count };
+}
+
+/**
+ * List bank configuration rows stored in the database.
+ * @param {string} [dbPath]
+ * @returns {Array<{ bank_id: string, bank_name: string, login_url: string | null, dashboard_url: string | null, demo_port: number | null, is_demo: boolean, config_path: string | null }>}
+ */
+export function listBankConfigs(dbPath = DEFAULT_DB) {
+  const db = open(dbPath);
+  try {
+    return db
+      .prepare(
+        "SELECT bank_id, bank_name, login_url, dashboard_url, demo_port, is_demo, config_path FROM banks ORDER BY bank_id"
+      )
+      .all()
+      .map((r) => ({
+        bank_id: r.bank_id,
+        bank_name: r.bank_name,
+        login_url: r.login_url ?? null,
+        dashboard_url: r.dashboard_url ?? null,
+        demo_port: r.demo_port ?? null,
+        is_demo: r.is_demo === 1,
+        config_path: r.config_path ?? null,
+      }));
+  } finally {
+    db.close();
+  }
+}
+
 export function getTrends(dbPath = DEFAULT_DB) {
   const db = open(dbPath);
   try {

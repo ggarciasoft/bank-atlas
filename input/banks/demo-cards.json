@@ -1,0 +1,100 @@
+{
+  "bank_id": "demo-cards",
+  "bank_name": "Nova Credit",
+  "extraction_status": "completed",
+  "extracted_at": "2026-07-09T19:00:00-04:00",
+  "accounts": [
+    {
+      "account_id_masked": "****4201",
+      "account_name": "Cuenta Corriente",
+      "account_type": "checking",
+      "currency": "DOP",
+      "available_balance": 3200,
+      "current_balance": 3200,
+      "source_page": "account overview",
+      "confidence": "high",
+      "needs_review": false
+    }
+  ],
+  "credit_cards": [
+    {
+      "card_id_masked": "****5201",
+      "card_name": "Mastercard Oro",
+      "currency": "DOP",
+      "current_balance": 4800,
+      "statement_balance": 4650,
+      "minimum_payment": 380,
+      "due_date": "2026-07-22",
+      "available_credit": 20200,
+      "credit_limit": 25000,
+      "source_page": "credit card summary",
+      "confidence": "high",
+      "needs_review": false
+    },
+    {
+      "card_id_masked": "****5202",
+      "card_name": "Amex Internacional",
+      "currency": "USD",
+      "current_balance": 45,
+      "statement_balance": 42,
+      "minimum_payment": 25,
+      "due_date": "2026-07-28",
+      "available_credit": 455,
+      "credit_limit": 500,
+      "source_page": "credit card summary",
+      "confidence": "high",
+      "needs_review": false
+    }
+  ],
+  "loans": [],
+  "transactions": [
+    {
+      "account_id_masked": "****4201",
+      "date": "2026-07-08",
+      "description": "AMAZON MARKETPLACE",
+      "amount": 1890,
+      "direction": "debit",
+      "currency": "DOP",
+      "category_guess": "shopping",
+      "source_page": "transactions",
+      "confidence": "high"
+    },
+    {
+      "account_id_masked": "****4201",
+      "date": "2026-07-07",
+      "description": "PAGO TARJETA NOVA",
+      "amount": 2500,
+      "direction": "debit",
+      "currency": "DOP",
+      "category_guess": "card_payment",
+      "source_page": "transactions",
+      "confidence": "high"
+    },
+    {
+      "account_id_masked": "****4201",
+      "date": "2026-07-05",
+      "description": "SPOTIFY",
+      "amount": 349,
+      "direction": "debit",
+      "currency": "DOP",
+      "category_guess": "streaming",
+      "source_page": "transactions",
+      "confidence": "high"
+    },
+    {
+      "account_id_masked": "****4201",
+      "date": "2026-07-03",
+      "description": "DEPOSITO NOMINA",
+      "amount": 18500,
+      "direction": "credit",
+      "currency": "DOP",
+      "category_guess": "salary",
+      "source_page": "transactions",
+      "confidence": "high"
+    }
+  ],
+  "notes": [
+    "Demo bank — credit-card-focused. Local mock at port 5182."
+  ],
+  "warnings": []
+}

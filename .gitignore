@@ -149,10 +149,16 @@ vite.config.ts.timestamp-*
 # Real per-bank extraction data. Keep only the example checked in.
 input/banks/*.json
 !input/banks/example-bank.json
+!input/banks/demo-savings.json
+!input/banks/demo-cards.json
+!input/banks/demo-loans.json
 
 # User-editable item metadata (names, limits, due days). Keep example only.
 config/items/*.json
 !config/items/example-bank.json
+!config/items/demo-savings.json
+!config/items/demo-cards.json
+!config/items/demo-loans.json
 
 # Timestamped snapshot history may contain real financial data.
 output/history/

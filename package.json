@@ -19,6 +19,9 @@
     "db:list": "node --disable-warning=ExperimentalWarning tools/cli.js db list",
     "db:read": "node --disable-warning=ExperimentalWarning tools/cli.js db read",
     "trends": "node --disable-warning=ExperimentalWarning tools/cli.js trends",
+    "demo-banks": "node tools/cli.js demo-banks",
+    "seed-demo-banks": "node --disable-warning=ExperimentalWarning tools/cli.js seed-demo-banks",
+    "banks:list": "node --disable-warning=ExperimentalWarning tools/cli.js banks list",
     "test": "node --test \"tools/test/*.test.js\""
   },
   "engines": {

@@ -297,6 +297,70 @@ async function cmdTrends() {
   printSeries("Loan debt:", loanDebt);
 }
 
+async function cmdDemoBanks() {
+  const { startDemoBanks, stopDemoBanks } = await import("./lib/demo-banks-server.js");
+  const { servers, banks } = await startDemoBanks();
+  const shutdown = () => {
+    stopDemoBanks(servers);
+    process.exit(0);
+  };
+  process.on("SIGINT", shutdown);
+  process.on("SIGTERM", shutdown);
+  console.log(`${GREEN}Demo banks running${RESET} (Ctrl+C to stop):`);
+  for (const b of banks) {
+    console.log(`  ${b.name} (${b.id})`);
+    console.log(`    ${DIM}port${RESET}       ${b.port}`);
+    console.log(`    ${DIM}login${RESET}      ${b.login_url}`);
+    console.log(`    ${DIM}dashboard${RESET}  ${b.dashboard_url}`);
+  }
+  await new Promise(() => {});
+}
+
+async function cmdSeedDemoBanks(args) {
+  const force = args.includes("--force");
+  const { seedDemoBanks } = await import("./lib/seed-demo-banks.js");
+  const result = await seedDemoBanks({ force });
+  console.log(`${GREEN}Seeded demo banks${RESET} — ${result.db_count} row(s) in ${result.dbPath}`);
+  if (result.created.length) {
+    console.log(`  ${DIM}created${RESET}`);
+    for (const f of result.created) console.log(`    ${f}`);
+  }
+  if (result.updated.length) {
+    console.log(`  ${DIM}updated${RESET}`);
+    for (const f of result.updated) console.log(`    ${f}`);
+  }
+  if (result.skipped.length) {
+    console.log(`  ${YELLOW}skipped${RESET} (use --force to overwrite)`);
+    for (const f of result.skipped) console.log(`    ${f}`);
+  }
+  for (const b of result.banks) {
+    console.log(`  ${b.bank_id}  ${DIM}port ${b.demo_port}${RESET}  ${b.login_url}`);
+  }
+  console.log(`  ${DIM}next:${RESET} npm run demo-banks   # start mock bank pages`);
+  console.log(`  ${DIM}next:${RESET} npm run build        # include demo data in snapshot`);
+}
+
+async function cmdBanksList() {
+  const { listBankConfigs, DEFAULT_DB } = await import("./lib/db.js");
+  if (!(await exists(DEFAULT_DB))) {
+    console.error(`${RED}No database.${RESET} Run \`npm run seed-demo-banks\` first.`);
+    process.exitCode = 1;
+    return;
+  }
+  const banks = listBankConfigs();
+  if (banks.length === 0) {
+    console.log("No bank configurations in the database.");
+    return;
+  }
+  console.log(`${banks.length} bank configuration(s) in ${path.relative(PATHS.root, DEFAULT_DB)}:`);
+  for (const b of banks) {
+    const demo = b.is_demo ? ` ${YELLOW}demo${RESET}` : "";
+    const port = b.demo_port ? `  ${DIM}port ${b.demo_port}${RESET}` : "";
+    console.log(`  ${b.bank_id}  ${b.bank_name}${demo}${port}`);
+    if (b.login_url) console.log(`    ${DIM}login${RESET}  ${b.login_url}`);
+  }
+}
+
 function dedupe(issues) {
   const seen = new Set();
   const out = [];
@@ -325,7 +389,10 @@ Usage:
   node tools/cli.js db read [--date YYYY-MM-DD] [--json]   Read a snapshot from output/finance.db
   node tools/cli.js items [list] [<bank_id>]               List or show the items registry (config/items/)
   node tools/cli.js items sync                             Seed config/items from input/banks/*.json
-  node tools/cli.js trends                        Show cash/debt trends across recorded snapshots`);
+  node tools/cli.js trends                        Show cash/debt trends across recorded snapshots
+  node tools/cli.js demo-banks                    Start 3 local mock bank pages (ports 5181–5183)
+  node tools/cli.js seed-demo-banks [--force]     Add demo bank configs to disk + output/finance.db
+  node tools/cli.js banks list                    List bank configurations stored in finance.db`);
 }
 
 async function main() {
@@ -353,6 +420,18 @@ async function main() {
       return cmdItems(args);
     case "trends":
       return cmdTrends();
+    case "demo-banks":
+    case "demo":
+      return cmdDemoBanks();
+    case "seed-demo-banks":
+    case "seed-demo":
+      return cmdSeedDemoBanks(args);
+    case "banks":
+      if (args[0] === "list") return cmdBanksList();
+      console.error(`${RED}Unknown banks subcommand:${RESET} ${args[0] || "(none)"}`);
+      console.error(`  Use: banks list`);
+      process.exitCode = 1;
+      return;
     case "help":
     case "--help":
     case "-h":

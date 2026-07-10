@@ -1,0 +1,40 @@
+{
+  "bank_id": "demo-cards",
+  "bank_name": "Nova Credit",
+  "accounts": [
+    {
+      "key": "****4201|DOP",
+      "account_id_masked": "****4201",
+      "account_name": "Cuenta Corriente",
+      "account_type": "checking",
+      "currency": "DOP",
+      "notes": "",
+      "user_edited": []
+    }
+  ],
+  "credit_cards": [
+    {
+      "key": "****5201|DOP",
+      "card_id_masked": "****5201",
+      "card_name": "Mastercard Oro",
+      "currency": "DOP",
+      "credit_limit": 25000,
+      "statement_closing_day": 15,
+      "payment_due_day": 22,
+      "notes": "",
+      "user_edited": []
+    },
+    {
+      "key": "****5202|USD",
+      "card_id_masked": "****5202",
+      "card_name": "Amex Internacional",
+      "currency": "USD",
+      "credit_limit": 500,
+      "statement_closing_day": 20,
+      "payment_due_day": 28,
+      "notes": "",
+      "user_edited": []
+    }
+  ],
+  "loans": []
+}

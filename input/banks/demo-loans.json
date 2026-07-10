@@ -1,0 +1,85 @@
+{
+  "bank_id": "demo-loans",
+  "bank_name": "Prime Lending",
+  "extraction_status": "completed",
+  "extracted_at": "2026-07-09T19:00:00-04:00",
+  "accounts": [
+    {
+      "account_id_masked": "****6301",
+      "account_name": "Cuenta de Servicio",
+      "account_type": "savings",
+      "currency": "DOP",
+      "available_balance": 12100,
+      "current_balance": 12100,
+      "source_page": "account overview",
+      "confidence": "high",
+      "needs_review": false
+    }
+  ],
+  "credit_cards": [],
+  "loans": [
+    {
+      "loan_id_masked": "****7301",
+      "loan_name": "Hipoteca Residencial",
+      "loan_type": "mortgage",
+      "currency": "DOP",
+      "remaining_balance": 850000,
+      "monthly_payment": 28500,
+      "next_due_date": "2026-07-15",
+      "source_page": "loan summary",
+      "confidence": "high",
+      "needs_review": false
+    },
+    {
+      "loan_id_masked": "****7302",
+      "loan_name": "Prestamo Personal",
+      "loan_type": "personal",
+      "currency": "DOP",
+      "remaining_balance": 95000,
+      "monthly_payment": 4200,
+      "next_due_date": "2026-07-25",
+      "source_page": "loan summary",
+      "confidence": "high",
+      "needs_review": false
+    }
+  ],
+  "transactions": [
+    {
+      "account_id_masked": "****6301",
+      "date": "2026-07-08",
+      "description": "PAGO CUOTA HIPOTECA",
+      "amount": 28500,
+      "direction": "debit",
+      "currency": "DOP",
+      "category_guess": "loan_payment",
+      "source_page": "transactions",
+      "confidence": "high"
+    },
+    {
+      "account_id_masked": "****6301",
+      "date": "2026-07-05",
+      "description": "PAGO CUOTA PERSONAL",
+      "amount": 4200,
+      "direction": "debit",
+      "currency": "DOP",
+      "category_guess": "loan_payment",
+      "source_page": "transactions",
+      "confidence": "high"
+    },
+    {
+      "account_id_masked": "****6301",
+      "date": "2026-07-01",
+      "description": "DEPOSITO",
+      "amount": 35000,
+      "direction": "credit",
+      "currency": "DOP",
+      "category_guess": "deposit",
+      "source_page": "transactions",
+      "confidence": "high"
+    }
+  ],
+  "notes": [
+    "Demo bank — loan-focused. Local mock at port 5183."
+  ],
+  "warnings": []
+}

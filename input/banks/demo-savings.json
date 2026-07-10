@@ -1,0 +1,86 @@
+{
+  "bank_id": "demo-savings",
+  "bank_name": "Atlas Savings",
+  "extraction_status": "completed",
+  "extracted_at": "2026-07-09T19:00:00-04:00",
+  "accounts": [
+    {
+      "account_id_masked": "****2101",
+      "account_name": "Cuenta Ahorro Personal",
+      "account_type": "savings",
+      "currency": "DOP",
+      "available_balance": 8450,
+      "current_balance": 8450,
+      "source_page": "account overview",
+      "confidence": "high",
+      "needs_review": false
+    },
+    {
+      "account_id_masked": "****2102",
+      "account_name": "Ahorro en Dolares",
+      "account_type": "savings",
+      "currency": "USD",
+      "available_balance": 75.5,
+      "current_balance": 75.5,
+      "source_page": "account overview",
+      "confidence": "high",
+      "needs_review": false
+    }
+  ],
+  "credit_cards": [
+    {
+      "card_id_masked": "****3101",
+      "card_name": "Visa Clasica",
+      "currency": "DOP",
+      "current_balance": 1200,
+      "statement_balance": 1150,
+      "minimum_payment": 95,
+      "due_date": "2026-07-18",
+      "available_credit": 13800,
+      "credit_limit": 15000,
+      "source_page": "credit card summary",
+      "confidence": "high",
+      "needs_review": false
+    }
+  ],
+  "loans": [],
+  "transactions": [
+    {
+      "account_id_masked": "****2101",
+      "date": "2026-07-08",
+      "description": "FARMACIA CAROL",
+      "amount": 890,
+      "direction": "debit",
+      "currency": "DOP",
+      "category_guess": "health",
+      "source_page": "transactions",
+      "confidence": "high"
+    },
+    {
+      "account_id_masked": "****2101",
+      "date": "2026-07-07",
+      "description": "TRANSFERENCIA RECIBIDA",
+      "amount": 5000,
+      "direction": "credit",
+      "currency": "DOP",
+      "category_guess": "transfer",
+      "source_page": "transactions",
+      "confidence": "high"
+    },
+    {
+      "account_id_masked": "****2102",
+      "date": "2026-07-06",
+      "description": "WISE TRANSFER",
+      "amount": 25,
+      "direction": "credit",
+      "currency": "USD",
+      "category_guess": "transfer",
+      "source_page": "transactions",
+      "confidence": "high"
+    }
+  ],
+  "notes": [
+    "Demo bank — savings-focused. Local mock at port 5181."
+  ],
+  "warnings": []
+}
