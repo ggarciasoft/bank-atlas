@@ -2,7 +2,7 @@
   "bank_id": "demo-cards",
   "bank_name": "Nova Credit",
   "extraction_status": "completed",
-  "extracted_at": "2026-07-09T19:00:00-04:00",
+  "extracted_at": "2026-07-09T22:34:00-04:00",
   "accounts": [
     {
       "account_id_masked": "****4201",
@@ -66,7 +66,7 @@
       "amount": 2500,
       "direction": "debit",
       "currency": "DOP",
-      "category_guess": "card_payment",
+      "category_guess": "payment",
       "source_page": "transactions",
       "confidence": "high"
     },
@@ -93,8 +93,6 @@
       "confidence": "high"
     }
   ],
-  "notes": [
-    "Demo bank — credit-card-focused. Local mock at port 5182."
-  ],
+  "notes": ["Demo bank — credit-card-focused. Local mock at port 5182."],
   "warnings": []
 }

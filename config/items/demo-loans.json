@@ -5,11 +5,11 @@
     {
       "key": "****6301|DOP",
       "account_id_masked": "****6301",
-      "account_name": "Cuenta de Servicio",
-      "account_type": "savings",
       "currency": "DOP",
       "notes": "",
-      "user_edited": []
+      "user_edited": [],
+      "account_name": "Cuenta de Servicio",
+      "account_type": "savings"
     }
   ],
   "credit_cards": [],
@@ -17,26 +17,26 @@
     {
       "key": "****7301|DOP",
       "loan_id_masked": "****7301",
+      "currency": "DOP",
+      "notes": "",
+      "user_edited": [],
       "loan_name": "Hipoteca Residencial",
       "loan_type": "mortgage",
-      "currency": "DOP",
       "monthly_payment": 28500,
       "payment_due_day": 15,
-      "term_months": null,
-      "notes": "",
-      "user_edited": []
+      "term_months": null
     },
     {
       "key": "****7302|DOP",
       "loan_id_masked": "****7302",
+      "currency": "DOP",
+      "notes": "",
+      "user_edited": [],
       "loan_name": "Prestamo Personal",
       "loan_type": "personal",
-      "currency": "DOP",
       "monthly_payment": 4200,
       "payment_due_day": 25,
-      "term_months": null,
-      "notes": "",
-      "user_edited": []
+      "term_months": null
     }
   ]
 }

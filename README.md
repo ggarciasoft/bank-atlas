@@ -153,10 +153,6 @@ balances, and debit-only category breakdown.
 
 ![Dashboard cash accounts and spending](img/Dashboard_Cash_Accounts_Sending_Categories.png)
 
-**Warnings** — extraction notes and items flagged for review across banks.
-
-![Dashboard warnings](img/Dashboard_Warnings.png)
-
 **Transactions** — filter by currency, flow, and search; debits and credits with categories.
 
 ![Dashboard transactions](img/Dashboard_Transactions.png)
@@ -170,6 +166,10 @@ balances, and debit-only category breakdown.
 **Config editor** — edit `config/banks/<id>.md` (safe pages, login URL, extraction notes).
 
 ![Admin config editor](img/Admin_Config_Detail.png)
+
+**Items registry** — edit `config/items/<id>.json` (account/card/loan names, limits, due days).
+
+![Admin items registry](img/Admin_Update_Bank_Item.png)
 
 ### Admin view
 

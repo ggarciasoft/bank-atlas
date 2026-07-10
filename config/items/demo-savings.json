@@ -5,33 +5,33 @@
     {
       "key": "****2101|DOP",
       "account_id_masked": "****2101",
-      "account_name": "Cuenta Ahorro Personal",
-      "account_type": "savings",
       "currency": "DOP",
       "notes": "",
-      "user_edited": []
+      "user_edited": [],
+      "account_name": "Cuenta Ahorro Personal",
+      "account_type": "savings"
     },
     {
       "key": "****2102|USD",
       "account_id_masked": "****2102",
-      "account_name": "Ahorro en Dolares",
-      "account_type": "savings",
       "currency": "USD",
       "notes": "",
-      "user_edited": []
+      "user_edited": [],
+      "account_name": "Ahorro en Dolares",
+      "account_type": "savings"
     }
   ],
   "credit_cards": [
     {
       "key": "****3101|DOP",
       "card_id_masked": "****3101",
-      "card_name": "Visa Clasica",
       "currency": "DOP",
+      "notes": "",
+      "user_edited": [],
+      "card_name": "Visa Clasica",
       "credit_limit": 15000,
       "statement_closing_day": 12,
-      "payment_due_day": 18,
-      "notes": "",
-      "user_edited": []
+      "payment_due_day": 18
     }
   ],
   "loans": []
