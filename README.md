@@ -134,9 +134,13 @@ Each bank serves:
 Then build and browse the snapshot:
 
 ```bash
-npm run build              # include demo banks in output/
-npm run serve              # open http://127.0.0.1:4173/
+npm run build                              # include demo banks in output/
+npm run serve -- --include-example         # show demo + example banks in the dashboard
 ```
+
+`npm run build` always writes demo banks into `output/`. The dashboard hides them by
+default (see [Web dashboard](#web-dashboard)); use `--include-example` or set
+`exclude_example_bank: false` in `config/web.json` to display them.
 
 To verify seeded configs in SQLite:
 
@@ -158,7 +162,7 @@ More detail: `examples/demo-banks/README.md`.
 | `npm run validate` | no | Check inputs and snapshot against the schema and masking rules |
 | `npm run audit` | no | Scan the workspace for secrets and unmasked (>=12-digit) numbers |
 | `npm run review` | no | Print a read-only summary of the current snapshot |
-| `npm run serve [-- --port 4173]` | no | Serve the local web dashboard (`web/` + live `/api/snapshot`) |
+| `npm run serve [-- --port 4173]` | no | Serve the local web dashboard (`web/` + live `/api/snapshot`; hides sample/demo banks by default) |
 | `npm run db` | no | Save the current snapshot into `output/finance.db` (idempotent per date) |
 | `npm run trends` | no | Show cash / card-debt / loan-debt by currency across snapshots |
 | `npm run seed-demo-banks` | no | Seed the three demo banks (config, input, items, DB rows) |
@@ -195,6 +199,12 @@ credentials. The **Dashboard** view is read-only and reads the built snapshot fr
 adds a few local file operations (create a bank, edit a bank config, rebuild the snapshot)
 so you can do common chores from the browser instead of the console.
 
+By default (`exclude_example_bank: true` in `config/web.json`), the dashboard API hides
+`example-bank` and the three demo banks (`demo-savings`, `demo-cards`, `demo-loans`) so
+real data is not mixed with sample data. They remain in `output/` after `npm run build`;
+only the served snapshot is filtered. Set `exclude_example_bank: false` or pass
+`--include-example` to `npm run serve` to show them.
+
 ### What it shows
 
 - **Summary** — cash available, credit card balances, and loan debt by currency
@@ -210,9 +220,9 @@ Any bank you extract and build appears automatically — no frontend changes req
 
 ### Screenshots
 
-Sample UI from `npm run seed-demo-banks`, `npm run build`, and `npm run serve` using the
-three demo banks (Atlas Savings, Nova Credit, Prime Lending). Amounts are scaled under
-RD$10,000 / US$100.
+Sample UI from `npm run seed-demo-banks`, `npm run build`, and
+`npm run serve -- --include-example` using the three demo banks (Atlas Savings, Nova
+Credit, Prime Lending). Amounts are scaled under RD$10,000 / US$100.
 
 #### Dashboard
 
@@ -261,7 +271,7 @@ binds to `127.0.0.1`, so these write routes are only reachable from this machine
 
 | Method & path | Description |
 |---|---|
-| `GET /api/snapshot` | The built snapshot JSON (read-only) |
+| `GET /api/snapshot` | The built snapshot JSON (read-only; sample/demo banks filtered when excluded) |
 | `GET /api/banks` | List banks (union of config profiles and input files) |
 | `POST /api/banks` | Create a bank — body `{ "name": "My Bank" }` |
 | `GET /api/banks/<id>/config` | Read `config/banks/<id>.md` |
@@ -283,14 +293,21 @@ Open **http://127.0.0.1:4173/** in your browser. Use a custom port if needed:
 npm run serve -- --port 8080
 ```
 
+To include sample/demo banks in the dashboard:
+
+```bash
+npm run serve -- --include-example
+```
+
 Stop the server with `Ctrl+C`. The dashboard always reflects the current
-`output/financial-snapshot.json`; rerun `npm run build` and refresh the page after new
-extractions or statement imports.
+`output/financial-snapshot.json` (minus sample banks when excluded); rerun `npm run build`
+and refresh the page after new extractions or statement imports.
 
 ### Files
 
 | Path | Role |
 |---|---|
+| `config/web.json` | Dashboard settings (`exclude_example_bank`) |
 | `web/index.html` | Page shell |
 | `web/styles.css` | Dashboard + admin styles (no external CSS) |
 | `web/app.js` | Renders the Dashboard and Admin views; talks to the API |

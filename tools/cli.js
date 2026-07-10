@@ -102,7 +102,7 @@ async function cmdServe(args) {
   console.log(`${GREEN}Dashboard running${RESET} at ${url}`);
   console.log(`  ${DIM}serving${RESET} web/ + live output/finance.db (latest snapshot)`);
   if (excludeExampleBank) {
-    console.log(`  ${DIM}example bank hidden${RESET} (set exclude_example_bank:false in config/web.json or pass --include-example)`);
+    console.log(`  ${DIM}example + demo banks hidden${RESET} (set exclude_example_bank:false in config/web.json or pass --include-example)`);
   }
   console.log(`  ${DIM}stop with${RESET} Ctrl+C`);
 }
