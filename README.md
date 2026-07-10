@@ -80,6 +80,51 @@ npm test                             # unit tests for the tooling
 A worked example ships in `input/banks/example-bank.json` — `npm run build` turns it into a
 complete `output/` snapshot out of the box.
 
+For a fuller try-out (three mock banks, dashboard screenshots, and extraction practice), see
+[Demo banks](#demo-banks) below.
+
+## Demo banks
+
+Three **local mock bank websites** let you practice the full extraction workflow without
+touching real banks. Each runs on its own port, serves a pre-filled login form and a
+read-only dashboard, and returns **403** on forbidden paths (`/transfer`, `/pay`,
+`/settings`, etc.) — the same safety boundaries as real banks.
+
+| Bank | ID | Port | Focus |
+|---|---|---|---|
+| Atlas Savings | `demo-savings` | 5181 | Savings accounts + one card |
+| Nova Credit | `demo-cards` | 5182 | Multi-currency credit cards |
+| Prime Lending | `demo-loans` | 5183 | Mortgage + personal loans |
+
+### Setup
+
+```bash
+npm run seed-demo-banks    # write config/banks/, input/banks/, config/items/, finance.db rows
+npm run demo-banks         # start all three mock servers (Ctrl+C to stop)
+```
+
+Each bank serves:
+
+- `/login` — pre-filled login form (auto-login testing)
+- `/home` — dashboard with accounts, cards, loans, and transactions
+
+Then build and browse the snapshot:
+
+```bash
+npm run build              # include demo banks in output/
+npm run serve              # open http://127.0.0.1:4173/
+```
+
+To verify seeded configs in SQLite:
+
+```bash
+npm run banks:list
+```
+
+Demo profiles live under `config/banks/demo-*.md`; item registries under
+`config/items/demo-*.json`. Seeded input JSON is written to `input/banks/demo-*.json`.
+More detail: `examples/demo-banks/README.md`.
+
 ## Commands
 
 | Command | Browser? | Description |
@@ -93,6 +138,9 @@ complete `output/` snapshot out of the box.
 | `npm run serve [-- --port 4173]` | no | Serve the local web dashboard (`web/` + live `/api/snapshot`) |
 | `npm run db` | no | Save the current snapshot into `output/finance.db` (idempotent per date) |
 | `npm run trends` | no | Show cash / card-debt / loan-debt by currency across snapshots |
+| `npm run seed-demo-banks` | no | Seed the three demo banks (config, input, items, DB rows) |
+| `npm run demo-banks` | no | Start all three local mock bank servers (ports 5181–5183) |
+| `npm run banks:list` | no | List bank configs stored in `output/finance.db` |
 | `npm test` | no | Run the unit tests |
 
 All commands are also available directly: `node tools/cli.js <command>` (or `atlas <command>`).
@@ -139,8 +187,9 @@ Any bank you extract and build appears automatically — no frontend changes req
 
 ### Screenshots
 
-Sample UI from `npm run build` + `npm run serve` using demo data in `input/banks/` (amounts
-scaled under RD$10,000 / US$100).
+Sample UI from `npm run seed-demo-banks`, `npm run build`, and `npm run serve` using the
+three demo banks (Atlas Savings, Nova Credit, Prime Lending). Amounts are scaled under
+RD$10,000 / US$100.
 
 #### Dashboard
 
@@ -245,9 +294,10 @@ The server binds to `127.0.0.1` by default and is intended for local use only.
 ├─ .cursor/                mcp.json + rules/ (agent behavior)
 ├─ .vscode/                mcp.json (Copilot Agent Mode)
 ├─ config/banks/           One profile per bank (safe/forbidden pages, risks)
+├─ config/items/           Item registry per bank (names, limits, due days; user-edited fields)
 ├─ input/banks/            Per-bank extracted data (source of truth; real files git-ignored)
 ├─ statements/             Drop CSV/PDF statements here for offline ingestion
-├─ examples/               Sample statement CSV
+├─ examples/               Sample statement CSV + demo-banks/ guide
 ├─ img/                    Dashboard and admin screenshots (README samples)
 ├─ output/                 Generated snapshot: md, json, 4 csv, history/, finance.db
 ├─ prompts/                Agent prompt files
@@ -303,6 +353,7 @@ improvements all help.
 | Area | Examples |
 |---|---|
 | Bank profiles | `config/banks/<id>.md` — safe pages, login URL, extraction notes for a new bank |
+| Demo banks | `tools/lib/demo-banks-*.js`, `examples/demo-banks/` — mock sites for extraction practice |
 | Prompts & rules | `prompts/`, `.cursor/rules/` — clearer agent instructions |
 | Tooling | `tools/` — schema validation, ingest, build, dashboard API (stay zero-dependency) |
 | Web dashboard | `web/` — layout, filters, accessibility |
@@ -315,7 +366,8 @@ improvements all help.
 - Passwords, API keys, or browser profile directories
 
 `input/banks/*.json` (except `example-bank.json`) and `output/` are git-ignored on purpose.
-Use `input/banks/example-bank.json` and `examples/sample-statement.csv` for demos.
+Use `input/banks/example-bank.json`, `npm run seed-demo-banks` (three mock banks), and
+`examples/sample-statement.csv` for demos.
 
 If you change the data schema, update `docs/08-data-schema.md` and `tools/lib/schema.js`
 together.
