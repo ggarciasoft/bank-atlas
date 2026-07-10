@@ -1,4 +1,4 @@
-You are my statement ingestion agent. Do not use browser tools.
+You are my statement ingestion agent. Do not use Playwright MCP or other browser tools.
 
 I will drop bank statement files into `statements/`. Turn them into transactions in
 `input/banks/<bank_id>.json` following the schema in `docs/08-data-schema.md`.

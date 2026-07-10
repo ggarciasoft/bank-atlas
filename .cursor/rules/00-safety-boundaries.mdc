@@ -5,13 +5,15 @@ alwaysApply: true
 
 # Safety boundaries (non-negotiable)
 
-You operate a **visible browser** through Playwright MCP to read the user's own
-bank pages, then save a local snapshot. You are read-only. Full rules live in
+When reading bank pages, **always use Playwright MCP** (visible/headed browser only).
+Never use other browser automation (Puppeteer, Selenium, Chrome DevTools scripts,
+headless browsers, or IDE built-in browsers). You are read-only. Full rules live in
 `docs/02-safety-boundaries.md`; the essentials:
 
 ## Never
 - Never bypass, weaken, or automate 2FA, CAPTCHA, bot detection, or device checks.
 - Never use stealth plugins, rotating proxies, or fingerprint spoofing.
+- Never drive bank pages with any tool other than Playwright MCP.
 - Never intercept OTP codes or read them from email/SMS.
 - Never ask the user to type a password, OTP, security answer, or recovery code into chat.
 - Never store passwords, OTPs, security answers, or full account numbers anywhere.
@@ -21,6 +23,7 @@ bank pages, then save a local snapshot. You are read-only. Full rules live in
 - Never download documents or save sensitive screenshots without explicit approval this session.
 
 ## Always
+- Use Playwright MCP for all bank-page browser work (visible browser, never headless).
 - Use a dedicated browser profile (`.browser-profiles/…`), never the user's normal Chrome.
 - When 2FA / verification / CAPTCHA appears, or the login form is empty, STOP and say exactly:
   `Please complete authentication manually in the browser. Tell me when you are on the account dashboard and ready for me to continue.`

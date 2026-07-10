@@ -3,7 +3,7 @@
 ## Master prompt
 
 ```text
-You are my local personal finance extraction assistant using MCP tools.
+You are my local personal finance extraction assistant using Playwright MCP.
 
 Read and follow:
 - README.md
@@ -16,7 +16,8 @@ Goal:
 Create or update my current financial snapshot from the bank profiles in `config/banks/`.
 
 Rules:
-- Use a visible browser only.
+- Always use Playwright MCP for bank pages (visible/headed browser only).
+- Never use Puppeteer, Selenium, headless browsers, or other browser automation.
 - Do not bypass 2FA, CAPTCHA, or bot detection.
 - Do not ask me to paste passwords, OTP codes, or security answers in chat.
 - If 2FA, CAPTCHA, or verification appears, or the login form is empty, pause and ask me to complete authentication manually in the browser.
@@ -53,7 +54,7 @@ Highlight changes compared with the previous snapshot.
 ## Review financial situation
 
 ```text
-Do not use browser tools.
+Do not use Playwright MCP or other browser tools.
 Read `output/financial-snapshot.json` and `output/financial-snapshot.md`.
 Summarize my current financial situation.
 Focus on cash available, credit card debt, loan debt, due dates, large movements, and missing data.
@@ -71,7 +72,7 @@ Use the template from `docs/06-bank-profile-template.md`.
 ## Extract from screenshots or PDFs
 
 ```text
-Do not use browser tools.
+Do not use Playwright MCP or other browser tools.
 Analyze the files I placed in `statements/`.
 Extract financial data according to `docs/08-data-schema.md`.
 Mask account numbers.
@@ -84,7 +85,7 @@ Update the output files.
 ```text
 Review this workspace for safety risks.
 Check for credentials, full account numbers, OTPs, recovery codes, unsafe prompts, or instructions that could bypass 2FA/CAPTCHA/bot detection.
-Do not use browser tools.
+Do not use Playwright MCP or other browser tools.
 Produce a list of issues and suggested fixes.
 ```
 

@@ -65,7 +65,7 @@ Prompt:
 ```text
 Read the statement files I placed in `statements/`.
 Extract transactions and balances from the files.
-Do not use browser tools.
+Do not use Playwright MCP or other browser tools.
 Normalize the data into the schema from `docs/08-data-schema.md`.
 Write to `input/banks/<bank_id>.json`, then run `npm run build`.
 ```
@@ -80,7 +80,7 @@ Expected result:
 Prompt:
 
 ```text
-Do not use browser tools.
+Do not use Playwright MCP or other browser tools.
 Read the existing files under `output/`.
 Give me a financial summary, identify missing data, flag large or unusual movements, and suggest what I should review manually.
 ```
@@ -95,7 +95,7 @@ Expected result:
 Prompt:
 
 ```text
-Do not use browser tools for bank login.
+Do not use Playwright MCP for bank login.
 Run `npm run build` if needed, then `npm run serve`.
 Tell me the local URL to open and what I should check on the dashboard.
 ```

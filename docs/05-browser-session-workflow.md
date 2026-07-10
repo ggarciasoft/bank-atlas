@@ -8,6 +8,9 @@ This does not guarantee that 2FA will be skipped. The bank can require 2FA again
 
 ## Standard workflow
 
+Always open bank pages with **Playwright MCP** (visible browser). Do not use other
+browser automation tools.
+
 ```text
 Start AI agent
     ↓

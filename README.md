@@ -178,7 +178,7 @@ Reusable prompts live in `prompts/`; always-on behavior lives in `.cursor/rules/
 
 | Agent | Prompt | Browser? | Purpose |
 |---|---|---|---|
-| Extraction | `prompts/extraction-agent.md` | yes | Read visible bank data → `input/banks/` |
+| Extraction | `prompts/extraction-agent.md` | yes — Playwright MCP only | Read visible bank data → `input/banks/` |
 | Statement ingest | `prompts/statement-ingest-agent.md` | no | Import CSV/PDF statements → `input/banks/` |
 | Normalizer | `prompts/normalizer-agent.md` | no | Build `output/` from inputs via the tools |
 | Review | `prompts/review-agent.md` | no | Summarize the snapshot, flag what to check |

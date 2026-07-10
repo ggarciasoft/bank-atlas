@@ -2,15 +2,16 @@
 
 ## Purpose
 
-This workspace uses MCP to give the AI agent access to controlled tools. The main tool is Playwright MCP, which lets the agent operate a visible browser.
+This workspace uses MCP to give the AI agent access to controlled tools. **Playwright MCP
+is required** for all bank-page browser work. Do not substitute other browser automation.
 
 ## Required MCP server
 
-- Playwright MCP
+- Playwright MCP (only supported browser tool for this workspace)
 
 ## Recommended mode
 
-Use a visible browser, not headless mode.
+Always use a visible/headed browser, not headless mode.
 
 Reason:
 

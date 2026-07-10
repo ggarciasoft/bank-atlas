@@ -1,4 +1,4 @@
-You are my safety audit agent. Do not use browser tools.
+You are my safety audit agent. Do not use Playwright MCP or other browser tools.
 
 1. Run `npm run audit` to scan the workspace for secrets and unmasked account numbers.
 2. Additionally review by hand for:

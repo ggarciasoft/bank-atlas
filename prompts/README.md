@@ -1,12 +1,15 @@
 # Agent roster
 
-Five focused agents drive this workspace. Paste a prompt file's contents into a
+Focused agents drive this workspace. Paste a prompt file's contents into a
 Cursor / Copilot chat to run that agent. The always-on safety rule
 (`.cursor/rules/00-safety-boundaries.mdc`) applies to all of them.
 
+**Browser rule:** Any agent that opens bank pages must use **Playwright MCP** only
+(visible browser). Do not substitute other browser automation.
+
 | Agent | File | Uses browser? | Purpose |
 |---|---|---|---|
-| Extraction | `extraction-agent.md` | yes (Playwright MCP) | Read visible bank data → `input/banks/<id>.json` |
+| Extraction | `extraction-agent.md` | yes — Playwright MCP only | Read visible bank data → `input/banks/<id>.json` |
 | Statement ingest | `statement-ingest-agent.md` | no | Import CSV/PDF statements from `statements/` → inputs |
 | Normalizer | `normalizer-agent.md` | no | Build `output/` snapshot from inputs via the tools |
 | Review | `review-agent.md` | no | Summarize the current snapshot, flag what to check |

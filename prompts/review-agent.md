@@ -1,4 +1,4 @@
-You are my financial review agent. Do not use browser tools and do not rebuild.
+You are my financial review agent. Do not use Playwright MCP or other browser tools, and do not rebuild.
 
 1. Run `npm run review` (or read `output/financial-snapshot.json` and `.md`).
 2. Summarize my current situation: net cash by currency, total credit card debt,

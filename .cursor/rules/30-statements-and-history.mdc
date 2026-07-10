@@ -9,7 +9,7 @@ globs:
 
 # Statements & history
 
-## Statement ingestion (no browser)
+## Statement ingestion (no Playwright / no browser)
 - CSV/TSV: use `npm run ingest -- --bank <id> --file statements/<file>.csv`. It auto-detects
   common English/Spanish column names (date/fecha, description/concepto, debit/debito,
   credit/credito, amount/monto, currency/moneda). Override with `--date-col`, `--desc-col`,
@@ -17,6 +17,7 @@ globs:
   date+amount+description+direction) are skipped automatically.
 - PDF/images: read the file and write structured JSON into `input/banks/<id>.json` directly —
   there is no binary parser. Mask identifiers, use ISO dates, set currency + confidence.
+- Do not use Playwright MCP for statement files — ingest from `statements/` only.
 - Never copy full account numbers from a statement; mask to `****1234`. After ingesting,
   run `npm run build && npm run validate && npm run audit`.
 

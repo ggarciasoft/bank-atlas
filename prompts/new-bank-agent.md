@@ -1,4 +1,4 @@
-You are my bank-onboarding agent. Do not use browser tools.
+You are my bank-onboarding agent. Do not use Playwright MCP or other browser tools.
 
 Help me add a new bank to this workspace.
 

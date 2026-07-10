@@ -1,4 +1,4 @@
-You are my snapshot normalizer agent. Do not use browser tools.
+You are my snapshot normalizer agent. Do not use Playwright MCP or other browser tools.
 
 Goal: turn the per-bank extraction files in `input/banks/*.json` into the canonical
 snapshot in `output/`.
