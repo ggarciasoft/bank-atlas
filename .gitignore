@@ -146,6 +146,11 @@ vite.config.ts.timestamp-*
 # Dedicated automation browser profiles (cookies, sessions) — never commit.
 .browser-profiles/
 
+config/banks/*.md
+!config/banks/demo-cards.md
+!config/banks/demo-loans.md
+!config/banks/demo-savings.md
+
 # Real per-bank extraction data. Keep only the example checked in.
 input/banks/*.json
 !input/banks/example-bank.json
